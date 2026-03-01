@@ -69,6 +69,15 @@
         .work-card-small span { font-size: 0.75rem; color: var(--text-secondary); }
 
         .principles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+        .timeline { margin-top: 2rem; max-width: 800px; }
+        .timeline-item { display: grid; grid-template-columns: 80px 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-year { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; color: var(--text-secondary); padding-top: 0.25rem; }
+        .timeline-content { }
+        .timeline-role { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.25rem; }
+        .timeline-company { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; color: var(--accent); margin-bottom: 0.5rem; line-height: 1.1; }
+        .timeline-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
         .principle-card { padding: 2.5rem; border: 1px solid var(--border); background: var(--bg-card); transition: all 0.3s ease; }
         .principle-card:hover { border-color: var(--accent); }
         .principle-number { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--accent); line-height: 1; margin-bottom: 1rem; }
@@ -94,6 +103,7 @@
             .work-secondary { grid-template-columns: repeat(2, 1fr); }
             .about-grid { grid-template-columns: 1fr; }
             .principles-grid { grid-template-columns: repeat(2, 1fr); }
+            .timeline-item { grid-template-columns: 60px 1fr; gap: 1rem; }
             .contact-content { flex-direction: column; gap: 2rem; text-align: center; }
         }
         @media (max-width: 768px) {
@@ -104,6 +114,9 @@
             .nav-links { display: none; }
             .principles-grid { grid-template-columns: 1fr; }
             .contact-links { flex-direction: column; }
+            .timeline-item { grid-template-columns: 50px 1fr; gap: 1rem; padding: 1.5rem 0; }
+            .timeline-year { font-size: 1rem; }
+            .timeline-company { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -157,9 +170,114 @@
                 <div class="highlight-card"><h3>TEACHING</h3><p>Adjunct Professor at Northeastern University, shaping future designers.</p></div>
             </div>
         </div>
-        <div  style="margin-top: 4rem;">
+        <div style="margin-top: 4rem;">
             <p class="section-label">Career Timeline</p>
-            <img src="images/about/Artboard--2_1600_c.png" alt="Career Timeline" style="width: 100%; max-width: 800px; border: 1px solid var(--border); margin-top: 1rem;">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-content">
+                        <p class="timeline-role">ADJUNCT PROFESSOR</p>
+                        <h4 class="timeline-company">Northeastern University</h4>
+                        <p class="timeline-desc">Teach graduate UX Design & Research classes</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2023</div>
+                    <div class="timeline-content">
+                        <p class="timeline-role">SENIOR DIRECTOR OF UX</p>
+                        <h4 class="timeline-company">Workday</h4>
+                        <p class="timeline-desc">Led global Product Design across the entire product portfolio (HR, Finance, Higher Education). Partnered closely with Product on strategy, execution, and measuring user experience.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2018</div>
+                    <div class="timeline-content">
+                        <p class="timeline-role">VP OF PRODUCT DESIGN, UX RESEARCH & TECHNICAL WRITING</p>
+                        <h4 class="timeline-company">Axon</h4>
+                        <p class="timeline-desc">Grew the team from a handful to 60+ across Product Design, UX Research, Technical Writing and Design Operations. Responsible for UX of all software products (Dispatch/911, Records, Digital Evidence Management) and hardware interaction design (body cameras, drones, interview rooms). Created the Axon Design System.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2018</div>
+                    <div class="timeline-content">
+                        <p class="timeline-role">CO-FOUNDER</p>
+                        <h4 class="timeline-company">Skill Cafe</h4>
+                        <p class="timeline-desc">AI/ML skill & location based job search and learning platform.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2015</div>
+                    <div class="timeline-content">
+                        <p class="timeline-role">HEAD OF UX DESIGN & RESEARCH</p>
+                        <h4 class="timeline-company">Qualtrics</h4>
+                        <p class="timeline-desc">Led the global UX Design & Research organization reporting to the co-founder. Built the team and discipline from the ground up. Brought all products and experiences together into the Experience Management (XM) platform.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2014</div>
+                    <div class="timeline-content">
+                        <p class="timeline-role">DIRECTOR OF UX DESIGN & RESEARCH</p>
+                        <h4 class="timeline-company">Socrata</h4>
+                        <p class="timeline-desc">Managed a team of UX and visual designers and researchers. Completely redesigned the main Socrata product resulting in a patentable new user interface paradigm for visualizing and exploring data.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2012</div>
+                    <div class="timeline-content">
+                        <p class="timeline-role">DIRECTOR OF DESIGN & USER EXPERIENCE</p>
+                        <h4 class="timeline-company">Moz</h4>
+                        <p class="timeline-desc">Led the Design and Creative team including UX Design, Information Architecture & Strategy, Creative Direction, Branding, Motion Design, and Illustration. Identified Moz as the second most recognizable Marketing Tech brand.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2009</div>
+                    <div class="timeline-content">
+                        <p class="timeline-role">USER EXPERIENCE MANAGER</p>
+                        <h4 class="timeline-company">F5 Networks</h4>
+                        <p class="timeline-desc">Led the UX discipline including UX Design, UX Research and Industrial Design. Won the Five Star award for significant contributions to the company.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2007</div>
+                    <div class="timeline-content">
+                        <p class="timeline-role">USER EXPERIENCE MANAGER</p>
+                        <h4 class="timeline-company">SumTotal Systems</h4>
+                        <p class="timeline-desc">Started and built the UX team and discipline. Won the Power of One team award for special achievements.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2006</div>
+                    <div class="timeline-content">
+                        <p class="timeline-role">PRODUCT DESIGNER II</p>
+                        <h4 class="timeline-company">Microsoft Live</h4>
+                        <p class="timeline-desc">Led the Windows Live user experience around pictures, videos and music including Windows Live Photo Gallery and Live Spaces media sharing.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2003</div>
+                    <div class="timeline-content">
+                        <p class="timeline-role">PRODUCT DESIGNER</p>
+                        <h4 class="timeline-company">Microsoft Windows</h4>
+                        <p class="timeline-desc">Responsible for dramatic improvements to the first experience of Windows reducing the out of the box experience from 22 minutes and 50% failure rate to 2 min and 0% failure.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2000</div>
+                    <div class="timeline-content">
+                        <p class="timeline-role">PRODUCT DESIGNER</p>
+                        <h4 class="timeline-company">Microsoft Hardware</h4>
+                        <p class="timeline-desc">Hardware interaction design of desktop productivity devices (mice, keyboards). Generated significant intellectual property including the Microsoft Tilt Wheel which generated more revenue than the optical mouse. Won International Stevie Award for best new product.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1994</div>
+                    <div class="timeline-content">
+                        <p class="timeline-role">MSc INDUSTRIAL DESIGN ENGINEERING</p>
+                        <h4 class="timeline-company">Delft University of Technology</h4>
+                        <p class="timeline-desc">Specialized in Hardware and Software convergence</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
