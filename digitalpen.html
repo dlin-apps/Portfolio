@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Pen — Daan Lindhout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-primary: #0a0a0a; --bg-secondary: #141414; --bg-card: #1a1a1a; --text-primary: #ffffff; --text-secondary: #888888; --accent: #00d4aa; --accent-dim: rgba(0, 212, 170, 0.12); --border: #2a2a2a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        ::selection { background: var(--accent); color: var(--bg-primary); }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10, 10, 10, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.1em; text-decoration: none; color: var(--text-primary); }
+        .logo span { color: var(--accent); }
+        .back-link { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; }
+        .back-link:hover { color: var(--accent); }
+
+        .case-hero { padding: 10rem 4rem 4rem; max-width: 1200px; margin: 0 auto; }
+        .case-meta { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+        .case-tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); }
+        .case-year { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; color: var(--accent); }
+        .case-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6rem); line-height: 0.95; margin-bottom: 2rem; }
+        .case-role { font-size: 1.5rem; color: var(--accent); margin-bottom: 1.5rem; }
+        .case-intro { font-size: 1.25rem; color: var(--text-secondary); max-width: 800px; line-height: 1.7; }
+
+        .hero-image { width: 100%; max-width: 900px; margin: 0 auto; padding: 0 4rem; }
+        .hero-image img { width: 100%; height: auto; border: 1px solid var(--border); }
+
+        .stats-bar { background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 4rem; }
+        .stats-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+        .stat { text-align: center; }
+        .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--accent); line-height: 1; }
+        .stat-label { font-size: 0.875rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem; }
+
+        .case-content { padding: 6rem 4rem; max-width: 1200px; margin: 0 auto; }
+        .content-section { margin-bottom: 6rem; }
+        .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: block; }
+        .content-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1.1; margin-bottom: 2rem; }
+        .content-section p { font-size: 1.125rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem; max-width: 800px; }
+
+        .content-image { margin: 3rem 0; }
+        .content-image img { width: 100%; max-width: 600px; height: auto; border: 1px solid var(--border); display: block; margin: 0 auto; }
+        .image-caption { font-size: 0.875rem; color: var(--text-secondary); margin-top: 1rem; font-style: italic; text-align: center; padding: 1rem; background: var(--bg-secondary); max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        .image-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin: 3rem 0; max-width: 900px; }
+        .image-grid img { width: 100%; height: auto; border: 1px solid var(--border); }
+
+        .outcomes-list { list-style: none; margin-top: 2rem; }
+        .outcomes-list li { display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem 0; border-bottom: 1px solid var(--border); font-size: 1.125rem; color: var(--text-secondary); }
+        .outcomes-list li:last-child { border-bottom: none; }
+        .outcomes-list li::before { content: '→'; color: var(--accent); font-weight: bold; flex-shrink: 0; }
+
+        .next-case { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 6rem 4rem; }
+        .next-case-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .next-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 1rem; }
+        .next-case h3 { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; line-height: 1; margin: 0; }
+        .next-case a { text-decoration: none; color: var(--text-primary); transition: color 0.3s ease; }
+        .next-case a:hover { color: var(--accent); }
+        .next-arrow { font-size: 4rem; color: var(--accent); }
+
+        footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .footer-text { font-size: 0.875rem; color: var(--text-secondary); }
+
+        @media (max-width: 1024px) {
+            nav, .case-hero, .stats-bar, .case-content, .next-case, footer, .hero-image { padding-left: 2rem; padding-right: 2rem; }
+            .stats-grid { grid-template-columns: repeat(3, 1fr); }
+            .image-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .next-case-inner { flex-direction: column; text-align: center; gap: 2rem; }
+            .next-case h3 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">DAAN<span>.</span></a>
+        <a href="index.html" class="back-link">← Back to Work</a>
+    </nav>
+
+    <section class="case-hero">
+        <div class="case-hero-content">
+            <div class="case-meta">
+                <span class="case-tag">Hardware</span>
+                <span class="case-tag">Industrial Design</span>
+                <span class="case-tag">Microsoft</span>
+                <span class="case-year">2003</span>
+            </div>
+            <h1>DIGITAL PEN</h1>
+            <p class="case-role">Product Designer, Microsoft Hardware</p>
+            <p class="case-intro">Hardware interaction design and software user interface design of a digital pen that captures what you write. This innovative input device bridged the gap between analog writing and digital capture.</p>
+        </div>
+    </section>
+
+    <div class="hero-image">
+        <img src="images/digitalpen/digital pen.jpg" alt="Digital Pen in use">
+    </div>
+
+    <section class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat"><div class="stat-number">HW+SW</div><div class="stat-label">Full Stack Design</div></div>
+            <div class="stat"><div class="stat-number">Microsoft</div><div class="stat-label">Hardware Division</div></div>
+            <div class="stat"><div class="stat-number">2003</div><div class="stat-label">Year</div></div>
+        </div>
+    </section>
+
+    <section class="case-content">
+        <div class="content-section">
+            <span class="section-label">The Product</span>
+            <h2>BRIDGING ANALOG AND DIGITAL</h2>
+            <p>The digital pen was an innovative input device that allowed users to write naturally on paper while simultaneously capturing their handwriting digitally. This required careful consideration of both the physical product design and the software experience.</p>
+            <p>The challenge was to create a seamless experience where users could focus on writing naturally without being distracted by the technology, while still getting the benefits of digital capture and organization.</p>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Design</span>
+            <h2>HARDWARE & SOFTWARE</h2>
+            <p>My role encompassed both the hardware interaction design—ensuring the pen felt natural and intuitive to use—and the software user interface design for capturing, organizing, and utilizing the digitized handwriting.</p>
+
+            <div class="image-grid">
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/digitalpen/digital pen.jpg" alt="Digital Pen in hand">
+                </div>
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/digitalpen/digital pen 2.jpg" alt="Digital Pen product">
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Outcomes</span>
+            <h2>IMPACT</h2>
+            <ul class="outcomes-list">
+                <li>Designed end-to-end user experience spanning hardware and software</li>
+                <li>Created intuitive interaction model for digital capture of handwriting</li>
+                <li>Contributed to Microsoft Hardware's innovation in input devices</li>
+                <li>Applied industrial design principles to consumer electronics</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="next-case">
+        <div class="next-case-inner">
+            <div>
+                <p class="next-label">Next Case Study</p>
+                <h3><a href="tiltwheel.html">TILT WHEEL →</a></h3>
+            </div>
+            <span class="next-arrow">→</span>
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2025 Daan Lindhout</p>
+        <p class="footer-text">Seattle / Bellingham</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daan Lindhout — UX Design Leader</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-primary: #0a0a0a; --bg-secondary: #141414; --bg-card: #1a1a1a; --text-primary: #ffffff; --text-secondary: #888888; --accent: #00d4aa; --accent-dim: rgba(0, 212, 170, 0.12); --border: #2a2a2a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
+        ::selection { background: var(--accent); color: var(--bg-primary); }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.1em; }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--accent); }
+
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 8rem 4rem 4rem; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -20%; right: -10%; width: 60%; height: 100%; background: radial-gradient(ellipse at center, var(--accent-dim) 0%, transparent 70%); pointer-events: none; }
+        .hero-content { max-width: 1400px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+        .hero-eyebrow { font-size: 0.875rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; }
+        .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 12vw, 10rem); line-height: 0.95; margin-bottom: 2rem; }
+        .hero h1 .outline { color: transparent; -webkit-text-stroke: 2px var(--text-primary); }
+        .hero-subtitle { font-size: 1.5rem; color: var(--text-secondary); max-width: 600px; margin-bottom: 3rem; line-height: 1.6; }
+        .hero-stats { display: flex; gap: 4rem; margin-top: 4rem; }
+        .stat { text-align: left; }
+        .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--accent); line-height: 1; }
+        .stat-label { font-size: 0.875rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem; }
+
+        .quote-section { padding: 6rem 4rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-secondary); }
+        .quote-content { max-width: 1000px; margin: 0 auto; text-align: center; }
+        .quote { font-family: 'DM Sans', serif; font-size: 2rem; font-style: italic; color: var(--text-primary); line-height: 1.5; margin-bottom: 1.5rem; }
+        .quote-author { font-size: 1rem; color: var(--text-secondary); }
+
+        .section { padding: 8rem 4rem; max-width: 1400px; margin: 0 auto; }
+        .section-header { margin-bottom: 4rem; }
+        .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+        .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; line-height: 1; }
+
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+        .about-text { font-size: 1.25rem; color: var(--text-secondary); line-height: 1.8; }
+        .about-text p { margin-bottom: 1.5rem; }
+        .about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .highlight-card { background: var(--bg-card); border: 1px solid var(--border); padding: 2rem; transition: all 0.3s ease; }
+        .highlight-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .highlight-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; margin-bottom: 0.75rem; }
+        .highlight-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+
+        .work-grid { display: grid; gap: 2rem; }
+        .work-featured { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 2rem; }
+        .work-card { background: var(--bg-card); border: 1px solid var(--border); overflow: hidden; transition: all 0.3s ease; cursor: pointer; text-decoration: none; color: inherit; display: block; }
+        .work-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .work-card-image { height: 250px; background: var(--bg-secondary); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .work-card-image img { width: 100%; height: 100%; object-fit: cover; }
+        .work-card-content { padding: 2rem; }
+        .work-card-year { font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+        .work-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; margin-bottom: 0.75rem; }
+        .work-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+        .work-secondary { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+        .work-card-small { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; transition: all 0.3s ease; }
+        .work-card-small:hover { border-color: var(--accent); }
+        .work-card-small h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; margin-bottom: 0.25rem; }
+        .work-card-small span { font-size: 0.75rem; color: var(--text-secondary); }
+
+        .principles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .principle-card { padding: 2.5rem; border: 1px solid var(--border); background: var(--bg-card); transition: all 0.3s ease; }
+        .principle-card:hover { border-color: var(--accent); }
+        .principle-number { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--accent); line-height: 1; margin-bottom: 1rem; }
+        .principle-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; margin-bottom: 1rem; line-height: 1.2; }
+        .principle-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; }
+
+        .contact-section { background: var(--bg-secondary); border-top: 1px solid var(--border); }
+        .contact-content { display: flex; justify-content: space-between; align-items: center; }
+        .contact-text h2 { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; line-height: 1; margin-bottom: 1rem; }
+        .contact-text p { font-size: 1.25rem; color: var(--text-secondary); }
+        .contact-links { display: flex; gap: 2rem; }
+        .contact-link { display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2rem; border: 1px solid var(--border); color: var(--text-primary); text-decoration: none; font-weight: 500; transition: all 0.3s ease; }
+        .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+
+        footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .footer-text { font-size: 0.875rem; color: var(--text-secondary); }
+
+
+
+        @media (max-width: 1024px) {
+            nav, .hero, .section, .quote-section, footer { padding-left: 2rem; padding-right: 2rem; }
+            .work-featured { grid-template-columns: 1fr; }
+            .work-secondary { grid-template-columns: repeat(2, 1fr); }
+            .about-grid { grid-template-columns: 1fr; }
+            .principles-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-content { flex-direction: column; gap: 2rem; text-align: center; }
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            .hero-stats { flex-direction: column; gap: 2rem; }
+            .about-highlights { grid-template-columns: 1fr; }
+            .work-secondary { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .principles-grid { grid-template-columns: 1fr; }
+            .contact-links { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">DAAN<span>.</span></div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#work">Work</a>
+            <a href="tenets.html">Tenets</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-eyebrow">UX Design Leadership</p>
+            <h1>DAAN<br><span class="outline">LINDHOUT</span></h1>
+            <p class="hero-subtitle">Global UX leader with 25+ years of experience building teams, products, and design cultures at scale. Currently seeking the next challenge.</p>
+            <div class="hero-stats">
+                <div class="stat"><div class="stat-number">25+</div><div class="stat-label">Years Experience</div></div>
+                <div class="stat"><div class="stat-number">8</div><div class="stat-label">UX Teams Built</div></div>
+                <div class="stat"><div class="stat-number">100M+</div><div class="stat-label">Users Served</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quote-section">
+        <div class="quote-content">
+            <p class="quote">"Just because nobody complains doesn't mean all parachutes are perfect."</p>
+            <p class="quote-author">— Benny Hill</p>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <div class="section-header">
+            <p class="section-label">About</p>
+            <h2 class="section-title">DESIGNING AT SCALE</h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-text">
+                <img src="images/about/daan_smaller_432.png" alt="Daan Lindhout" style="width: 180px; height: 180px; border-radius: 50%; border: 3px solid var(--accent); margin-bottom: 2rem; filter: grayscale(30%);">
+                <p>I have been designing software and hardware user experiences for the past 25+ years. I am a multi-disciplinary global UX leader with a track record of building diverse and high performing teams and delivering successful software and hardware products at scale.</p>
+                <p>I am a UX Designer and Researcher by heart with a passion for starting and building UX Design, Research and User Assistance teams. I have 5 years experience serving on an executive team and 16+ years leading the UX discipline at companies including Microsoft, Qualtrics, Axon, and Workday.</p>
+                <p>More recently, I have been teaching UX to graduate students at Northeastern University to give back to the UX community and prepare the next generation of UX professionals for the job market.</p>
+            </div>
+            <div class="about-highlights">
+                <div class="highlight-card"><h3>TEAM BUILDING</h3><p>Scaled design orgs from scratch to 60+ members across multiple disciplines.</p></div>
+                <div class="highlight-card"><h3>DESIGN SYSTEMS</h3><p>Created and implemented design systems achieving 80%+ adoption.</p></div>
+                <div class="highlight-card"><h3>PRODUCT VISION</h3><p>Unified fragmented products into cohesive platform experiences.</p></div>
+                <div class="highlight-card"><h3>TEACHING</h3><p>Adjunct Professor at Northeastern University, shaping future designers.</p></div>
+            </div>
+        </div>
+        <div  style="margin-top: 4rem;">
+            <p class="section-label">Career Timeline</p>
+            <img src="images/about/Artboard--2_1600_c.png" alt="Career Timeline" style="width: 100%; max-width: 800px; border: 1px solid var(--border); margin-top: 1rem;">
+        </div>
+    </section>
+
+    <section class="section" id="work">
+        <div class="section-header">
+            <p class="section-label">Selected Work</p>
+            <h2 class="section-title">CASE STUDIES</h2>
+        </div>
+        <div class="work-grid">
+            <!-- Row 1: Leadership Roles -->
+            <div class="work-featured">
+                <a href="axon.html" class="work-card">
+                    <div class="work-card-image"><img src="images/axon/Axon-banner_1600_c_1600_c.png" alt="Axon"></div>
+                    <div class="work-card-content">
+                        <p class="work-card-year">2018 — 2023</p>
+                        <h3>AXON</h3>
+                        <p>VP of Product Design leading 60+ across design, research, and technical writing for public safety technology.</p>
+                    </div>
+                </a>
+                <a href="qualtrics.html" class="work-card">
+                    <div class="work-card-image"><img src="images/qualtrics/Qualtrics_1250.jpeg" alt="Qualtrics"></div>
+                    <div class="work-card-content">
+                        <p class="work-card-year">2015 — 2018</p>
+                        <h3>QUALTRICS</h3>
+                        <p>Global Head of UX Design & Research. Built the team from zero and unified the XM Platform.</p>
+                    </div>
+                </a>
+                <a href="socrata.html" class="work-card">
+                    <div class="work-card-image"><img src="images/socrata/Overview-2_1600_c.png" alt="Socrata"></div>
+                    <div class="work-card-content">
+                        <p class="work-card-year">2014 — 2015</p>
+                        <h3>SOCRATA</h3>
+                        <p>Director of UX. Patented Card UX interface for government open data visualization.</p>
+                    </div>
+                </a>
+            </div>
+            <!-- Row 2 -->
+            <div class="work-featured">
+                <a href="moz.html" class="work-card">
+                    <div class="work-card-image"><img src="images/moz/Analytics-dashboard_o.jpg" alt="Moz"></div>
+                    <div class="work-card-content">
+                        <p class="work-card-year">2012 — 2014</p>
+                        <h3>MOZ</h3>
+                        <p>Head of Creative. Achieved #2 brand recognition in marketing technology.</p>
+                    </div>
+                </a>
+                <a href="sumtotal.html" class="work-card">
+                    <div class="work-card-image"><img src="images/sumtotal/dahboard_o.jpg" alt="SumTotal Systems"></div>
+                    <div class="work-card-content">
+                        <p class="work-card-year">2007 — 2009</p>
+                        <h3>SUMTOTAL SYSTEMS</h3>
+                        <p>Built UX team from scratch. Won Power of One award for e-learning platform design.</p>
+                    </div>
+                </a>
+                <a href="windowslive.html" class="work-card">
+                    <div class="work-card-image"><img src="images/windowslive/photo gallery_o.jpg" alt="Windows Live Photo Gallery"></div>
+                    <div class="work-card-content">
+                        <p class="work-card-year">2006 — 2007</p>
+                        <h3>WINDOWS LIVE</h3>
+                        <p>Senior Product Designer. Photo management and sharing for Windows Live suite.</p>
+                    </div>
+                </a>
+            </div>
+            <!-- Row 3: Microsoft Era -->
+            <div class="work-featured">
+                <a href="photoframe.html" class="work-card">
+                    <div class="work-card-image"><img src="images/photoframe/photo-frame_o.jpg" alt="Wireless Photo Frame"></div>
+                    <div class="work-card-content">
+                        <p class="work-card-year">2006</p>
+                        <h3>WIRELESS PHOTO FRAME</h3>
+                        <p>Connected hardware device UX. Full-stack hardware and software experience design.</p>
+                    </div>
+                </a>
+                <a href="microsoft.html" class="work-card">
+                    <div class="work-card-image"><img src="images/microsoft/windows_o.jpg" alt="Microsoft Windows"></div>
+                    <div class="work-card-content">
+                        <p class="work-card-year">2003 — 2006</p>
+                        <h3>MICROSOFT WINDOWS</h3>
+                        <p>Reduced OOBE setup time from 22 min to 2 min and eliminated 50% failure rate.</p>
+                    </div>
+                </a>
+                <a href="digitalpen.html" class="work-card">
+                    <div class="work-card-image"><img src="images/digitalpen/digital pen.jpg" alt="Digital Pen"></div>
+                    <div class="work-card-content">
+                        <p class="work-card-year">2003</p>
+                        <h3>DIGITAL PEN</h3>
+                        <p>Hardware and software design for digital writing capture device at Microsoft.</p>
+                    </div>
+                </a>
+            </div>
+            <!-- Row 4: Early Career & Innovation -->
+            <div class="work-featured">
+                <a href="tiltwheel.html" class="work-card">
+                    <div class="work-card-image"><img src="images/tiltwheel/tilt wheel_o.jpg" alt="Tilt Wheel"></div>
+                    <div class="work-card-content">
+                        <p class="work-card-year">2002</p>
+                        <h3>TILT WHEEL</h3>
+                        <p>Patented horizontal scrolling. Won Stevie Award. Outperformed optical mouse in profit.</p>
+                    </div>
+                </a>
+                <a href="rightclick.html" class="work-card">
+                    <div class="work-card-image"><img src="images/rightclick/right click hardware.png" alt="Right Click to the Future"></div>
+                    <div class="work-card-content">
+                        <p class="work-card-year">1999</p>
+                        <h3>RIGHT CLICK TO THE FUTURE</h3>
+                        <p>Microsoft thesis project. Hardware-software innovation for context menus.</p>
+                    </div>
+                </a>
+                <a href="bicycle.html" class="work-card">
+                    <div class="work-card-image"><img src="images/bicycle/lithium.png" alt="Race Bicycle"></div>
+                    <div class="work-card-content">
+                        <p class="work-card-year">1998</p>
+                        <h3>RACE BICYCLE</h3>
+                        <p>Industrial design with integrated computer. Featured at Europe's largest bicycle show.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="principles">
+        <div class="section-header">
+            <p class="section-label">Philosophy</p>
+            <h2 class="section-title">UX & DESIGN TENETS</h2>
+        </div>
+        <div class="principles-grid">
+            <div class="principle-card"><div class="principle-number">01</div><h3>IT'S A DESIGN DEMOCRACY. TRUST YOUR ELECTED OFFICIALS.</h3><p>Good ideas can come from anywhere. UX teams should champion great ideas regardless of source, while trusting their own capabilities to uncover true user needs.</p></div>
+            <div class="principle-card"><div class="principle-number">02</div><h3>TOP-DOWN MEETS BOTTOMS-UP</h3><p>UX teams only succeed when creating compelling vision (top-down) while breaking things into executable pieces (bottoms-up). You have to execute on both fronts simultaneously.</p></div>
+            <div class="principle-card"><div class="principle-number">03</div><h3>BE THE PERSON WHO MAKES THINGS SIMPLER</h3><p>Making things simple is the hardest and most valuable skill. Up-level, summarize, rephrase, talk about actions to take. Don't dazzle with complexity.</p></div>
+            <div class="principle-card"><div class="principle-number">04</div><h3>FOCUS ON USERS AND SCENARIOS, NOT FEATURES</h3><p>What job did customers hire your product for? Don't start with features—start with what users really want to get out of your product.</p></div>
+            <div class="principle-card"><div class="principle-number">05</div><h3>IF USERS CAN'T FIND IT, IT DOESN'T EXIST</h3><p>At Microsoft, the top 10 feature requests were features that already existed. Discovery and first experience are key to successful products.</p></div>
+            <div class="principle-card"><div class="principle-number">06</div><h3>INTERNALIZE PROCESS TO KNOW WHAT TO SKIP</h3><p>Know your design process well enough to understand which steps aren't always necessary. Great UX professionals know what they can skip and when.</p></div>
+            <div class="principle-card"><div class="principle-number">07</div><h3>IF NO ONE COMPLAINS, THE BAR ISN'T HIGH ENOUGH</h3><p>If Engineering consistently says your UX team is easy to work with, compromises are likely being made too quickly in favor of implementation over user experience.</p></div>
+            <div class="principle-card"><div class="principle-number">08</div><h3>DEEP DOMAIN KNOWLEDGE IS REQUIRED</h3><p>Designers need technical training, sales exposure, infrastructure understanding, and competitive landscape knowledge to have significant impact beyond surface-level improvements.</p></div>
+            <div class="principle-card"><div class="principle-number">09</div><h3>IT'S ALL ABOUT USER PERCEPTION</h3><p>User perception is the only effective way to measure UX success. A skyscraper fixed elevator complaints by installing lobby mirrors—perception, not performance.</p></div>
+            <div class="principle-card"><div class="principle-number">10</div><h3>CONVINCE A BUYER TO BUY, A USER TO RENEW</h3><p>Target buyer personas to get customers on board. But if you want renewals, you need to convince the actual users that it's worth it.</p></div>
+            <div class="principle-card"><div class="principle-number">11</div><h3>ALL GOOD THINGS START WITH PSYCHOLOGICAL SAFETY</h3><p>The ability for anyone to feel safe to speak their mind is crucial to any well-functioning team. A lack of it, even from a single team member, can destroy performance.</p></div>
+            <div class="principle-card"><div class="principle-number">12</div><h3>BE CLEAR, NOT CLEVER</h3><p>Being clear when working with teams and clear in product experience always trumps being clever. Clarity delivers great products and teams that collaborate well over time.</p></div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="tenets.html" style="display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2rem; border: 1px solid var(--border); color: var(--text-primary); text-decoration: none; font-weight: 500; transition: all 0.3s ease;" onmouseover="this.style.borderColor='var(--accent)'; this.style.color='var(--accent)';" onmouseout="this.style.borderColor='var(--border)'; this.style.color='var(--text-primary)';">Read All 12 Tenets →</a>
+        </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+        <div class="contact-content">
+            <div class="contact-text">
+                <h2>LET'S CONNECT</h2>
+                <p>Open to new leadership opportunities in UX and design.</p>
+            </div>
+            <div class="contact-links">
+                <a href="/cdn-cgi/l/email-protection#e783868689a78b8e89838f889293c984888a" class="contact-link"><span class="__cf_email__" data-cfemail="e783868689a78b8e89838f889293c984888a">[email&#160;protected]</span> →</a>
+                <a href="https://linkedin.com/in/daanlindhout" class="contact-link" target="_blank">LinkedIn →</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2025 Daan Lindhout</p>
+        <p class="footer-text">Seattle / Bellingham</p>
+    </footer>
+
+</body>
+</html>

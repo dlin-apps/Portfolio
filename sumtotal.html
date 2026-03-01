@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SumTotal Systems — Daan Lindhout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-primary: #0a0a0a; --bg-secondary: #141414; --bg-card: #1a1a1a; --text-primary: #ffffff; --text-secondary: #888888; --accent: #00d4aa; --accent-dim: rgba(0, 212, 170, 0.12); --border: #2a2a2a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        ::selection { background: var(--accent); color: var(--bg-primary); }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10, 10, 10, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.1em; text-decoration: none; color: var(--text-primary); }
+        .logo span { color: var(--accent); }
+        .back-link { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; }
+        .back-link:hover { color: var(--accent); }
+
+        .case-hero { padding: 10rem 4rem 4rem; max-width: 1200px; margin: 0 auto; }
+        .case-meta { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+        .case-tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); }
+        .case-year { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; color: var(--accent); }
+        .case-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6rem); line-height: 0.95; margin-bottom: 2rem; }
+        .case-role { font-size: 1.5rem; color: var(--accent); margin-bottom: 1.5rem; }
+        .case-intro { font-size: 1.25rem; color: var(--text-secondary); max-width: 800px; line-height: 1.7; }
+
+        .hero-image { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 4rem; }
+        .hero-image img { width: 100%; height: auto; border: 1px solid var(--border); }
+
+        .stats-bar { background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 4rem; }
+        .stats-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; }
+        .stat { text-align: center; }
+        .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--accent); line-height: 1; }
+        .stat-label { font-size: 0.875rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem; }
+
+        .case-content { padding: 6rem 4rem; max-width: 1200px; margin: 0 auto; }
+        .content-section { margin-bottom: 6rem; }
+        .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: block; }
+        .content-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1.1; margin-bottom: 2rem; }
+        .content-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; margin: 3rem 0 1.5rem; color: var(--text-primary); }
+        .content-section p { font-size: 1.125rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem; max-width: 800px; }
+
+        .content-image { margin: 3rem 0; }
+        .content-image img { width: 100%; height: auto; border: 1px solid var(--border); }
+        .image-caption { font-size: 0.875rem; color: var(--text-secondary); margin-top: 1rem; font-style: italic; text-align: center; padding: 1rem; background: var(--bg-secondary); border-top: 1px solid var(--border); }
+
+        .image-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 3rem 0; }
+        .image-grid img { width: 100%; height: auto; border: 1px solid var(--border); }
+
+        .award-callout { background: linear-gradient(135deg, var(--accent-dim), var(--bg-card)); border: 1px solid var(--accent); padding: 3rem; margin: 3rem 0; text-align: center; }
+        .award-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .award-title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--accent); margin-bottom: 0.5rem; }
+        .award-description { font-size: 1rem; color: var(--text-secondary); }
+
+        .outcomes-list { list-style: none; margin-top: 2rem; }
+        .outcomes-list li { display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem 0; border-bottom: 1px solid var(--border); font-size: 1.125rem; color: var(--text-secondary); }
+        .outcomes-list li:last-child { border-bottom: none; }
+        .outcomes-list li::before { content: '→'; color: var(--accent); font-weight: bold; flex-shrink: 0; }
+
+        .next-case { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 6rem 4rem; }
+        .next-case-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .next-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 1rem; }
+        .next-case h3 { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; line-height: 1; margin: 0; }
+        .next-case a { text-decoration: none; color: var(--text-primary); transition: color 0.3s ease; }
+        .next-case a:hover { color: var(--accent); }
+        .next-arrow { font-size: 4rem; color: var(--accent); }
+
+        footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .footer-text { font-size: 0.875rem; color: var(--text-secondary); }
+
+        @media (max-width: 1024px) {
+            nav, .case-hero, .stats-bar, .case-content, .next-case, footer, .hero-image { padding-left: 2rem; padding-right: 2rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .image-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .next-case-inner { flex-direction: column; text-align: center; gap: 2rem; }
+            .next-case h3 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">DAAN<span>.</span></a>
+        <a href="index.html" class="back-link">← Back to Work</a>
+    </nav>
+
+    <section class="case-hero">
+        <div class="case-hero-content">
+            <div class="case-meta">
+                <span class="case-tag">Enterprise</span>
+                <span class="case-tag">e-Learning</span>
+                <span class="case-tag">Performance Management</span>
+                <span class="case-year">2007 – 2009</span>
+            </div>
+            <h1>SUMTOTAL SYSTEMS</h1>
+            <p class="case-role">User Experience Manager</p>
+            <p class="case-intro">At SumTotal Systems I started and built the UX team and discipline from scratch. I changed the company culture to be much more user-centered and greatly improved all SumTotal products across the board. Won the Power of One team award for special achievements by the UX team.</p>
+        </div>
+    </section>
+
+    <div class="hero-image">
+        <img src="images/sumtotal/dahboard_o.jpg" alt="SumTotal Talent Development Dashboard">
+    </div>
+
+    <section class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat"><div class="stat-number">0→1</div><div class="stat-label">Built UX Team</div></div>
+            <div class="stat"><div class="stat-number">US+India</div><div class="stat-label">Team Locations</div></div>
+            <div class="stat"><div class="stat-number">🏆</div><div class="stat-label">Power of One Award</div></div>
+            <div class="stat"><div class="stat-number">2</div><div class="stat-label">Years</div></div>
+        </div>
+    </section>
+
+    <section class="case-content">
+        <div class="content-section">
+            <span class="section-label">The Challenge</span>
+            <h2>BUILDING UX FROM SCRATCH</h2>
+            <p>SumTotal Systems provided e-learning and performance management web applications to enterprise customers. When I joined, there was no dedicated UX function. I started the first UX team at the company from scratch, building the team and discipline while changing corporate culture to be more user-centered.</p>
+            <p>I hired and managed a team across the US and India, establishing UX practices that would improve all SumTotal products.</p>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Recognition</span>
+            <h2>POWER OF ONE AWARD</h2>
+            
+            <div class="award-callout">
+                <div class="award-icon">🏆</div>
+                <p class="award-title">POWER OF ONE TEAM AWARD</p>
+                <p class="award-description">Won the most prestigious employee award at SumTotal for special achievements by the UX team</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Product Design</span>
+            <h2>TALENT DEVELOPMENT PLATFORM</h2>
+            <p>Redesigned the core talent development platform with a focus on task-based workflows, clear information hierarchy, and modern visual design.</p>
+
+            <div class="content-image">
+                <img src="images/sumtotal/dahboard_o.jpg" alt="Talent Development Dashboard">
+                <div class="image-caption">Main dashboard showing tasks, calendar, career progress, and team status</div>
+            </div>
+
+            <div class="content-image">
+                <img src="images/sumtotal/dashboard learner with collaboration module_o.jpg" alt="Learner Dashboard with Collaboration">
+                <div class="image-caption">Learner dashboard with integrated collaboration module</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Training Management</span>
+            <h2>LEARNING EXPERIENCE</h2>
+            <p>Designed the training assignment and tracking experience to help employees and managers stay on top of required and optional learning.</p>
+
+            <div class="image-grid">
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/sumtotal/My-Training-Grouped-by_o.jpg" alt="My Training View">
+                    <div class="image-caption">Training assignments grouped by category</div>
+                </div>
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/sumtotal/3-new-assignment_admin.v6b_o.png" alt="New Assignment Admin">
+                    <div class="image-caption">Admin view for creating new training assignments</div>
+                </div>
+            </div>
+
+            <div class="content-image">
+                <img src="images/sumtotal/training-feedback_o.jpg" alt="Training Feedback">
+                <div class="image-caption">Training feedback collection interface</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Performance Management</span>
+            <h2>360° FEEDBACK & ASSESSMENTS</h2>
+            <p>Created comprehensive interfaces for 360-degree feedback, performance appraisals, and career development planning.</p>
+
+            <div class="content-image">
+                <img src="images/sumtotal/360 report_o.png" alt="360 Report">
+                <div class="image-caption">360-degree feedback report with competency ratings</div>
+            </div>
+
+            <div class="image-grid">
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/sumtotal/All-the-feedback-is-in_o.jpg" alt="Feedback Complete">
+                    <div class="image-caption">Feedback completion status view</div>
+                </div>
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/sumtotal/Building-a-career-plan-1_o.jpg" alt="Career Plan">
+                    <div class="image-caption">Career plan builder interface</div>
+                </div>
+            </div>
+
+            <div class="content-image">
+                <img src="images/sumtotal/development plan wizard competency selection_o.png" alt="Competency Selection">
+                <div class="image-caption">Development plan wizard with competency selection</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Email Integration</span>
+            <h2>RICH EMAIL NOTIFICATIONS</h2>
+            <p>Designed rich HTML email notifications that brought key information and actions directly into users' inboxes, reducing the need to log into the application for simple tasks.</p>
+
+            <div class="image-grid">
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/sumtotal/rich email self assessment_o.png" alt="Self Assessment Email">
+                    <div class="image-caption">Rich email for self-assessment notifications</div>
+                </div>
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/sumtotal/rich email feedback progress_o.jpg" alt="Feedback Progress Email">
+                    <div class="image-caption">Feedback progress notification email</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Team Features</span>
+            <h2>TEAM MANAGEMENT & COLLABORATION</h2>
+            <p>Designed features for managers to track team progress and for employees to collaborate with peers.</p>
+
+            <div class="image-grid">
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/sumtotal/team summary_o.jpg" alt="Team Summary">
+                    <div class="image-caption">Manager's team summary view</div>
+                </div>
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/sumtotal/social networking hub_o.jpg" alt="Social Networking Hub">
+                    <div class="image-caption">Social networking and collaboration hub</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Customer Research</span>
+            <h2>USER-CENTERED CULTURE</h2>
+            <p>Established user research practices and gathered customer feedback to drive design decisions.</p>
+
+            <div class="image-grid">
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/sumtotal/Customer feedback 1_o.jpg" alt="Customer Feedback 1">
+                    <div class="image-caption">Customer feedback session documentation</div>
+                </div>
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/sumtotal/Customer feedback 2_o.jpg" alt="Customer Feedback 2">
+                    <div class="image-caption">Synthesis of customer feedback insights</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Innovation</span>
+            <h2>INNOVATION & SKETCHING</h2>
+            <p>Led innovation initiatives and rapid sketching sessions to explore new product directions.</p>
+
+            <div class="content-image">
+                <img src="images/sumtotal/innovation scetching sample_o.jpg" alt="Innovation Sketching">
+                <div class="image-caption">Sample from innovation sketching sessions</div>
+            </div>
+
+            <div class="content-image">
+                <img src="images/sumtotal/contextual help_o.png" alt="Contextual Help">
+                <div class="image-caption">Contextual help system design</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Outcomes</span>
+            <h2>IMPACT & RESULTS</h2>
+            <ul class="outcomes-list">
+                <li>Built the first UX team at SumTotal from scratch</li>
+                <li>Hired and managed designers across US and India locations</li>
+                <li>Changed company culture to be significantly more user-centered</li>
+                <li>Greatly improved UX across all SumTotal products</li>
+                <li>Won the Power of One team award—the most prestigious employee award at the company</li>
+                <li>Established user research practices and customer feedback processes</li>
+                <li>Designed rich email notifications reducing application login requirements</li>
+                <li>Created comprehensive 360° feedback and performance management interfaces</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="next-case">
+        <div class="next-case-inner">
+            <div>
+                <p class="next-label">Next Case Study</p>
+                <h3><a href="digitalpen.html">DIGITAL PEN →</a></h3>
+            </div>
+            <span class="next-arrow">→</span>
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2025 Daan Lindhout</p>
+        <p class="footer-text">Seattle / Bellingham</p>
+    </footer>
+</body>
+</html>

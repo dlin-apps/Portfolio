@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daan Lindhout — UX Leader</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --accent: #00d4aa;
+            --accent-dim: rgba(0, 212, 170, 0.12);
+            --border: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.1em;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 4rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(ellipse at center, var(--accent-dim) 0%, transparent 70%);
+            pointer-events: none;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--accent);
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(4rem, 12vw, 10rem);
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.1s forwards;
+            opacity: 0;
+        }
+
+        .hero h1 .outline {
+            -webkit-text-stroke: 2px var(--text-primary);
+            color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 4rem;
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .stat {
+            border-left: 2px solid var(--accent);
+            padding-left: 1.5rem;
+        }
+
+        .stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Quote Section */
+        .quote-section {
+            padding: 6rem 4rem;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .quote {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .quote-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            letter-spacing: 0.02em;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .quote-text::before {
+            content: '"';
+            color: var(--accent);
+        }
+
+        .quote-text::after {
+            content: '"';
+            color: var(--accent);
+        }
+
+        .quote-author {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .about h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            line-height: 1;
+            margin-bottom: 2rem;
+        }
+
+        .about-text {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding-top: 2rem;
+        }
+
+        .highlight {
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .highlight:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .highlight-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .highlight h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Work Section */
+        .work {
+            padding: 8rem 4rem;
+            background: var(--bg-secondary);
+        }
+
+        .work-header {
+            max-width: 1400px;
+            margin: 0 auto 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .work h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 5rem;
+            line-height: 1;
+        }
+
+        .work-count {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 8rem;
+            line-height: 1;
+            color: var(--border);
+        }
+
+        .case-studies {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            gap: 2rem;
+        }
+
+        .case-study {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .case-study:hover {
+            border-color: var(--accent);
+            transform: scale(1.01);
+        }
+
+        .case-study:hover .case-study-image {
+            transform: scale(1.05);
+        }
+
+        .case-study:hover .case-study-arrow {
+            transform: translate(5px, -5px);
+            color: var(--accent);
+        }
+
+        .case-study-image-wrapper {
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--accent-dim), var(--bg-primary));
+            aspect-ratio: 16/10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .case-study-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .case-study-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+        }
+
+        .case-study-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .case-study-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .case-study-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            padding: 0.25rem 0.75rem;
+            border: 1px solid var(--accent);
+        }
+
+        .case-study-year {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.1em;
+        }
+
+        .case-study h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .case-study-role {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .case-study-description {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .case-study-arrow {
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+        }
+
+        /* Smaller case studies grid */
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .case-study-small {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .case-study-small:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .case-study-small .case-study-year {
+            margin-bottom: 1rem;
+        }
+
+        .case-study-small h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .case-study-small .case-study-role {
+            font-size: 0.875rem;
+            margin-bottom: 0;
+        }
+
+        /* Principles Section */
+        .principles {
+            padding: 8rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .principles-header {
+            margin-bottom: 4rem;
+        }
+
+        .principles h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .principles-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .principle {
+            padding: 2.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .principle:hover {
+            border-color: var(--accent);
+        }
+
+        .principle-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .principle h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .principle p {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 4rem;
+            background: var(--bg-secondary);
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .contact h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1;
+            margin-bottom: 2rem;
+        }
+
+        .contact-text {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            font-size: 0.875rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text-primary);
+            border: 2px solid var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        .contact-link.primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        .contact-link.primary:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 4rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            nav {
+                padding: 1rem 2rem;
+            }
+
+            .hero, .about, .work, .principles, .contact {
+                padding: 4rem 2rem;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .case-study {
+                grid-template-columns: 1fr;
+            }
+
+            .case-studies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .work h2 {
+                font-size: 3rem;
+            }
+
+            .work-count {
+                font-size: 4rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">DAAN<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#principles">Principles</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-label">VP of UX Design & Research</span>
+            <h1>DAAN<br>LINDHOUT</h1>
+            <p class="hero-description">Multi-disciplinary UX leader with a track record of building diverse, high-performing teams and delivering successful software and hardware products at scale.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">UX Teams Built</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100M+</div>
+                    <div class="stat-label">Users Served</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quote-section">
+        <div class="quote">
+            <p class="quote-text">Just because nobody complains doesn't mean all parachutes are perfect.</p>
+            <p class="quote-author">— Benny Hill</p>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div>
+            <span class="about-label">About</span>
+            <h2>DESIGNER BY<br>HEART</h2>
+            <p class="about-text">I am a UX Designer and Researcher by heart with a passion for starting and building UX Design, Research and User Assistance teams. I have 5 years experience serving on executive teams and 16 years leading the UX discipline at companies of all sizes.</p>
+            <p class="about-text">More recently, I have been teaching UX to graduate students at Northeastern University to give back to the UX community and prepare the next generation of UX professionals for the job market.</p>
+        </div>
+        <div class="about-highlights">
+            <div class="highlight">
+                <div class="highlight-icon">🎓</div>
+                <h4>MSc Industrial Design</h4>
+                <p>Delft University of Technology, Netherlands</p>
+            </div>
+            <div class="highlight">
+                <div class="highlight-icon">🏫</div>
+                <h4>Adjunct Professor</h4>
+                <p>Northeastern University College of Engineering</p>
+            </div>
+            <div class="highlight">
+                <div class="highlight-icon">🎯</div>
+                <h4>Ecosystem Design</h4>
+                <p>Unifying complex product portfolios across tech stacks</p>
+            </div>
+            <div class="highlight">
+                <div class="highlight-icon">📊</div>
+                <h4>Design Systems</h4>
+                <p>Building scalable design languages and platforms</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="work" id="work">
+        <div class="work-header">
+            <h2>SELECTED<br>WORK</h2>
+            <div class="work-count">08</div>
+        </div>
+
+        <div class="case-studies">
+            <article class="case-study" onclick="window.location='axon.html'">
+                <div class="case-study-image-wrapper">
+                    <div class="case-study-logo">AXON</div>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-meta">
+                        <span class="case-study-tag">Leadership</span>
+                        <span class="case-study-year">2018 – 2022</span>
+                    </div>
+                    <h3>AXON</h3>
+                    <p class="case-study-role">VP of Product Design, UX Research & Technical Writing</p>
+                    <p class="case-study-description">Scaled the design organization from 8 to 60+ team members across 6 product groups. Established design systems, cross-product reviews, and a maturity framework. Mission: save lives and protect the truth in public safety.</p>
+                    <span class="case-study-arrow">↗</span>
+                </div>
+            </article>
+
+            <article class="case-study" onclick="window.location='qualtrics.html'">
+                <div class="case-study-image-wrapper">
+                    <div class="case-study-logo">QUALTRICS</div>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-meta">
+                        <span class="case-study-tag">Platform</span>
+                        <span class="case-study-year">2015 – 2018</span>
+                    </div>
+                    <h3>QUALTRICS</h3>
+                    <p class="case-study-role">Global Head of UX Design & Research</p>
+                    <p class="case-study-description">Built the UX organization from the ground up to 20+ team members. Unified disparate web applications into the Experience Management (XM) Platform with a common Design System. Established the first continuous usability benchmarking program.</p>
+                    <span class="case-study-arrow">↗</span>
+                </div>
+            </article>
+
+            <article class="case-study" onclick="window.location='moz.html'">
+                <div class="case-study-image-wrapper">
+                    <div class="case-study-logo">MOZ</div>
+                </div>
+                <div class="case-study-content">
+                    <div class="case-study-meta">
+                        <span class="case-study-tag">Brand</span>
+                        <span class="case-study-year">2012 – 2014</span>
+                    </div>
+                    <h3>MOZ</h3>
+                    <p class="case-study-role">Head of Creative</p>
+                    <p class="case-study-description">Led a team of 6 designers across all UX and design initiatives. During this time, Moz became the #2 most recognized marketing tech brand—behind only Google, ahead of Hubspot, Salesforce, Adobe, and Microsoft.</p>
+                    <span class="case-study-arrow">↗</span>
+                </div>
+            </article>
+        </div>
+
+        <div class="case-studies-grid">
+            <article class="case-study-small">
+                <span class="case-study-year">2022 – 2024</span>
+                <h3>WORKDAY</h3>
+                <p class="case-study-role">Sr. Director of UX</p>
+            </article>
+            <article class="case-study-small">
+                <span class="case-study-year">2014 – 2015</span>
+                <h3>SOCRATA</h3>
+                <p class="case-study-role">Head of UX Design & Research</p>
+            </article>
+            <article class="case-study-small">
+                <span class="case-study-year">2009 – 2012</span>
+                <h3>F5 NETWORKS</h3>
+                <p class="case-study-role">UX Manager</p>
+            </article>
+            <article class="case-study-small">
+                <span class="case-study-year">2006 – 2009</span>
+                <h3>SUMTOTAL</h3>
+                <p class="case-study-role">Founded First UX Team</p>
+            </article>
+            <article class="case-study-small">
+                <span class="case-study-year">2000 – 2006</span>
+                <h3>MICROSOFT</h3>
+                <p class="case-study-role">UX & Industrial Design</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="principles" id="principles">
+        <div class="principles-header">
+            <span class="about-label">Philosophy</span>
+            <h2>GUIDING<br>PRINCIPLES</h2>
+            <p class="principles-subtitle">Over the years I have developed a set of guiding principles for my approach to product strategy, vision setting, people management, and execution.</p>
+        </div>
+
+        <div class="principles-grid">
+            <div class="principle">
+                <div class="principle-number">01</div>
+                <h3>It's a Design Democracy</h3>
+                <p>Trust your elected officials. Great design emerges from collaboration, not isolation. Everyone contributes, but decisions need clear ownership.</p>
+            </div>
+            <div class="principle">
+                <div class="principle-number">02</div>
+                <h3>Challenge the Status Quo</h3>
+                <p>I want designers who show a bit of ego and cause some trouble when appropriate. There should be healthy tension that pushes innovation.</p>
+            </div>
+            <div class="principle">
+                <div class="principle-number">03</div>
+                <h3>Passion for the Craft</h3>
+                <p>I look for passion for design of any type. People who care deeply about their work create experiences that users remember.</p>
+            </div>
+            <div class="principle">
+                <div class="principle-number">04</div>
+                <h3>Tell Stories</h3>
+                <p>You can't be a great UX Designer without being a great presenter and storyteller. Getting your idea across and inspiring others is crucial.</p>
+            </div>
+            <div class="principle">
+                <div class="principle-number">05</div>
+                <h3>Embrace Complexity</h3>
+                <p>Most UX Designers work on complex systems. I look for skills and aptitude to deal with complexity—filtering, workflows, and states.</p>
+            </div>
+            <div class="principle">
+                <div class="principle-number">06</div>
+                <h3>Be Transparent</h3>
+                <p>Transparency about contributions matters. Acknowledge the team, be clear about your role, and build trust through honesty.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2>LET'S CONNECT</h2>
+        <p class="contact-text">Interested in talking about UX, design leadership, or opportunities?</p>
+        <div class="contact-links">
+            <a href="mailto:email@daanlindhout.com" class="contact-link primary">Email Me</a>
+            <a href="https://www.linkedin.com/in/daanlindhout/" class="contact-link" target="_blank">LinkedIn</a>
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2025 Daan Lindhout. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/daanlindhout/" target="_blank">LinkedIn</a>
+            <a href="https://coe.northeastern.edu/people/lindhout-daan/" target="_blank">Northeastern</a>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth reveal on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe case studies
+        document.querySelectorAll('.case-study, .case-study-small, .principle, .highlight').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Stagger animation for grid items
+        document.querySelectorAll('.case-studies-grid .case-study-small').forEach((el, i) => {
+            el.style.transitionDelay = `${i * 0.1}s`;
+        });
+
+        document.querySelectorAll('.principles-grid .principle').forEach((el, i) => {
+            el.style.transitionDelay = `${i * 0.1}s`;
+        });
+    </script>
+</body>
+</html>

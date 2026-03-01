@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socrata — Daan Lindhout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-primary: #0a0a0a; --bg-secondary: #141414; --bg-card: #1a1a1a; --text-primary: #ffffff; --text-secondary: #888888; --accent: #00d4aa; --accent-dim: rgba(0, 212, 170, 0.12); --border: #2a2a2a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        ::selection { background: var(--accent); color: var(--bg-primary); }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10, 10, 10, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.1em; text-decoration: none; color: var(--text-primary); }
+        .logo span { color: var(--accent); }
+        .back-link { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; }
+        .back-link:hover { color: var(--accent); }
+
+        .case-hero { padding: 10rem 4rem 4rem; max-width: 1200px; margin: 0 auto; }
+        .case-meta { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+        .case-tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); }
+        .case-year { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; color: var(--accent); }
+        .case-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6rem); line-height: 0.95; margin-bottom: 2rem; }
+        .case-role { font-size: 1.5rem; color: var(--accent); margin-bottom: 1.5rem; }
+        .case-intro { font-size: 1.25rem; color: var(--text-secondary); max-width: 800px; line-height: 1.7; }
+
+        .hero-image { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 4rem; }
+        .hero-image img { width: 100%; height: auto; border: 1px solid var(--border); }
+
+        .stats-bar { background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 4rem; }
+        .stats-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; }
+        .stat { text-align: center; }
+        .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--accent); line-height: 1; }
+        .stat-label { font-size: 0.875rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem; }
+
+        .case-content { padding: 6rem 4rem; max-width: 1200px; margin: 0 auto; }
+        .content-section { margin-bottom: 6rem; }
+        .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: block; }
+        .content-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1.1; margin-bottom: 2rem; }
+        .content-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; margin: 3rem 0 1.5rem; color: var(--text-primary); }
+        .content-section p { font-size: 1.125rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem; max-width: 800px; }
+
+        .content-image { margin: 3rem 0; }
+        .content-image img { width: 100%; height: auto; border: 1px solid var(--border); }
+        .image-caption { font-size: 0.875rem; color: var(--text-secondary); margin-top: 1rem; font-style: italic; text-align: center; padding: 1rem; background: var(--bg-secondary); border-top: 1px solid var(--border); }
+
+        .image-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 3rem 0; }
+        .image-grid img { width: 100%; height: auto; border: 1px solid var(--border); }
+
+        .outcomes-list { list-style: none; margin-top: 2rem; }
+        .outcomes-list li { display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem 0; border-bottom: 1px solid var(--border); font-size: 1.125rem; color: var(--text-secondary); }
+        .outcomes-list li:last-child { border-bottom: none; }
+        .outcomes-list li::before { content: '→'; color: var(--accent); font-weight: bold; flex-shrink: 0; }
+
+        .next-case { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 6rem 4rem; }
+        .next-case-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .next-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 1rem; }
+        .next-case h3 { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; line-height: 1; margin: 0; }
+        .next-case a { text-decoration: none; color: var(--text-primary); transition: color 0.3s ease; }
+        .next-case a:hover { color: var(--accent); }
+        .next-arrow { font-size: 4rem; color: var(--accent); }
+
+        footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .footer-text { font-size: 0.875rem; color: var(--text-secondary); }
+
+        @media (max-width: 1024px) {
+            nav, .case-hero, .stats-bar, .case-content, .next-case, footer, .hero-image { padding-left: 2rem; padding-right: 2rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .image-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .next-case-inner { flex-direction: column; text-align: center; gap: 2rem; }
+            .next-case h3 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">DAAN<span>.</span></a>
+        <a href="index.html" class="back-link">← Back to Work</a>
+    </nav>
+
+    <section class="case-hero">
+        <div class="case-hero-content">
+            <div class="case-meta">
+                <span class="case-tag">Government</span>
+                <span class="case-tag">Open Data</span>
+                <span class="case-tag">Data Visualization</span>
+                <span class="case-year">2014 – 2015</span>
+            </div>
+            <h1>SOCRATA</h1>
+            <p class="case-role">Director of UX Design & Research</p>
+            <p class="case-intro">At Socrata I led the UX Design and Research teams, responsible for all product design across the Socrata suite of government open data applications. My main mission was to completely redesign how public data was gathered, combined, and visualized—resulting in a patented new interface paradigm.</p>
+        </div>
+    </section>
+
+    <div class="hero-image">
+        <img src="images/socrata/Overview-2_1600_c.png" alt="Socrata Platform Overview">
+    </div>
+
+    <section class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat"><div class="stat-number">6</div><div class="stat-label">Team Members</div></div>
+            <div class="stat"><div class="stat-number">100+</div><div class="stat-label">Research Participants</div></div>
+            <div class="stat"><div class="stat-number">Patent</div><div class="stat-label">Card UX Interface</div></div>
+            <div class="stat"><div class="stat-number">1</div><div class="stat-label">Year</div></div>
+        </div>
+    </section>
+
+    <section class="case-content">
+        <div class="content-section">
+            <span class="section-label">The Challenge</span>
+            <h2>REDESIGNING GOVERNMENT DATA</h2>
+            <p>When I joined Socrata, the platform had accumulated years of UX and design debt. Customers were very unhappy with the user experience—it was a one-size-fits-all product that didn't serve any persona well.</p>
+            <p>My main goal was to dramatically redesign this product taking a persona and scenario-driven approach, making government data accessible and engaging for citizens.</p>
+
+            <h3>Before</h3>
+            <div class="content-image">
+                <img src="images/socrata/before-dataset_14_1600_c.png" alt="Socrata Before Redesign">
+                <div class="image-caption">The interface before redesign—cluttered, confusing, and not persona-focused</div>
+            </div>
+
+            <h3>After</h3>
+            <div class="content-image">
+                <img src="images/socrata/after_1250.jpg" alt="Socrata After Redesign">
+                <div class="image-caption">Complete platform redesign with persona-driven approach</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Innovation</span>
+            <h2>PATENTED CARD UX</h2>
+            <p>During the first 3 months, my team and I developed a completely new innovative user interface paradigm which greatly improved data visualization, understanding, and user engagement.</p>
+            <p>We tested the interaction design with customers and citizens in a large-scale qualitative usability study with excellent results. We generated considerable customer excitement and turned around some of the most disgruntled customers. We patented this new interface.</p>
+
+            <div class="content-image">
+                <img src="images/socrata/Dark-theme-2_1250.jpg" alt="Dark Theme Concept">
+                <div class="image-caption">This concept performed best in usability testing—the winning direction</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Design Exploration</span>
+            <h2>LOOK & FEEL CONCEPTS</h2>
+            <p>I personally designed 4 distinct visual concepts that my team tested with nearly 100 citizens and government employees. We developed brand adjectives like "approachable" and "trustworthy" and asked participants to rate each concept.</p>
+
+            <div class="image-grid">
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/socrata/Hip-Light_1000.jpg" alt="Hip Light Concept">
+                    <div class="image-caption">Playful concept—tested well internally but too playful for users</div>
+                </div>
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/socrata/Futura_1000.jpg" alt="Futura Concept">
+                    <div class="image-caption">Government-familiar concept—polarizing responses</div>
+                </div>
+            </div>
+
+            <div class="content-image">
+                <img src="images/socrata/Light-a_1000.jpg" alt="Light Productivity Concept">
+                <div class="image-caption">Productivity-focused concept—rated second highest overall</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Information Architecture</span>
+            <h2>WIREFRAMES & TASK FLOWS</h2>
+            <p>Hands-on design work defining the information architecture and core interaction design for the Open Data Portal homepage and data catalog experiences.</p>
+
+            <div class="content-image">
+                <img src="images/socrata/wireframe-sample-2_1600_c.jpg" alt="Wireframe Sample">
+                <div class="image-caption">Information architecture exploration</div>
+            </div>
+
+            <div class="content-image">
+                <img src="images/socrata/thumb-catalog-homepage_1024.jpg" alt="Catalog Homepage">
+                <div class="image-caption">Data catalog homepage design</div>
+            </div>
+
+            <div class="content-image">
+                <img src="images/socrata/wireframe-sample-3_1600_c.jpg" alt="Task Flow Wireframe">
+                <div class="image-caption">Lower fidelity wire-framing for detailed task flow iteration</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Applications</span>
+            <h2>FINANCIAL DATA VISUALIZATION</h2>
+            <p>High-fidelity design of Socrata financial applications for government spending transparency.</p>
+
+            <div class="content-image">
+                <img src="images/socrata/MontgomeryCounty-SpendingApp-Light-Daan_1600_c.png" alt="Montgomery County Spending App">
+                <div class="image-caption">Montgomery County spending visualization application</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Templates</span>
+            <h2>HOMEPAGE CONCEPTS</h2>
+            <p>Designed multiple customer homepage template concepts to accommodate different government branding needs.</p>
+
+            <div class="image-grid">
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/socrata/HOMEBASE-flat-light2_1250.png" alt="Homebase Light Template">
+                </div>
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/socrata/HOMEBASE-masonry_1200.png" alt="Homebase Masonry Template">
+                </div>
+            </div>
+
+            <div class="image-grid">
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/socrata/RALLY-scape2_1250.png" alt="Rally Template">
+                </div>
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/socrata/SOAPBOX-crate_1250.png" alt="Soapbox Template">
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Research</span>
+            <h2>PERSONAS & PROCESS</h2>
+            <p>Developed lightweight behavior personas including direct customer feedback and profiling usability testing participants. These were used widely across the company—in product, engineering, sales, and training.</p>
+
+            <div class="image-grid">
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/socrata/Socrata-Personas_2_960.jpg" alt="Personas 1">
+                </div>
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/socrata/Socrata-Personas_2-1_960.jpg" alt="Personas 2">
+                </div>
+            </div>
+
+            <div class="content-image">
+                <img src="images/socrata/design-thinknig_1200.jpg" alt="Design Thinking">
+                <div class="image-caption">Visual used for UX strategy and training—design thinking vs problem solving</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Agile Process</span>
+            <h2>UX-DRIVEN DEVELOPMENT</h2>
+            <p>At Socrata, my UX team wrote all stories for development and test teams, including detailed specs on expected behavior and layout as acceptance criteria. This gave us high control over implementation fidelity and automated test coverage—a huge time and cost saver.</p>
+
+            <div class="content-image">
+                <img src="images/socrata/stories_1600_c.jpg" alt="Agile Stories">
+                <div class="image-caption">Example of UX-written stories with detailed acceptance criteria</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Mobile</span>
+            <h2>RESPONSIVE DESIGN</h2>
+            <p>All Socrata applications needed to be easily consumable on mobile devices with experiences similar to desktop, as visualizations were often part of larger narratives spanning both contexts.</p>
+
+            <div class="content-image" style="max-width: 500px;">
+                <img src="images/socrata/Mobile-friendly-data-consumption_893.jpg" alt="Mobile Design">
+                <div class="image-caption">Mobile-friendly data consumption design</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Outcomes</span>
+            <h2>IMPACT & RESULTS</h2>
+            <ul class="outcomes-list">
+                <li>Patented innovative Card UX interface paradigm</li>
+                <li>Conducted research with 100+ citizens and government employees</li>
+                <li>Turned around disgruntled customers who were about to leave</li>
+                <li>Led team of 6 designers and researchers</li>
+                <li>Established UX-written stories process for development</li>
+                <li>Created personas adopted across product, sales, and training</li>
+                <li>Designed responsive solutions for mobile data consumption</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="next-case">
+        <div class="next-case-inner">
+            <div>
+                <p class="next-label">Next Case Study</p>
+                <h3><a href="microsoft.html">MICROSOFT WINDOWS →</a></h3>
+            </div>
+            <span class="next-arrow">→</span>
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2025 Daan Lindhout</p>
+        <p class="footer-text">Seattle / Bellingham</p>
+    </footer>
+</body>
+</html>

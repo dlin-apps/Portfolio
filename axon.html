@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axon — Daan Lindhout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-primary: #0a0a0a; --bg-secondary: #141414; --bg-card: #1a1a1a; --text-primary: #ffffff; --text-secondary: #888888; --accent: #00d4aa; --accent-dim: rgba(0, 212, 170, 0.12); --border: #2a2a2a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        ::selection { background: var(--accent); color: var(--bg-primary); }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10, 10, 10, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.1em; text-decoration: none; color: var(--text-primary); }
+        .logo span { color: var(--accent); }
+        .back-link { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; }
+        .back-link:hover { color: var(--accent); }
+
+        .case-hero { padding: 10rem 4rem 4rem; max-width: 1200px; margin: 0 auto; }
+        .case-meta { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+        .case-tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); }
+        .case-year { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; color: var(--accent); }
+        .case-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 10vw, 8rem); line-height: 0.95; margin-bottom: 2rem; }
+        .case-role { font-size: 1.5rem; color: var(--accent); margin-bottom: 1.5rem; }
+        .case-intro { font-size: 1.25rem; color: var(--text-secondary); max-width: 800px; line-height: 1.7; }
+
+        .hero-image { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 4rem; }
+        .hero-image img { width: 100%; height: auto; border: 1px solid var(--border); }
+
+        .stats-bar { background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 4rem; }
+        .stats-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; }
+        .stat { text-align: center; }
+        .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--accent); line-height: 1; }
+        .stat-label { font-size: 0.875rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem; }
+
+        .case-content { padding: 6rem 4rem; max-width: 1200px; margin: 0 auto; }
+        .content-section { margin-bottom: 6rem; }
+        .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: block; }
+        .content-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1.1; margin-bottom: 2rem; }
+        .content-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; margin: 3rem 0 1.5rem; color: var(--text-primary); }
+        .content-section p { font-size: 1.125rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.5rem; max-width: 800px; }
+
+        .content-image { margin: 3rem 0; }
+        .content-image img { width: 100%; height: auto; border: 1px solid var(--border); }
+        .image-caption { font-size: 0.875rem; color: var(--text-secondary); margin-top: 1rem; font-style: italic; text-align: center; padding: 1rem; background: var(--bg-secondary); border-top: 1px solid var(--border); }
+
+        .image-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 3rem 0; }
+        .image-grid img { width: 100%; height: auto; border: 1px solid var(--border); }
+
+        .vision-item { margin-bottom: 2.5rem; }
+        .vision-item p { font-size: 1rem; color: var(--text-secondary); margin-bottom: 1rem; font-style: italic; }
+        .vision-item img { width: 100%; border: 1px solid var(--border); }
+
+        .big-number-callout { background: var(--bg-secondary); border: 1px solid var(--border); padding: 4rem; text-align: center; margin: 3rem 0; }
+        .big-number { font-family: 'Bebas Neue', sans-serif; font-size: 8rem; color: var(--accent); line-height: 1; }
+        .big-number-label { font-size: 1.25rem; color: var(--text-secondary); margin-top: 1rem; }
+
+        .outcomes-list { list-style: none; margin-top: 2rem; }
+        .outcomes-list li { display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem 0; border-bottom: 1px solid var(--border); font-size: 1.125rem; color: var(--text-secondary); }
+        .outcomes-list li:last-child { border-bottom: none; }
+        .outcomes-list li::before { content: '→'; color: var(--accent); font-weight: bold; flex-shrink: 0; }
+
+        .next-case { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 6rem 4rem; }
+        .next-case-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .next-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 1rem; }
+        .next-case h3 { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; line-height: 1; }
+        .next-case a { text-decoration: none; color: var(--text-primary); transition: color 0.3s ease; }
+        .next-case a:hover { color: var(--accent); }
+        .next-arrow { font-size: 4rem; color: var(--accent); }
+
+        footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        .footer-text { font-size: 0.875rem; color: var(--text-secondary); }
+
+        @media (max-width: 1024px) {
+            nav, .case-hero, .stats-bar, .case-content, .next-case, footer, .hero-image { padding-left: 2rem; padding-right: 2rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .image-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .next-case-inner { flex-direction: column; text-align: center; gap: 2rem; }
+            .next-case h3 { font-size: 3rem; }
+            .big-number { font-size: 5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">DAAN<span>.</span></a>
+        <a href="index.html" class="back-link">← Back to Work</a>
+    </nav>
+
+    <section class="case-hero">
+        <div class="case-hero-content">
+            <div class="case-meta">
+                <span class="case-tag">Public Safety</span>
+                <span class="case-tag">Enterprise</span>
+                <span class="case-tag">Hardware + Software</span>
+                <span class="case-year">2018 – 2023</span>
+            </div>
+            <h1>AXON</h1>
+            <p class="case-role">VP of UX Design & Research</p>
+            <p class="case-intro">Axon's mission is to save lives and protect the truth in public safety around the world. I led the global Product Design, UX Research, Technical Writing and Design Operations functions—growing the team from a handful to 60+ across all UX disciplines.</p>
+        </div>
+    </section>
+
+    <div class="hero-image">
+        <img src="images/axon/Axon-banner_1600_c_1600_c.png" alt="Axon Products Overview">
+    </div>
+
+    <section class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat"><div class="stat-number">60+</div><div class="stat-label">Team Size</div></div>
+            <div class="stat"><div class="stat-number">80%</div><div class="stat-label">Design System Adoption</div></div>
+            <div class="stat"><div class="stat-number">4</div><div class="stat-label">Disciplines Built</div></div>
+            <div class="stat"><div class="stat-number">5</div><div class="stat-label">Years</div></div>
+        </div>
+    </section>
+
+    <section class="case-content">
+        <div class="content-section">
+            <span class="section-label">The Challenge</span>
+            <h2>DESIGNING FOR THOSE WHO PROTECT & SERVE</h2>
+            <p>I was responsible for the user experience of all Axon software products—Dispatch/911, Records, and Digital Evidence Management—across all form factors (web, mobile, tablet), and for the hardware interaction design of all hardware products: body worn cameras, in-car camera systems, drones, interview rooms, and signal products.</p>
+            <p>The specific focus was making all products work together seamlessly to enable First Responders to save lives and protect the truth. Work included design for AI and ethical considerations across the entire software and hardware portfolio.</p>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">UX Mission</span>
+            <h2>THREE FOCUS AREAS</h2>
+            <p>Our UX mission at Axon had three focus areas: a strategic one focused on building great products and a connected ecosystem, a tactical one focused on maturing the UX disciplines, and an operational one with focus on the best team and culture. We set yearly and quarterly goals aligned with each of these missions.</p>
+            <div class="content-image">
+                <img src="images/axon/Slide9_1600_c_1600_c.png" alt="UX Mission Framework">
+                <div class="image-caption">The three pillars of Axon's UX mission</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Organization</span>
+            <h2>BUILDING THE UX ORG</h2>
+            <p>Over 5 years I built the UX org at Axon from a few Product Designers to 60+ people. I grew and hired people from mid and senior level into Director level roles, building full UX teams for each product line with a UX leader and additional management layers.</p>
+            <p>I introduced UX Research to the company, initially with embedded researchers horizontally organized, and later organized under UX Directors on each product line. I also built a central Tech Writing and User Assistance org and grew a Design System and Operations team.</p>
+            <p>Org design is one of my personal passions, especially matrix org structures balancing deep vertical execution with horizontal discipline building.</p>
+            <div class="content-image">
+                <img src="images/axon/Org-Structure_1600_c_1600_c.png" alt="Organization Structure">
+                <div class="image-caption">UX organization structure across product lines</div>
+            </div>
+            <div class="content-image">
+                <img src="images/axon/Discipline-building-overview_1600_c_1600_c.png" alt="Discipline Building">
+                <div class="image-caption">Building and maturing UX disciplines</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Future Vision</span>
+            <h2>ENVISIONING THE FUTURE OF FIRST RESPONDERS</h2>
+            <p>At Axon we worked relentlessly on envisioning the future of first responders. To frame our vision work and help the company get a clear joint vision, I worked with the executive team and external industry experts to develop a Policing Maturity Model.</p>
+            <p>AI and a connected ecosystem of devices, sensors and software applications running on the device or in the cloud will transform the first responder space in the next 10 years.</p>
+            <div class="content-image">
+                <img src="images/axon/Maturity_Model_1600_c_1600_c.png" alt="Policing Maturity Model">
+                <div class="image-caption">The Policing Maturity Model framework</div>
+            </div>
+
+            <h3>Vision Samples</h3>
+            
+            <div class="vision-item">
+                <p>Using data and AI to propose a route for Police Officers to take during their shift.</p>
+                <img src="images/axon/Slide85_1600_c_1600_c.png" alt="AI Route Planning">
+            </div>
+            <div class="vision-item">
+                <p>Automatic number plate recognition and contextual information about the neighborhood in case the Officer decides to make a traffic stop.</p>
+                <img src="images/axon/Slide87_1600_c_1600_c.png" alt="License Plate Recognition">
+            </div>
+            <div class="vision-item">
+                <p>911 dispatch view with incident information and live streaming to provide situational awareness (top), and backup officer view heading to the scene (bottom).</p>
+                <img src="images/axon/Slide90_1600_c_1600_c.png" alt="Dispatch View">
+            </div>
+            <div class="vision-item">
+                <p>Automatically generated incident view aggregating all events and signals on a timeline for later viewing by detective or prosecution and defense.</p>
+                <img src="images/axon/Slide91_1600_c_1600_c.png" alt="Incident Timeline">
+            </div>
+            <div class="vision-item">
+                <p>Mobile view for remote situational awareness for additional first responders heading to the scene.</p>
+                <img src="images/axon/Slide92_1600_c_1600_c.png" alt="Mobile Situational Awareness">
+            </div>
+            <div class="vision-item">
+                <p>Tactical collaboration with all first responders and dispatch to manage the incident.</p>
+                <img src="images/axon/Slide95_1600_c_1600_c.png" alt="Tactical Collaboration">
+            </div>
+            <div class="vision-item">
+                <p>Incident timeline view for Detectives—navigate through an automatically generated timeline with annotations.</p>
+                <img src="images/axon/Slide107_1600_c_1600_c.png" alt="Detective Timeline View">
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Product Transformation</span>
+            <h2>EVIDENCE MANAGEMENT: BEFORE & AFTER</h2>
+            <p>One of our major initiatives was transforming the digital evidence management experience. The redesign focused on simplifying complex workflows while maintaining the strict chain-of-custody requirements essential for legal proceedings.</p>
+            <div class="image-grid">
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/axon/evidence-com-before_1600_c_1600_c.png" alt="Evidence.com Before">
+                    <div class="image-caption">Before: Legacy evidence management</div>
+                </div>
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/axon/DEMS-Overview_1600_c_1600_c.png" alt="Evidence Management After">
+                    <div class="image-caption">After: Redesigned evidence management</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">New Products</span>
+            <h2>AXON RECORDS</h2>
+            <p>We designed and launched Axon Records, a modern records management system built to streamline the documentation process for law enforcement officers.</p>
+            <div class="content-image">
+                <img src="images/axon/Records-Overview_1600_c_1600_c.png" alt="Axon Records Overview">
+                <div class="image-caption">Axon Records: Modern police records management</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">0 to 1</span>
+            <h2>911 DISPATCH FROM THE GROUND UP</h2>
+            <p>We built a 911 dispatch product line from the ground up. This includes all the software used when a 911 call comes in—gathering data, making decisions about resources to send, and coordinating all resources going out and on scene including real-time audio and video communication.</p>
+            <p>Since this is a very high stress situation, all applications and workflows need to be very easy to use and intuitive. A hard to use or inconsistent user experience can quite literally mean people die.</p>
+            <div class="content-image">
+                <img src="images/axon/Banner_1600_c_1600_c.png" alt="911 Dispatch Product">
+                <div class="image-caption">Axon Dispatch: 911 call handling and resource coordination</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Mobile</span>
+            <h2>MOBILE APPLICATIONS</h2>
+            <p>Axon has half a dozen mobile applications across various platforms. Here are samples with existing/live apps on the outside, and a vision for a real-time operations app in the middle.</p>
+            <div class="content-image">
+                <img src="images/axon/Overview_1600_c_1600_c.png" alt="Mobile Applications Overview">
+                <div class="image-caption">Axon mobile application portfolio</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Hardware + Software</span>
+            <h2>CONVERGENCE</h2>
+            <p>Many Axon products are a combination of one or more hardware devices with software applications used together. Here are examples of both the hardware and software working in harmony.</p>
+            <div class="image-grid">
+                <img src="images/axon/Screen-Shot-2022-12-20-at-5.05.35-PM_1600_c_1600_c.png" alt="Hardware Software Convergence 1">
+                <img src="images/axon/Screen-Shot-2022-12-20-at-5.05.56-PM_1600_c_1600_c.png" alt="Hardware Software Convergence 2">
+                <img src="images/axon/Screen-Shot-2022-12-20-at-5.06.39-PM_1600_c_1600_c.png" alt="Hardware Software Convergence 3">
+                <img src="images/axon/Screen-Shot-2022-12-20-at-5.06.22-PM_1600_c_1600_c.png" alt="Hardware Software Convergence 4">
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Training</span>
+            <h2>VR TRAINING</h2>
+            <p>We make VR training for how to use our devices as well as how to approach situations (for example: encountering someone threatening self-harm). VR training retention is much higher than classroom training, making it an effective way to train Patrol Officers to better handle situations and equipment.</p>
+            <div class="content-image">
+                <img src="images/axon/Screen-Shot-2022-12-20-at-5.06.57-PM_1600_c_1600_c.png" alt="VR Training">
+                <div class="image-caption">Axon VR training for officer situational preparedness</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Design System</span>
+            <h2>THE AXON DESIGN SYSTEM</h2>
+            <p>I built the first Design System at the company and created a Design Operations team to expand and evolve it over time. The Axon Design System governs interaction, visual, and workflow design across all products—including mobile, in-car/tablet and desktop form factors in both light and dark themes to accommodate for context.</p>
+            <p>This design system is used on the Design side in Figma as a library with version control and metrics across 40+ Product Designers, and on the Engineering side with a component library built and evolved by a centralized Engineering team. We set and track adoption goals and metrics across all product lines, reviewing them monthly.</p>
+
+            <div class="big-number-callout">
+                <div class="big-number">80%</div>
+                <div class="big-number-label">Design System adoption across all Axon product lines</div>
+            </div>
+
+            <div class="content-image">
+                <img src="images/axon/_Motor-Dark_Page_01_1600_c_1600_c.png" alt="Motor Theme - Dark">
+                <div class="image-caption">Motor Theme: In-car at night</div>
+            </div>
+            <div class="content-image">
+                <img src="images/axon/_Station-Light_Page_01_1600_c_1600_c.png" alt="Station Theme - Light">
+                <div class="image-caption">Station Theme: At the station during day</div>
+            </div>
+            <div class="content-image">
+                <img src="images/axon/_Motor-Dark_Forms_1600_c_1600_c.png" alt="Form Controls">
+                <div class="image-caption">Example of interaction and states of form controls</div>
+            </div>
+            <div class="content-image">
+                <img src="images/axon/Design-System-content-banner_1600_c_1600_c.png" alt="Design System Documentation">
+                <div class="image-caption">Design System documentation site for internal and external use</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Branding</span>
+            <h2>PRODUCT BRANDING</h2>
+            <p>Examples of product branding work to tie together all the different Axon product lines into a cohesive portfolio.</p>
+            <div class="content-image">
+                <img src="images/axon/Overall-brand_1600_c_1600_c.png" alt="Product Branding Overview">
+            </div>
+            <div class="content-image">
+                <img src="images/axon/Screen-Shot-2022-12-14-at-12.15.56-PM_1600_c_1600_c.png" alt="Product Branding Details">
+            </div>
+            <div class="content-image">
+                <img src="images/axon/Screen-Shot-2022-12-14-at-12.16.43-PM_1600_c_1600_c.png" alt="Product Branding System">
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Outcomes</span>
+            <h2>IMPACT & RESULTS</h2>
+            <ul class="outcomes-list">
+                <li>Grew the UX organization from a handful of designers to 60+ spanning Product Design, UX Research, Technical Writing, and Design Operations</li>
+                <li>Built full UX teams for each product line with dedicated leadership and management structures</li>
+                <li>Introduced UX Research as a discipline and scaled it across all product lines</li>
+                <li>Created the Axon Design System achieving 80% adoption across all products</li>
+                <li>Led UX for the ground-up design of Axon Dispatch (911) and Axon Records</li>
+                <li>Developed the Policing Maturity Model framework guiding company vision</li>
+                <li>Unified hardware and software design language across body cameras, in-car systems, and mobile apps</li>
+                <li>Established VR training program for officer preparedness</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="next-case">
+        <div class="next-case-inner">
+            <div>
+                <p class="next-label">Next Case Study</p>
+                <h3><a href="qualtrics.html">QUALTRICS →</a></h3>
+            </div>
+            <span class="next-arrow">→</span>
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2025 Daan Lindhout</p>
+        <p class="footer-text">Seattle / Bellingham</p>
+    </footer>
+</body>
+</html>
