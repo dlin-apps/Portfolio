@@ -21,8 +21,9 @@
         .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s ease; }
         .nav-links a:hover, .nav-links a.active { color: var(--accent); }
 
-        .contact-page { flex: 1; display: flex; align-items: center; justify-content: center; padding: 7rem 4rem 4rem; }
-        .contact-container { max-width: 600px; text-align: center; }
+        .contact-page { flex: 1; display: flex; align-items: center; justify-content: center; padding: 7rem 4rem 4rem; position: relative; overflow: hidden; }
+        .contact-page::before { content: ''; position: absolute; top: -20%; right: -10%; width: 60%; height: 100%; background: radial-gradient(ellipse at center, var(--accent-dim) 0%, transparent 70%); pointer-events: none; }
+        .contact-container { max-width: 600px; text-align: center; position: relative; z-index: 1; }
         .contact-container h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 5rem); line-height: 1; margin-bottom: 1.5rem; }
         .contact-container p { font-size: 1.125rem; color: var(--text-secondary); margin-bottom: 3rem; line-height: 1.6; }
 
@@ -33,7 +34,7 @@
 
         .contact-note { margin-top: 3rem; font-size: 0.875rem; color: var(--text-secondary); }
 
-        footer { padding: 1.5rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; align-items: center; }
+        footer { padding: 1.5rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; align-items: center; gap: 2rem; }
         .footer-text { font-size: 0.8rem; color: var(--text-secondary); }
 
         @media (max-width: 768px) {

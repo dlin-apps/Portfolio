@@ -21,7 +21,8 @@
         .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s ease; }
         .nav-links a:hover, .nav-links a.active { color: var(--accent); }
 
-        .page-hero { padding: 7rem 4rem 2rem; max-width: 1400px; margin: 0 auto; }
+        .page-hero { padding: 7rem 4rem 2rem; max-width: 1400px; margin: 0 auto; position: relative; }
+        .page-hero::before { content: ''; position: absolute; top: -50%; right: -10%; width: 60%; height: 150%; background: radial-gradient(ellipse at center, var(--accent-dim) 0%, transparent 70%); pointer-events: none; z-index: -1; }
         .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; margin-bottom: 1rem; }
         .page-intro { font-size: 1rem; color: var(--text-secondary); line-height: 1.6; max-width: 600px; }
 
@@ -74,7 +75,7 @@
             line-height: 1.6;
         }
 
-        footer { padding: 1.5rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; align-items: center; }
+        footer { padding: 1.5rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; align-items: center; gap: 2rem; }
         .footer-text { font-size: 0.8rem; color: var(--text-secondary); }
 
         @media (max-width: 1200px) {
