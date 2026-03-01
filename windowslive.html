@@ -14,7 +14,7 @@
         body { font-family: 'DM Sans', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
         ::selection { background: var(--accent); color: var(--bg-primary); }
 
-        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10, 10, 10, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 4rem; display: flex; justify-content: flex-end; align-items: center; background: rgba(10, 10, 10, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
         .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.1em; text-decoration: none; color: var(--text-primary); }
         .logo span { color: var(--accent); }
         .back-link { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; }
@@ -56,14 +56,14 @@
         .outcomes-list li::before { content: '→'; color: var(--accent); font-weight: bold; flex-shrink: 0; }
 
         .next-case { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 6rem 4rem; }
-        .next-case-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .next-case-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: flex-end; align-items: center; }
         .next-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 1rem; }
         .next-case h3 { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; line-height: 1; margin: 0; }
         .next-case a { text-decoration: none; color: var(--text-primary); transition: color 0.3s ease; }
         .next-case a:hover { color: var(--accent); }
         .next-arrow { font-size: 4rem; color: var(--accent); }
 
-        footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+        footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; align-items: center; }
         .footer-text { font-size: 0.875rem; color: var(--text-secondary); }
 
         @media (max-width: 1024px) {
@@ -79,7 +79,7 @@
 </head>
 <body>
     <nav>
-        <a href="index.html" class="logo">DAAN<span>.</span></a>
+        
         <a href="index.html" class="back-link">← Back to Work</a>
     </nav>
 
@@ -207,7 +207,7 @@
 
     <footer>
         <p class="footer-text">© 2025 Daan Lindhout</p>
-        <p class="footer-text">Seattle / Bellingham</p>
+        <p class="footer-text">Seattle, WA</p>
     </footer>
 </body>
 </html>

@@ -14,45 +14,67 @@
         body { font-family: 'DM Sans', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
         ::selection { background: var(--accent); color: var(--bg-primary); }
 
-        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10, 10, 10, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 4rem; display: flex; justify-content: flex-end; align-items: center; background: rgba(10, 10, 10, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
         .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.1em; text-decoration: none; color: var(--text-primary); }
         .logo span { color: var(--accent); }
-        .back-link { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; }
-        .back-link:hover { color: var(--accent); }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
 
-        .page-hero { padding: 10rem 4rem 4rem; max-width: 900px; margin: 0 auto; }
-        .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 5rem); line-height: 1.1; margin-bottom: 2rem; }
-        .page-intro { font-size: 1.25rem; color: var(--text-secondary); line-height: 1.7; }
+        .page-hero { padding: 7rem 4rem 2rem; max-width: 1400px; margin: 0 auto; }
+        .page-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; margin-bottom: 1rem; }
+        .page-intro { font-size: 1rem; color: var(--text-secondary); line-height: 1.6; max-width: 600px; }
 
-        .tenets-content { padding: 0 4rem 6rem; max-width: 900px; margin: 0 auto; }
+        .tenets-grid { padding: 2rem 4rem 4rem; max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 
-        .tenet { margin-bottom: 4rem; padding-bottom: 4rem; border-bottom: 1px solid var(--border); }
-        .tenet:last-child { border-bottom: none; }
-        .tenet-number { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--accent); letter-spacing: 0.2em; margin-bottom: 1rem; }
-        .tenet h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; line-height: 1.2; margin-bottom: 1.5rem; }
-        .tenet p { font-size: 1.125rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem; }
-        .tenet a { color: var(--accent); text-decoration: none; }
-        .tenet a:hover { text-decoration: underline; }
+        .tenet-card { display: block; padding: 1.5rem; border: 1px solid var(--border); background: var(--bg-card); transition: all 0.3s ease; text-decoration: none; color: inherit; cursor: pointer; }
+        .tenet-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+        .tenet-number { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; }
+        .tenet-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; margin-bottom: 0.5rem; line-height: 1.2; }
+        .tenet-card p { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6; }
 
-        .story-box { background: var(--bg-card); border: 1px solid var(--border); padding: 2rem; margin: 2rem 0; }
-        .story-box h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; color: var(--accent); margin-bottom: 1rem; letter-spacing: 0.05em; }
-        .story-box p { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.75rem; }
+        /* Modal Styles */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.85); z-index: 200; justify-content: center; align-items: center; padding: 2rem; }
+        .modal-overlay.active { display: flex; }
+        .modal { background: var(--bg-secondary); border: 1px solid var(--border); max-width: 700px; width: 100%; max-height: 80vh; overflow-y: auto; position: relative; }
+        .modal-header { padding: 2rem 2rem 1rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg-secondary); }
+        .modal-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer; transition: color 0.3s ease; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
+        .modal-close:hover { color: var(--accent); }
+        .modal-number { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--accent); letter-spacing: 0.2em; margin-bottom: 0.5rem; }
+        .modal h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; line-height: 1.2; padding-right: 2rem; }
+        .modal-content { padding: 1.5rem 2rem 2rem; }
+        .modal-content p { font-size: 1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem; }
+        .modal-content p:last-child { margin-bottom: 0; }
+
+        .story-box { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; margin: 1.5rem 0; }
+        .story-box h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 0.75rem; letter-spacing: 0.05em; }
+        .story-box p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.5rem; }
         .story-box p:last-child { margin-bottom: 0; }
         .story-box strong { color: var(--text-primary); }
 
-        footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto; }
-        .footer-text { font-size: 0.875rem; color: var(--text-secondary); }
+        footer { padding: 1.5rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; align-items: center; }
+        .footer-text { font-size: 0.8rem; color: var(--text-secondary); }
 
+        @media (max-width: 1024px) {
+            nav, .page-hero, .tenets-grid, footer { padding-left: 2rem; padding-right: 2rem; }
+            .tenets-grid { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 768px) {
-            nav, .page-hero, .tenets-content, footer { padding-left: 2rem; padding-right: 2rem; }
-            .tenet h2 { font-size: 2rem; }
+            .tenets-grid { grid-template-columns: 1fr; }
+            .modal { margin: 1rem; max-height: 90vh; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
     <nav>
-        <a href="index.html" class="logo">DAAN<span>.</span></a>
-        <a href="index.html" class="back-link">← Back to Work</a>
+        
+        <div class="nav-links">
+            <a href="about.html">About</a>
+            <a href="index.html">Work</a>
+            <a href="tenets.html" class="active">Tenets</a>
+            <a href="contact.html">Contact</a>
+        </div>
     </nav>
 
     <section class="page-hero">
@@ -60,104 +82,176 @@
         <p class="page-intro">Over the years I have developed a set of guiding principles for my approach to product strategy, vision setting, people management, and execution.</p>
     </section>
 
-    <section class="tenets-content">
-        <article class="tenet">
-            <p class="tenet-number">TENET 01</p>
-            <h2>It's a design democracy. Trust your elected officials.</h2>
-            <p>Good ideas can come from anywhere inside or outside of the organization. UX teams have great ideas, but should be open to ideas from outside and champion them just as much as they would their own ideas.</p>
-            <p>However, teams should also be confident in the capabilities of UX team members to uncover the true user needs and design solutions to address them.</p>
-        </article>
-
-        <article class="tenet">
-            <p class="tenet-number">TENET 02</p>
-            <h2>UX teams only succeed when top-down meets bottoms-up</h2>
-            <p>Creating a compelling UX vision will show thought-leadership and your executive team will love you. You are truly inspiring the company to think long term. However, your Engineering and front-line PM teams will get frustrated if you can't break things down into smaller pieces to execute on in sequence.</p>
-            <p>Similarly, if a UX team is only operating bottoms-up working on incremental improvements, your Engineering and front-line PM teams will love you because you are working very closely with them on evolving the products, but you are not delivering on working towards a larger long term vision and your executive team will not see much value in the UX disciplines and be willing to invest significantly in them.</p>
-            <p>As a UX team you have to execute on both fronts simultaneously to be truly successful and impactful.</p>
-        </article>
-
-        <article class="tenet">
-            <p class="tenet-number">TENET 03</p>
-            <h2>Be the person in the room who makes things simpler</h2>
-            <p>It's very easy to make things more complicated by asking hard questions and bringing up different use cases or examples that challenge the direction. Some folks thrive on dazzling the crowd with their ability to come up with a million different use cases or states to think through.</p>
-            <p>However, without a clear purpose and resolution you will quickly get bogged down in the details and paralyzed on approach. I strive to always be the person in the room who will make things easier for the team instead of more complicated.</p>
-            <p>Up-level, summarize, rephrase, talk about actions to take. Making things simple is the hardest and most valuable skill you can bring to the table as a leader.</p>
-        </article>
-
-        <article class="tenet">
-            <p class="tenet-number">TENET 04</p>
-            <h2>Focus on users and their scenarios, not on features</h2>
-            <p>It's so easy to get lost in long lists of features and backlogs and lose track of how they all come together to deliver value to customers in context.</p>
-            <p>Ask yourself: What did the customers hire your product for? What job is this feature going to do? Don't start with features, start with what a user really wants to get out of your product so you end up with features that truly address a user need.</p>
-        </article>
-
-        <article class="tenet">
-            <p class="tenet-number">TENET 05</p>
-            <h2>If users can't find it, it doesn't exist</h2>
-            <p>When I was working with the Office team at Microsoft more than a decade ago, one of the things that really struck a chord with me was that the top 10 feature requests from users were features that were already available in Microsoft Office. Users just hadn't found them.</p>
-            <p>This really drove home for me that if users can't find it, you might as well not have built it in the first place. Discovery and a first experience are key to successful products and features.</p>
-        </article>
-
-        <article class="tenet">
-            <p class="tenet-number">TENET 06</p>
-            <h2>Internalize a strong design process so you know which steps you can skip</h2>
-            <p>It's very important to know what design process to follow to make sure you maximize the chance you come up with a great product or feature. However, it's not practical or cost effective to be a slave to the design process at all times: not all steps are always necessary, it really depends on the nature of the project or product and the team working on it.</p>
+    <section class="tenets-grid">
+        <div class="tenet-card" onclick="openModal(1)">
+            <div class="tenet-number">01</div>
+            <h3>IT'S A DESIGN DEMOCRACY. TRUST YOUR ELECTED OFFICIALS.</h3>
+            <p>Good ideas can come from anywhere. UX teams should champion great ideas regardless of source.</p>
+        </div>
+        <div class="tenet-card" onclick="openModal(2)">
+            <div class="tenet-number">02</div>
+            <h3>TOP-DOWN MEETS BOTTOMS-UP</h3>
+            <p>UX teams only succeed when creating compelling vision while breaking things into executable pieces.</p>
+        </div>
+        <div class="tenet-card" onclick="openModal(3)">
+            <div class="tenet-number">03</div>
+            <h3>BE THE PERSON WHO MAKES THINGS SIMPLER</h3>
+            <p>Making things simple is the hardest and most valuable skill. Don't dazzle with complexity.</p>
+        </div>
+        <div class="tenet-card" onclick="openModal(4)">
+            <div class="tenet-number">04</div>
+            <h3>FOCUS ON USERS AND SCENARIOS, NOT FEATURES</h3>
+            <p>What job did customers hire your product for? Start with what users really want.</p>
+        </div>
+        <div class="tenet-card" onclick="openModal(5)">
+            <div class="tenet-number">05</div>
+            <h3>IF USERS CAN'T FIND IT, IT DOESN'T EXIST</h3>
+            <p>Discovery and first experience are key to successful products.</p>
+        </div>
+        <div class="tenet-card" onclick="openModal(6)">
+            <div class="tenet-number">06</div>
+            <h3>INTERNALIZE PROCESS TO KNOW WHAT TO SKIP</h3>
             <p>Great UX professionals know what they can skip and when.</p>
-        </article>
-
-        <article class="tenet">
-            <p class="tenet-number">TENET 07</p>
-            <h2>If other disciplines never complain about working with a UX team, you haven't set the bar high enough</h2>
-            <p>For example: if your Engineering team consistently tells you your UX team is really easy to work with, you haven't set the bar high enough in terms of consistently pushing for a great UX.</p>
-            <p>Compromises are likely being made too quickly and easily in favor of ease of implementation rather than ease of use.</p>
-        </article>
-
-        <article class="tenet">
-            <p class="tenet-number">TENET 08</p>
-            <h2>Deep domain knowledge is required to deliver a great user experience</h2>
-            <p>You can always make superficial improvements to products such as improving a task flow or interaction or visual design based on common best practices. However, to really make dramatic improvements or design great products from scratch, you have to deeply know the domain from a business, user and technology perspective.</p>
-            <p>UX professionals need to invest significant time in deeply understanding the business and technology side of the house. Designers should go through technical product training, spend time with the sales team listening in on sales calls, understand the infrastructure supporting applications and the process of delivering them to customers, understand technical performance challenges, deeply understand the competitive landscape, and know some of the intricacies of the front-end framework being used.</p>
-            <p>Without dedicating time to all these peripheral areas designers will be useful and have impact, but only in a limited fashion and more as a service organization instead of having significant impact on product definition and success.</p>
-        </article>
-
-        <article class="tenet">
-            <p class="tenet-number">TENET 09</p>
-            <h2>It's all about user perception</h2>
-            <p>Too often UX success and improvements are measured superficially with for example amount of clicks, time on task or bounce rate. However, user perception is really the only effective way to measure UX success.</p>
-
-            <div class="story-box">
-                <h4>A True Story About User Perception</h4>
-                <p>People were terribly upset with the slowness of the elevator service at a huge skyscraper. It was a major problem. The building was gigantic, the technology was already operating at its absolute limits, it was impossible to re-engineer or re-design anything major, yet within a few days complaints about the slowness of elevator service miraculously disappeared completely!</p>
-                <p><strong>The Solution:</strong> Floor-to-ceiling mirrors were installed in the lobby. Customers were having such a great time checking themselves or others out in the mirrors that they were no longer bothered by how long it took for the elevator to show up.</p>
-            </div>
-        </article>
-
-        <article class="tenet">
-            <p class="tenet-number">TENET 10</p>
-            <h2>You need to convince a buyer to buy, but a user to renew</h2>
-            <p>Companies, especially in the enterprise space, tend to target buyer personas. It's obviously crucial you target the buyer personas to get a customer on board.</p>
-            <p>But if you want the company to renew down the road you need to convince the actual users that it's worth it as well.</p>
-        </article>
-
-        <article class="tenet">
-            <p class="tenet-number">TENET 11</p>
-            <h2>All good things start with psychological safety</h2>
-            <p>The ability for anyone you work with, any customers you interact with, or even yourself, to feel safe to speak their mind and trust their opinion and ideas will be heard and appreciated, is absolutely crucial to any well functioning team or well performing individual.</p>
-            <p>People shut down and lose confidence without psychological safety, which leads them to offer up less ideas and opinions, which leads to low job satisfaction, engagement and performance. A lack of psychological safety, even if caused by a single team member, can destroy any team or well-performing individual.</p>
-            <p>As a leader a pre-requisite of your role is to establish and actively maintain psychological safety on your team and at your company.</p>
-        </article>
-
-        <article class="tenet">
-            <p class="tenet-number">TENET 12</p>
-            <h2>Be clear, not clever</h2>
-            <p>Being clear when working with individuals and teams and clear in terms of your product experience for users always trumps being clever.</p>
-            <p>Being clever can alienate people from different backgrounds and countries because they might not understand. Being clever can be entertaining, but being clear will deliver great products and teams that collaborate well over time.</p>
-        </article>
+        </div>
+        <div class="tenet-card" onclick="openModal(7)">
+            <div class="tenet-number">07</div>
+            <h3>IF NO ONE COMPLAINS, THE BAR ISN'T HIGH ENOUGH</h3>
+            <p>Compromises are likely being made too quickly in favor of implementation over user experience.</p>
+        </div>
+        <div class="tenet-card" onclick="openModal(8)">
+            <div class="tenet-number">08</div>
+            <h3>DEEP DOMAIN KNOWLEDGE IS REQUIRED</h3>
+            <p>Designers need technical training, sales exposure, and competitive landscape knowledge.</p>
+        </div>
+        <div class="tenet-card" onclick="openModal(9)">
+            <div class="tenet-number">09</div>
+            <h3>IT'S ALL ABOUT USER PERCEPTION</h3>
+            <p>User perception is the only effective way to measure UX success.</p>
+        </div>
+        <div class="tenet-card" onclick="openModal(10)">
+            <div class="tenet-number">10</div>
+            <h3>CONVINCE A BUYER TO BUY, A USER TO RENEW</h3>
+            <p>Target buyer personas to get customers on board. Convince users to renew.</p>
+        </div>
+        <div class="tenet-card" onclick="openModal(11)">
+            <div class="tenet-number">11</div>
+            <h3>ALL GOOD THINGS START WITH PSYCHOLOGICAL SAFETY</h3>
+            <p>The ability for anyone to feel safe to speak their mind is crucial to any well-functioning team.</p>
+        </div>
+        <div class="tenet-card" onclick="openModal(12)">
+            <div class="tenet-number">12</div>
+            <h3>BE CLEAR, NOT CLEVER</h3>
+            <p>Clarity delivers great products and teams that collaborate well over time.</p>
+        </div>
     </section>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+                <p class="modal-number" id="modalNumber"></p>
+                <h2 id="modalTitle"></h2>
+            </div>
+            <div class="modal-content" id="modalContent"></div>
+        </div>
+    </div>
 
     <footer>
         <p class="footer-text">© 2025 Daan Lindhout</p>
-        <p class="footer-text">Seattle / Bellingham</p>
+        <p class="footer-text">Seattle, WA</p>
     </footer>
+
+    <script>
+        const tenets = {
+            1: {
+                title: "It's a design democracy. Trust your elected officials.",
+                content: `<p>Good ideas can come from anywhere inside or outside of the organization. UX teams have great ideas, but should be open to ideas from outside and champion them just as much as they would their own ideas.</p>
+                <p>However, teams should also be confident in the capabilities of UX team members to uncover the true user needs and design solutions to address them.</p>`
+            },
+            2: {
+                title: "UX teams only succeed when top-down meets bottoms-up",
+                content: `<p>Creating a compelling UX vision will show thought-leadership and your executive team will love you. You are truly inspiring the company to think long term. However, your Engineering and front-line PM teams will get frustrated if you can't break things down into smaller pieces to execute on in sequence.</p>
+                <p>Similarly, if a UX team is only operating bottoms-up working on incremental improvements, your Engineering and front-line PM teams will love you because you are working very closely with them on evolving the products, but you are not delivering on working towards a larger long term vision and your executive team will not see much value in the UX disciplines and be willing to invest significantly in them.</p>
+                <p>As a UX team you have to execute on both fronts simultaneously to be truly successful and impactful.</p>`
+            },
+            3: {
+                title: "Be the person in the room who makes things simpler",
+                content: `<p>It's very easy to make things more complicated by asking hard questions and bringing up different use cases or examples that challenge the direction. Some folks thrive on dazzling the crowd with their ability to come up with a million different use cases or states to think through.</p>
+                <p>However, without a clear purpose and resolution you will quickly get bogged down in the details and paralyzed on approach. I strive to always be the person in the room who will make things easier for the team instead of more complicated.</p>
+                <p>Up-level, summarize, rephrase, talk about actions to take. Making things simple is the hardest and most valuable skill you can bring to the table as a leader.</p>`
+            },
+            4: {
+                title: "Focus on users and their scenarios, not on features",
+                content: `<p>It's so easy to get lost in long lists of features and backlogs and lose track of how they all come together to deliver value to customers in context.</p>
+                <p>Ask yourself: What did the customers hire your product for? What job is this feature going to do? Don't start with features, start with what a user really wants to get out of your product so you end up with features that truly address a user need.</p>`
+            },
+            5: {
+                title: "If users can't find it, it doesn't exist",
+                content: `<p>When I was working with the Office team at Microsoft more than a decade ago, one of the things that really struck a chord with me was that the top 10 feature requests from users were features that were already available in Microsoft Office. Users just hadn't found them.</p>
+                <p>This really drove home for me that if users can't find it, you might as well not have built it in the first place. Discovery and a first experience are key to successful products and features.</p>`
+            },
+            6: {
+                title: "Internalize a strong design process so you know which steps you can skip",
+                content: `<p>It's very important to know what design process to follow to make sure you maximize the chance you come up with a great product or feature. However, it's not practical or cost effective to be a slave to the design process at all times: not all steps are always necessary, it really depends on the nature of the project or product and the team working on it.</p>
+                <p>Great UX professionals know what they can skip and when.</p>`
+            },
+            7: {
+                title: "If other disciplines never complain about working with a UX team, you haven't set the bar high enough",
+                content: `<p>For example: if your Engineering team consistently tells you your UX team is really easy to work with, you haven't set the bar high enough in terms of consistently pushing for a great UX.</p>
+                <p>Compromises are likely being made too quickly and easily in favor of ease of implementation rather than ease of use.</p>`
+            },
+            8: {
+                title: "Deep domain knowledge is required to deliver a great user experience",
+                content: `<p>You can always make superficial improvements to products such as improving a task flow or interaction or visual design based on common best practices. However, to really make dramatic improvements or design great products from scratch, you have to deeply know the domain from a business, user and technology perspective.</p>
+                <p>UX professionals need to invest significant time in deeply understanding the business and technology side of the house. Designers should go through technical product training, spend time with the sales team listening in on sales calls, understand the infrastructure supporting applications and the process of delivering them to customers, understand technical performance challenges, deeply understand the competitive landscape, and know some of the intricacies of the front-end framework being used.</p>
+                <p>Without dedicating time to all these peripheral areas designers will be useful and have impact, but only in a limited fashion and more as a service organization instead of having significant impact on product definition and success.</p>`
+            },
+            9: {
+                title: "It's all about user perception",
+                content: `<p>Too often UX success and improvements are measured superficially with for example amount of clicks, time on task or bounce rate. However, user perception is really the only effective way to measure UX success.</p>
+                <div class="story-box">
+                    <h4>A True Story About User Perception</h4>
+                    <p>People were terribly upset with the slowness of the elevator service at a huge skyscraper. It was a major problem. The building was gigantic, the technology was already operating at its absolute limits, it was impossible to re-engineer or re-design anything major, yet within a few days complaints about the slowness of elevator service miraculously disappeared completely!</p>
+                    <p><strong>The Solution:</strong> Floor-to-ceiling mirrors were installed in the lobby. Customers were having such a great time checking themselves or others out in the mirrors that they were no longer bothered by how long it took for the elevator to show up.</p>
+                </div>`
+            },
+            10: {
+                title: "You need to convince a buyer to buy, but a user to renew",
+                content: `<p>Companies, especially in the enterprise space, tend to target buyer personas. It's obviously crucial you target the buyer personas to get a customer on board.</p>
+                <p>But if you want the company to renew down the road you need to convince the actual users that it's worth it as well.</p>`
+            },
+            11: {
+                title: "All good things start with psychological safety",
+                content: `<p>The ability for anyone you work with, any customers you interact with, or even yourself, to feel safe to speak their mind and trust their opinion and ideas will be heard and appreciated, is absolutely crucial to any well functioning team or well performing individual.</p>
+                <p>People shut down and lose confidence without psychological safety, which leads them to offer up less ideas and opinions, which leads to low job satisfaction, engagement and performance. A lack of psychological safety, even if caused by a single team member, can destroy any team or well-performing individual.</p>
+                <p>As a leader a pre-requisite of your role is to establish and actively maintain psychological safety on your team and at your company.</p>`
+            },
+            12: {
+                title: "Be clear, not clever",
+                content: `<p>Being clear when working with individuals and teams and clear in terms of your product experience for users always trumps being clever.</p>
+                <p>Being clever can alienate people from different backgrounds and countries because they might not understand. Being clever can be entertaining, but being clear will deliver great products and teams that collaborate well over time.</p>`
+            }
+        };
+
+        function openModal(num) {
+            const tenet = tenets[num];
+            document.getElementById('modalNumber').textContent = `TENET ${String(num).padStart(2, '0')}`;
+            document.getElementById('modalTitle').textContent = tenet.title;
+            document.getElementById('modalContent').innerHTML = tenet.content;
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            if (event && event.target !== event.currentTarget) return;
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
 </body>
 </html>

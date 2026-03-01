@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Daan Lindhout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-primary: #0a0a0a; --bg-secondary: #141414; --bg-card: #1a1a1a; --text-primary: #ffffff; --text-secondary: #888888; --accent: #00d4aa; --accent-dim: rgba(0, 212, 170, 0.12); --border: #2a2a2a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
+        ::selection { background: var(--accent); color: var(--bg-primary); }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 4rem; display: flex; justify-content: flex-end; align-items: center; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.1em; text-decoration: none; color: var(--text-primary); }
+        .logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+        .hero { min-height: auto; display: flex; flex-direction: column; justify-content: center; padding: 7rem 0 3rem; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -20%; right: -10%; width: 60%; height: 100%; background: radial-gradient(ellipse at center, var(--accent-dim) 0%, transparent 70%); pointer-events: none; }
+        .hero-content { max-width: 1400px; margin: 0 auto; width: 100%; padding: 0 4rem; position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 300px; gap: 3rem; align-items: start; box-sizing: border-box; }
+        .hero-main { }
+        .hero-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+        .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 5rem); line-height: 1; margin-bottom: 1.5rem; }
+        .hero-subtitle { font-size: 1.125rem; color: var(--text-secondary); max-width: 500px; margin-bottom: 2rem; line-height: 1.6; }
+        .hero-stats { display: flex; gap: 3rem; margin-top: 2rem; }
+        .stat { text-align: left; }
+        .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--accent); line-height: 1; }
+        .stat-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem; }
+        .hero-quote { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; margin-top: 2rem; }
+        .hero-quote p { font-size: 0.95rem; font-style: italic; color: var(--text-secondary); line-height: 1.5; margin-bottom: 0.75rem; }
+        .hero-quote cite { font-size: 0.8rem; color: var(--text-secondary); font-style: normal; }
+
+        .section { padding: 4rem 4rem; max-width: 1400px; margin: 0 auto; }
+        .section-header { margin-bottom: 2rem; }
+        .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+        .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; line-height: 1; }
+
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+        .about-text { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; }
+        .about-text p { margin-bottom: 1rem; }
+        .about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .highlight-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; transition: all 0.3s ease; }
+        .highlight-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+        .highlight-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; margin-bottom: 0.5rem; }
+        .highlight-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
+
+        .timeline { margin-top: 1.5rem; max-width: 800px; }
+        .timeline-item { display: grid; grid-template-columns: 70px 1fr; gap: 1.5rem; padding: 1.25rem 0; border-bottom: 1px solid var(--border); }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-year { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--text-secondary); padding-top: 0.2rem; }
+        .timeline-role { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.15rem; }
+        .timeline-company { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--accent); margin-bottom: 0.25rem; line-height: 1.1; }
+        .timeline-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
+
+        footer { padding: 1.5rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; align-items: center; }
+        .footer-text { font-size: 0.8rem; color: var(--text-secondary); }
+
+        @media (max-width: 1024px) {
+            nav, .section, footer { padding-left: 2rem; padding-right: 2rem; }
+            .hero-content { padding-left: 2rem; padding-right: 2rem; grid-template-columns: 1fr; }
+            .hero-quote { margin-top: 0; }
+            .about-grid { grid-template-columns: 1fr; }
+            .timeline-item { grid-template-columns: 60px 1fr; gap: 1rem; }
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            .hero-stats { flex-direction: column; gap: 2rem; }
+            .about-highlights { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        
+        <div class="nav-links">
+            <a href="about.html" class="active">About</a>
+            <a href="index.html">Work</a>
+            <a href="tenets.html">Tenets</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-main">
+                <p class="hero-eyebrow">UX Design Leadership</p>
+                <h1>DAAN LINDHOUT</h1>
+                <p class="hero-subtitle">Global UX leader with 25+ years of experience building teams, products, and design cultures at scale—including platforms that contributed to an $8B acquisition and products serving 100M+ users.</p>
+                <div class="hero-stats">
+                    <div class="stat"><div class="stat-number">25+</div><div class="stat-label">Years Experience</div></div>
+                    <div class="stat"><div class="stat-number">8</div><div class="stat-label">UX Teams Built</div></div>
+                    <div class="stat"><div class="stat-number">100M+</div><div class="stat-label">Users Served</div></div>
+                </div>
+            </div>
+            <div class="hero-quote">
+                <p>"Just because nobody complains doesn't mean all parachutes are perfect."</p>
+                <cite>— Benny Hill</cite>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <p class="section-label">About</p>
+            <h2 class="section-title">DESIGNING AT SCALE</h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-text">
+                <img src="images/about/daan_smaller_432.png" alt="Daan Lindhout" style="width: 180px; height: 180px; border-radius: 50%; border: 3px solid var(--accent); margin-bottom: 2rem; filter: grayscale(30%);">
+                <p>I have been designing software and hardware user experiences for the past 25+ years. I am a multi-disciplinary global UX leader with a track record of building diverse and high-performing teams and delivering successful software and hardware products at scale.</p>
+                <p>I am a UX Designer and Researcher by heart with a passion for starting and building UX Design, Research, and User Assistance teams. I have 5 years experience serving on an executive team and 16+ years leading the UX discipline at companies including Microsoft, Qualtrics, Axon, and Workday. More recently, I've been focused on AI-enabled product design—leading AI/ML UX strategy at enterprise scale and exploring how AI can help people make better decisions.</p>
+                <p>I'm also an entrepreneur and builder. I co-founded Skill Cafe, an AI/ML-powered job matching platform, and I'm currently prototyping fintech tools exploring how AI can help people make better financial decisions. I teach UX to graduate students at Northeastern University to give back to the UX community and prepare the next generation of UX professionals.</p>
+            </div>
+            <div class="about-highlights">
+                <div class="highlight-card"><h3>TEAM BUILDING</h3><p>Built 8 UX teams from scratch, scaling to 70+ across design, research, and writing.</p></div>
+                <div class="highlight-card"><h3>DESIGN SYSTEMS</h3><p>Created design systems unifying hardware + software experiences with 80%+ adoption.</p></div>
+                <div class="highlight-card"><h3>PRODUCT VISION</h3><p>Unified 7 products into the XM Platform, contributing to Qualtrics' $8B acquisition.</p></div>
+                <div class="highlight-card"><h3>AI & INNOVATION</h3><p>Leading AI-enabled product design while prototyping AI-powered fintech tools.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <p class="section-label">Experience</p>
+            <h2 class="section-title">CAREER TIMELINE</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">2025</div>
+                <div class="timeline-content">
+                    <p class="timeline-role">ADJUNCT PROFESSOR</p>
+                    <h4 class="timeline-company">Northeastern University</h4>
+                    <p class="timeline-desc">Teach graduate UX Design & Research classes</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2023</div>
+                <div class="timeline-content">
+                    <p class="timeline-role">SENIOR DIRECTOR OF UX</p>
+                    <h4 class="timeline-company">Workday</h4>
+                    <p class="timeline-desc">Led global Product Design across the entire product portfolio (HR, Finance, Higher Education). Partnered closely with Product on strategy, execution, and measuring user experience.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2018</div>
+                <div class="timeline-content">
+                    <p class="timeline-role">VP OF PRODUCT DESIGN, UX RESEARCH & TECHNICAL WRITING</p>
+                    <h4 class="timeline-company">Axon</h4>
+                    <p class="timeline-desc">Grew the team from a handful to 60+ across Product Design, UX Research, Technical Writing and Design Operations. Responsible for UX of all software products and hardware interaction design. Created the Axon Design System.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2018</div>
+                <div class="timeline-content">
+                    <p class="timeline-role">CO-FOUNDER</p>
+                    <h4 class="timeline-company">Skill Cafe</h4>
+                    <p class="timeline-desc">AI/ML skill & location based job search and learning platform.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2015</div>
+                <div class="timeline-content">
+                    <p class="timeline-role">HEAD OF UX DESIGN & RESEARCH</p>
+                    <h4 class="timeline-company">Qualtrics</h4>
+                    <p class="timeline-desc">Led the global UX Design & Research organization reporting to the co-founder. Built the team and discipline from the ground up. Brought all products together into the Experience Management (XM) platform.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2014</div>
+                <div class="timeline-content">
+                    <p class="timeline-role">DIRECTOR OF UX DESIGN & RESEARCH</p>
+                    <h4 class="timeline-company">Socrata</h4>
+                    <p class="timeline-desc">Managed a team of UX and visual designers and researchers. Completely redesigned the main Socrata product resulting in a patentable new user interface paradigm for visualizing and exploring data.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2012</div>
+                <div class="timeline-content">
+                    <p class="timeline-role">DIRECTOR OF DESIGN & USER EXPERIENCE</p>
+                    <h4 class="timeline-company">Moz</h4>
+                    <p class="timeline-desc">Led the Design and Creative team including UX Design, Information Architecture & Strategy, Creative Direction, Branding, Motion Design, and Illustration. Identified Moz as the second most recognizable Marketing Tech brand.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2009</div>
+                <div class="timeline-content">
+                    <p class="timeline-role">USER EXPERIENCE MANAGER</p>
+                    <h4 class="timeline-company">F5 Networks</h4>
+                    <p class="timeline-desc">Led the UX discipline including UX Design, UX Research and Industrial Design. Won the Five Star award for significant contributions to the company.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2007</div>
+                <div class="timeline-content">
+                    <p class="timeline-role">USER EXPERIENCE MANAGER</p>
+                    <h4 class="timeline-company">SumTotal Systems</h4>
+                    <p class="timeline-desc">Started and built the UX team and discipline. Won the Power of One team award for special achievements.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2006</div>
+                <div class="timeline-content">
+                    <p class="timeline-role">PRODUCT DESIGNER II</p>
+                    <h4 class="timeline-company">Microsoft Live</h4>
+                    <p class="timeline-desc">Led the Windows Live user experience around pictures, videos and music including Windows Live Photo Gallery and Live Spaces media sharing.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2003</div>
+                <div class="timeline-content">
+                    <p class="timeline-role">PRODUCT DESIGNER</p>
+                    <h4 class="timeline-company">Microsoft Windows</h4>
+                    <p class="timeline-desc">Responsible for dramatic improvements to the first experience of Windows reducing the out of the box experience from 22 minutes and 50% failure rate to 2 min and 0% failure.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2000</div>
+                <div class="timeline-content">
+                    <p class="timeline-role">PRODUCT DESIGNER</p>
+                    <h4 class="timeline-company">Microsoft Hardware</h4>
+                    <p class="timeline-desc">Hardware interaction design of desktop productivity devices. Generated significant intellectual property including the Microsoft Tilt Wheel which generated more revenue than the optical mouse. Won International Stevie Award for best new product.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">1994</div>
+                <div class="timeline-content">
+                    <p class="timeline-role">MSc INDUSTRIAL DESIGN ENGINEERING</p>
+                    <h4 class="timeline-company">Delft University of Technology</h4>
+                    <p class="timeline-desc">Specialized in Hardware and Software convergence</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2025 Daan Lindhout</p>
+        <p class="footer-text">Seattle, WA</p>
+    </footer>
+</body>
+</html>

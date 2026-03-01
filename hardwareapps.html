@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wireless Photo Frame — Daan Lindhout</title>
+    <title>Hardware Apps & Sites — Daan Lindhout</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
@@ -24,15 +24,15 @@
         .case-meta { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
         .case-tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); }
         .case-year { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; color: var(--accent); }
-        .case-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 6vw, 5rem); line-height: 0.95; margin-bottom: 2rem; }
+        .case-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6rem); line-height: 0.95; margin-bottom: 2rem; }
         .case-role { font-size: 1.5rem; color: var(--accent); margin-bottom: 1.5rem; }
         .case-intro { font-size: 1.25rem; color: var(--text-secondary); max-width: 800px; line-height: 1.7; }
 
-        .hero-image { width: 100%; max-width: 1000px; margin: 0 auto; padding: 0 4rem; }
+        .hero-image { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
         .hero-image img { width: 100%; height: auto; border: 1px solid var(--border); }
 
         .stats-bar { background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 4rem; }
-        .stats-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+        .stats-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; }
         .stat { text-align: center; }
         .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--accent); line-height: 1; }
         .stat-label { font-size: 0.875rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem; }
@@ -68,6 +68,7 @@
 
         @media (max-width: 1024px) {
             nav, .case-hero, .stats-bar, .case-content, .next-case, footer, .hero-image { padding-left: 2rem; padding-right: 2rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .image-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
@@ -86,89 +87,102 @@
     <section class="case-hero">
         <div class="case-hero-content">
             <div class="case-meta">
-                <span class="case-tag">Hardware</span>
-                <span class="case-tag">Consumer Electronics</span>
+                <span class="case-tag">Software</span>
+                <span class="case-tag">Web Design</span>
                 <span class="case-tag">Microsoft</span>
-                <span class="case-year">2006</span>
+                <span class="case-year">2002</span>
             </div>
-            <h1>WIRELESS PHOTO FRAME</h1>
-            <p class="case-role">Senior Product Designer, Microsoft Hardware</p>
-            <p class="case-intro">Designed the complete user experience for a wireless digital photo frame—from hardware interaction to on-screen UI to remote control. The device connected to home networks to display photos from computers and online services.</p>
+            <h1>HARDWARE APPS & SITES</h1>
+            <p class="case-role">Product Designer, Microsoft Hardware</p>
+            <p class="case-intro">Software user interface design of the drivers and retail websites for mice and keyboards. Created IntelliPoint (mouse software), IntelliType (keyboard software), fingerprint reader enrollment, and the retail websites that helped customers discover and purchase Microsoft Hardware products.</p>
         </div>
     </section>
 
     <div class="hero-image">
-        <img src="images/photoframe/photo-frame_o.jpg" alt="Wireless Photo Frame Overview">
+        <img src="images/hardwareapps/drivers-and-websites_o.jpg" alt="Microsoft Hardware Apps and Sites Overview">
     </div>
 
     <section class="stats-bar">
         <div class="stats-grid">
-            <div class="stat"><div class="stat-number">HW + SW</div><div class="stat-label">Full Stack Design</div></div>
-            <div class="stat"><div class="stat-number">Wireless</div><div class="stat-label">Connected Device</div></div>
-            <div class="stat"><div class="stat-number">2006</div><div class="stat-label">Year</div></div>
+            <div class="stat"><div class="stat-number">M+</div><div class="stat-label">Users Reached</div></div>
+            <div class="stat"><div class="stat-number">5+</div><div class="stat-label">Products</div></div>
+            <div class="stat"><div class="stat-number">SW + Web</div><div class="stat-label">Full Ecosystem</div></div>
+            <div class="stat"><div class="stat-number">2002</div><div class="stat-label">Year</div></div>
         </div>
     </section>
 
     <section class="case-content">
         <div class="content-section">
-            <span class="section-label">The Product</span>
-            <h2>CONNECTED PHOTO DISPLAY</h2>
-            <p>The wireless photo frame was an early connected home device that allowed users to display their digital photos without cables or manual transfers. It connected to home WiFi networks and pulled photos from computers and online services automatically.</p>
-            <p>The design challenge was creating an experience simple enough for non-technical users while enabling powerful wireless connectivity features.</p>
-        </div>
-
-        <div class="content-section">
-            <span class="section-label">Hardware Design</span>
-            <h2>FRAME & REMOTE</h2>
-            <p>Designed the physical interaction model including the frame hardware and dedicated remote control.</p>
+            <span class="section-label">Driver Software</span>
+            <h2>INTELLIPOINT</h2>
+            <p>Designed IntelliPoint—the driver software that enables unique features of Microsoft mice. Users could customize settings, reassign buttons, and configure their mouse to fit their working style.</p>
+            <p>The challenge was making powerful customization accessible to both novice users who just want things to work and power users who want fine control.</p>
 
             <div class="image-grid">
                 <div class="content-image" style="margin: 0;">
-                    <img src="images/photoframe/frame hardware_o.png" alt="Frame Hardware">
-                    <div class="image-caption">Photo frame hardware design</div>
+                    <img src="images/hardwareapps/intellipoint.png" alt="IntelliPoint Setup">
+                    <div class="image-caption">IntelliPoint 5.0 setup wizard</div>
                 </div>
                 <div class="content-image" style="margin: 0;">
-                    <img src="images/photoframe/remote.png" alt="Remote Control">
-                    <div class="image-caption">Dedicated remote control</div>
+                    <img src="images/hardwareapps/Intellipoint 2.png" alt="IntelliPoint Settings">
+                    <div class="image-caption">IntelliPoint button configuration</div>
                 </div>
             </div>
         </div>
 
         <div class="content-section">
-            <span class="section-label">On-Screen UI</span>
-            <h2>INTERFACE DESIGN</h2>
-            <p>Created the on-screen user interface for browsing photos, configuring settings, and managing network connections.</p>
+            <span class="section-label">Driver Software</span>
+            <h2>INTELLITYPE</h2>
+            <p>Designed IntelliType—the companion driver software for Microsoft keyboards. Enabled customization of special keys, shortcuts, and keyboard behavior.</p>
 
             <div class="content-image">
-                <img src="images/photoframe/homepage_o.png" alt="Homepage UI">
-                <div class="image-caption">Main home screen with photo organization options</div>
-            </div>
-
-            <div class="content-image">
-                <img src="images/photoframe/browse by folder_o.png" alt="Browse by Folder">
-                <div class="image-caption">Folder browsing interface</div>
+                <img src="images/hardwareapps/intellitype.png" alt="IntelliType Software">
+                <div class="image-caption">IntelliType keyboard configuration software</div>
             </div>
         </div>
 
         <div class="content-section">
-            <span class="section-label">Setup Experience</span>
-            <h2>NETWORK CONFIGURATION</h2>
-            <p>Designed the WiFi setup experience to be simple and approachable for users who may not be familiar with network configuration.</p>
+            <span class="section-label">Biometric Security</span>
+            <h2>FINGERPRINT READER</h2>
+            <p>Designed the fingerprint enrollment experience for Microsoft's fingerprint reader. Made biometric security accessible to everyday users through clear, step-by-step guidance.</p>
 
             <div class="content-image">
-                <img src="images/photoframe/setup network selection_o.png" alt="Network Selection">
-                <div class="image-caption">Network selection during setup</div>
+                <img src="images/hardwareapps/fingerprint reader.png" alt="Fingerprint Enrollment">
+                <div class="image-caption">Fingerprint enrollment wizard with visual finger selection</div>
             </div>
         </div>
 
         <div class="content-section">
-            <span class="section-label">Architecture</span>
-            <h2>INTERACTION FLOW</h2>
-            <p>Developed comprehensive interaction flows mapping out all user journeys through the device.</p>
+            <span class="section-label">E-Commerce</span>
+            <h2>RETAIL WEBSITES</h2>
+            <p>Designed the retail websites for Microsoft Hardware—helping customers discover products, compare features, and make purchase decisions.</p>
 
-            <div class="content-image">
-                <img src="images/photoframe/flowchart.png" alt="Interaction Flowchart">
-                <div class="image-caption">Complete interaction flow diagram</div>
+            <div class="image-grid">
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/hardwareapps/retail website.jpg" alt="Retail Website">
+                    <div class="image-caption">Mouse product family website</div>
+                </div>
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/hardwareapps/retail-website-2.jpg" alt="Retail Website Features">
+                    <div class="image-caption">Product features and specifications</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Documentation</span>
+            <h2>QUICK START GUIDES</h2>
+            <p>Designed quick start guides and documentation that shipped with hardware products—helping users get started quickly without reading lengthy manuals.</p>
+
+            <div class="image-grid">
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/hardwareapps/quick start guide.png" alt="Quick Start Guide">
+                    <div class="image-caption">Quick Start Guide highlighting key features</div>
+                </div>
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/hardwareapps/manual print.jpg" alt="Printed Manual">
+                    <div class="image-caption">Printed documentation design</div>
+                </div>
             </div>
         </div>
 
@@ -176,11 +190,11 @@
             <span class="section-label">Outcomes</span>
             <h2>IMPACT</h2>
             <ul class="outcomes-list">
-                <li>Designed complete hardware-software experience</li>
-                <li>Created intuitive WiFi setup for non-technical users</li>
-                <li>Developed on-screen UI and remote control interaction</li>
-                <li>Pioneered connected home device UX patterns</li>
-                <li>Shipped as Microsoft consumer hardware product</li>
+                <li>Designed IntelliPoint and IntelliType driver software used by millions</li>
+                <li>Created fingerprint enrollment experience for biometric security</li>
+                <li>Designed retail websites for product discovery and sales</li>
+                <li>Developed quick start guides shipped with hardware products</li>
+                <li>Built cohesive software ecosystem across mice, keyboards, and accessories</li>
             </ul>
         </div>
     </section>
@@ -189,7 +203,7 @@
         <div class="next-case-inner">
             <div>
                 <p class="next-label">Next Case Study</p>
-                <h3><a href="sumtotal.html">SUMTOTAL SYSTEMS →</a></h3>
+                <h3><a href="rightclick.html">RIGHT CLICK →</a></h3>
             </div>
             <span class="next-arrow">→</span>
         </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wireless Photo Frame — Daan Lindhout</title>
+    <title>Keyboards — Daan Lindhout</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
@@ -24,15 +24,15 @@
         .case-meta { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
         .case-tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); }
         .case-year { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; color: var(--accent); }
-        .case-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 6vw, 5rem); line-height: 0.95; margin-bottom: 2rem; }
+        .case-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6rem); line-height: 0.95; margin-bottom: 2rem; }
         .case-role { font-size: 1.5rem; color: var(--accent); margin-bottom: 1.5rem; }
         .case-intro { font-size: 1.25rem; color: var(--text-secondary); max-width: 800px; line-height: 1.7; }
 
-        .hero-image { width: 100%; max-width: 1000px; margin: 0 auto; padding: 0 4rem; }
+        .hero-image { width: 100%; max-width: 900px; margin: 0 auto; padding: 0 4rem; }
         .hero-image img { width: 100%; height: auto; border: 1px solid var(--border); }
 
         .stats-bar { background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 4rem; }
-        .stats-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+        .stats-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; }
         .stat { text-align: center; }
         .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--accent); line-height: 1; }
         .stat-label { font-size: 0.875rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem; }
@@ -68,6 +68,7 @@
 
         @media (max-width: 1024px) {
             nav, .case-hero, .stats-bar, .case-content, .next-case, footer, .hero-image { padding-left: 2rem; padding-right: 2rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .image-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
@@ -87,88 +88,94 @@
         <div class="case-hero-content">
             <div class="case-meta">
                 <span class="case-tag">Hardware</span>
-                <span class="case-tag">Consumer Electronics</span>
+                <span class="case-tag">Industrial Design</span>
                 <span class="case-tag">Microsoft</span>
-                <span class="case-year">2006</span>
+                <span class="case-year">2000 – 2003</span>
             </div>
-            <h1>WIRELESS PHOTO FRAME</h1>
-            <p class="case-role">Senior Product Designer, Microsoft Hardware</p>
-            <p class="case-intro">Designed the complete user experience for a wireless digital photo frame—from hardware interaction to on-screen UI to remote control. The device connected to home networks to display photos from computers and online services.</p>
+            <h1>KEYBOARDS</h1>
+            <p class="case-role">Product Designer, Microsoft Hardware</p>
+            <p class="case-intro">Hardware interaction design and industrial design of keyboards at Microsoft Hardware. Designed numerous keyboards including the Destination keyboard with programmable "My Favorites" keys, media controls, and innovative shortcut solutions. Led large-scale innovation projects that provided product ideas for 3-5 years into the future.</p>
         </div>
     </section>
 
     <div class="hero-image">
-        <img src="images/photoframe/photo-frame_o.jpg" alt="Wireless Photo Frame Overview">
+        <img src="images/keyboards/keyboard.jpg" alt="Microsoft Destination Keyboard">
     </div>
 
     <section class="stats-bar">
         <div class="stats-grid">
+            <div class="stat"><div class="stat-number">3+</div><div class="stat-label">Keyboards Shipped</div></div>
             <div class="stat"><div class="stat-number">HW + SW</div><div class="stat-label">Full Stack Design</div></div>
-            <div class="stat"><div class="stat-number">Wireless</div><div class="stat-label">Connected Device</div></div>
-            <div class="stat"><div class="stat-number">2006</div><div class="stat-label">Year</div></div>
+            <div class="stat"><div class="stat-number">3-5 yr</div><div class="stat-label">Innovation Pipeline</div></div>
+            <div class="stat"><div class="stat-number">2000-03</div><div class="stat-label">Years</div></div>
         </div>
     </section>
 
     <section class="case-content">
         <div class="content-section">
             <span class="section-label">The Product</span>
-            <h2>CONNECTED PHOTO DISPLAY</h2>
-            <p>The wireless photo frame was an early connected home device that allowed users to display their digital photos without cables or manual transfers. It connected to home WiFi networks and pulled photos from computers and online services automatically.</p>
-            <p>The design challenge was creating an experience simple enough for non-technical users while enabling powerful wireless connectivity features.</p>
+            <h2>DESTINATION KEYBOARD</h2>
+            <p>The Destination keyboard was a flagship Microsoft Hardware product featuring an integrated media control center, programmable "My Favorites" keys, and enhanced function keys for common tasks like Help, Undo, and Redo.</p>
+            <p>The challenge was balancing powerful functionality with ease of use—adding features without overwhelming users or cluttering the keyboard layout.</p>
+
+            <div class="content-image">
+                <img src="images/keyboards/keyboard 2.jpg" alt="Keyboard Detail">
+                <div class="image-caption">Microsoft Destination keyboard with integrated media controls and shortcut keys</div>
+            </div>
         </div>
 
         <div class="content-section">
-            <span class="section-label">Hardware Design</span>
-            <h2>FRAME & REMOTE</h2>
-            <p>Designed the physical interaction model including the frame hardware and dedicated remote control.</p>
+            <span class="section-label">Interaction Design</span>
+            <h2>MY FAVORITES KEYS</h2>
+            <p>Designed the "My Favorites" programmable key system—five dedicated keys that users could assign to their most-used applications, websites, or folders. Combined with the "Show Favorites" key for quick access.</p>
+
+            <div class="content-image">
+                <img src="images/keyboards/favorite keys_o.jpg" alt="My Favorites Keys">
+                <div class="image-caption">Programmable My Favorites keys with quick-access Show Favorites button</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Specification</span>
+            <h2>KEYBOARD LAYOUT</h2>
+            <p>Created detailed specifications for keyboard layout including key placement, icon design, and function mapping. Every key needed clear purpose and discoverability.</p>
+
+            <div class="content-image">
+                <img src="images/keyboards/straight-122001_finalhandoff_o.jpg" alt="Keyboard Layout Specification">
+                <div class="image-caption">Complete keyboard layout specification with all special function keys mapped</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Iconography</span>
+            <h2>KEY ICONS</h2>
+            <p>Designed icon systems for special function keys that needed to communicate instantly across languages and skill levels. Explored multiple variations to find the clearest visual language.</p>
+
+            <div class="content-image">
+                <img src="images/keyboards/final icons.jpg" alt="Keyboard Icon Variations">
+                <div class="image-caption">Icon variations for special function keys—exploring clarity and recognition</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Innovation</span>
+            <h2>FUTURE CONCEPTS</h2>
+            <p>Led innovation projects exploring future keyboard interactions—how media controls, application shortcuts, and new input paradigms could evolve over the next 3-5 years.</p>
 
             <div class="image-grid">
                 <div class="content-image" style="margin: 0;">
-                    <img src="images/photoframe/frame hardware_o.png" alt="Frame Hardware">
-                    <div class="image-caption">Photo frame hardware design</div>
+                    <img src="images/keyboards/innovation.jpg" alt="Innovation Concept 1">
+                    <div class="image-caption">Media control integration concept</div>
                 </div>
                 <div class="content-image" style="margin: 0;">
-                    <img src="images/photoframe/remote.png" alt="Remote Control">
-                    <div class="image-caption">Dedicated remote control</div>
+                    <img src="images/keyboards/innovation 2.png" alt="Innovation Concept 2">
+                    <div class="image-caption">Future input exploration</div>
                 </div>
             </div>
-        </div>
-
-        <div class="content-section">
-            <span class="section-label">On-Screen UI</span>
-            <h2>INTERFACE DESIGN</h2>
-            <p>Created the on-screen user interface for browsing photos, configuring settings, and managing network connections.</p>
 
             <div class="content-image">
-                <img src="images/photoframe/homepage_o.png" alt="Homepage UI">
-                <div class="image-caption">Main home screen with photo organization options</div>
-            </div>
-
-            <div class="content-image">
-                <img src="images/photoframe/browse by folder_o.png" alt="Browse by Folder">
-                <div class="image-caption">Folder browsing interface</div>
-            </div>
-        </div>
-
-        <div class="content-section">
-            <span class="section-label">Setup Experience</span>
-            <h2>NETWORK CONFIGURATION</h2>
-            <p>Designed the WiFi setup experience to be simple and approachable for users who may not be familiar with network configuration.</p>
-
-            <div class="content-image">
-                <img src="images/photoframe/setup network selection_o.png" alt="Network Selection">
-                <div class="image-caption">Network selection during setup</div>
-            </div>
-        </div>
-
-        <div class="content-section">
-            <span class="section-label">Architecture</span>
-            <h2>INTERACTION FLOW</h2>
-            <p>Developed comprehensive interaction flows mapping out all user journeys through the device.</p>
-
-            <div class="content-image">
-                <img src="images/photoframe/flowchart.png" alt="Interaction Flowchart">
-                <div class="image-caption">Complete interaction flow diagram</div>
+                <img src="images/keyboards/innovation 3.jpg" alt="Innovation Concept 3">
+                <div class="image-caption">Advanced keyboard concept exploration</div>
             </div>
         </div>
 
@@ -176,11 +183,11 @@
             <span class="section-label">Outcomes</span>
             <h2>IMPACT</h2>
             <ul class="outcomes-list">
-                <li>Designed complete hardware-software experience</li>
-                <li>Created intuitive WiFi setup for non-technical users</li>
-                <li>Developed on-screen UI and remote control interaction</li>
-                <li>Pioneered connected home device UX patterns</li>
-                <li>Shipped as Microsoft consumer hardware product</li>
+                <li>Shipped multiple keyboard products as part of Microsoft Hardware lineup</li>
+                <li>Designed programmable "My Favorites" key system adopted across product line</li>
+                <li>Created icon language for special function keys</li>
+                <li>Led innovation projects defining 3-5 year product roadmap</li>
+                <li>Combined hardware industrial design with software interaction design</li>
             </ul>
         </div>
     </section>
@@ -189,7 +196,7 @@
         <div class="next-case-inner">
             <div>
                 <p class="next-label">Next Case Study</p>
-                <h3><a href="sumtotal.html">SUMTOTAL SYSTEMS →</a></h3>
+                <h3><a href="hardwareapps.html">HARDWARE APPS & SITES →</a></h3>
             </div>
             <span class="next-arrow">→</span>
         </div>

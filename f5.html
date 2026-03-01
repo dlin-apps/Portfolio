@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wireless Photo Frame — Daan Lindhout</title>
+    <title>F5 Networks — Daan Lindhout</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
@@ -24,15 +24,15 @@
         .case-meta { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
         .case-tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); }
         .case-year { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; color: var(--accent); }
-        .case-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 6vw, 5rem); line-height: 0.95; margin-bottom: 2rem; }
+        .case-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6rem); line-height: 0.95; margin-bottom: 2rem; }
         .case-role { font-size: 1.5rem; color: var(--accent); margin-bottom: 1.5rem; }
         .case-intro { font-size: 1.25rem; color: var(--text-secondary); max-width: 800px; line-height: 1.7; }
 
-        .hero-image { width: 100%; max-width: 1000px; margin: 0 auto; padding: 0 4rem; }
+        .hero-image { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
         .hero-image img { width: 100%; height: auto; border: 1px solid var(--border); }
 
         .stats-bar { background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 4rem; }
-        .stats-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+        .stats-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; }
         .stat { text-align: center; }
         .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--accent); line-height: 1; }
         .stat-label { font-size: 0.875rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem; }
@@ -49,6 +49,11 @@
 
         .image-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 3rem 0; }
         .image-grid img { width: 100%; height: auto; border: 1px solid var(--border); }
+
+        .award-callout { background: linear-gradient(135deg, var(--accent-dim), var(--bg-card)); border: 1px solid var(--accent); padding: 3rem; margin: 3rem 0; text-align: center; }
+        .award-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .award-title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--accent); margin-bottom: 0.5rem; }
+        .award-description { font-size: 1rem; color: var(--text-secondary); }
 
         .outcomes-list { list-style: none; margin-top: 2rem; }
         .outcomes-list li { display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem 0; border-bottom: 1px solid var(--border); font-size: 1.125rem; color: var(--text-secondary); }
@@ -68,6 +73,7 @@
 
         @media (max-width: 1024px) {
             nav, .case-hero, .stats-bar, .case-content, .next-case, footer, .hero-image { padding-left: 2rem; padding-right: 2rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .image-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
@@ -86,89 +92,129 @@
     <section class="case-hero">
         <div class="case-hero-content">
             <div class="case-meta">
-                <span class="case-tag">Hardware</span>
-                <span class="case-tag">Consumer Electronics</span>
-                <span class="case-tag">Microsoft</span>
-                <span class="case-year">2006</span>
+                <span class="case-tag">Enterprise Software</span>
+                <span class="case-tag">Network Infrastructure</span>
+                <span class="case-tag">Industrial Design</span>
+                <span class="case-year">2009 – 2012</span>
             </div>
-            <h1>WIRELESS PHOTO FRAME</h1>
-            <p class="case-role">Senior Product Designer, Microsoft Hardware</p>
-            <p class="case-intro">Designed the complete user experience for a wireless digital photo frame—from hardware interaction to on-screen UI to remote control. The device connected to home networks to display photos from computers and online services.</p>
+            <h1>F5 NETWORKS</h1>
+            <p class="case-role">User Experience Manager</p>
+            <p class="case-intro">Led the UX discipline at F5 Networks including UX Design, UX Research, and Industrial Design. Created an innovative UI paradigm called BIG-IQ that transformed how network administrators configure, monitor and troubleshoot their network infrastructure. Won the Five Star Award for significant contributions to the company.</p>
         </div>
     </section>
 
     <div class="hero-image">
-        <img src="images/photoframe/photo-frame_o.jpg" alt="Wireless Photo Frame Overview">
+        <img src="images/f5/Dashboard 1_o.jpg" alt="F5 BIG-IP Dashboard">
     </div>
 
     <section class="stats-bar">
         <div class="stats-grid">
-            <div class="stat"><div class="stat-number">HW + SW</div><div class="stat-label">Full Stack Design</div></div>
-            <div class="stat"><div class="stat-number">Wireless</div><div class="stat-label">Connected Device</div></div>
-            <div class="stat"><div class="stat-number">2006</div><div class="stat-label">Year</div></div>
+            <div class="stat"><div class="stat-number">🏆</div><div class="stat-label">Five Star Award</div></div>
+            <div class="stat"><div class="stat-number">BIG-IQ</div><div class="stat-label">UI Paradigm</div></div>
+            <div class="stat"><div class="stat-number">UX + ID</div><div class="stat-label">Full Discipline</div></div>
+            <div class="stat"><div class="stat-number">2009-12</div><div class="stat-label">Years</div></div>
         </div>
     </section>
 
     <section class="case-content">
         <div class="content-section">
-            <span class="section-label">The Product</span>
-            <h2>CONNECTED PHOTO DISPLAY</h2>
-            <p>The wireless photo frame was an early connected home device that allowed users to display their digital photos without cables or manual transfers. It connected to home WiFi networks and pulled photos from computers and online services automatically.</p>
-            <p>The design challenge was creating an experience simple enough for non-technical users while enabling powerful wireless connectivity features.</p>
+            <span class="section-label">The Challenge</span>
+            <h2>NETWORK COMPLEXITY</h2>
+            <p>F5 Networks builds application delivery controllers and network infrastructure that powers the world's largest enterprises. Network administrators faced overwhelming complexity when configuring, monitoring, and troubleshooting their infrastructure across multiple datacenters.</p>
+            <p>The challenge was creating a delightful user experience for highly technical users managing mission-critical infrastructure—making the complex simple without dumbing it down.</p>
         </div>
 
         <div class="content-section">
-            <span class="section-label">Hardware Design</span>
-            <h2>FRAME & REMOTE</h2>
-            <p>Designed the physical interaction model including the frame hardware and dedicated remote control.</p>
+            <span class="section-label">Recognition</span>
+            <h2>FIVE STAR AWARD</h2>
+            
+            <div class="award-callout">
+                <div class="award-icon">⭐</div>
+                <p class="award-title">FIVE STAR EMPLOYEE AWARD</p>
+                <p class="award-description">F5 Networks' most prestigious employee award for significant contributions to the company</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Dashboard Design</span>
+            <h2>GLOBAL VISIBILITY</h2>
+            <p>Designed dashboard interfaces that give network administrators instant visibility into their global infrastructure—datacenters, applications, devices, and health status at a glance.</p>
+
+            <div class="content-image">
+                <img src="images/f5/Dashboard 1_o.jpg" alt="BIG-IP Overview Dashboard">
+                <div class="image-caption">Global datacenter overview with map visualization, health status, and action items</div>
+            </div>
 
             <div class="image-grid">
                 <div class="content-image" style="margin: 0;">
-                    <img src="images/photoframe/frame hardware_o.png" alt="Frame Hardware">
-                    <div class="image-caption">Photo frame hardware design</div>
+                    <img src="images/f5/Dashboard 2_o.png" alt="Dashboard Variant">
+                    <div class="image-caption">Application-centric dashboard view</div>
                 </div>
                 <div class="content-image" style="margin: 0;">
-                    <img src="images/photoframe/remote.png" alt="Remote Control">
-                    <div class="image-caption">Dedicated remote control</div>
+                    <img src="images/f5/Dashboard 3_o.png" alt="Dashboard Details">
+                    <div class="image-caption">Detailed metrics and monitoring</div>
                 </div>
             </div>
         </div>
 
         <div class="content-section">
-            <span class="section-label">On-Screen UI</span>
-            <h2>INTERFACE DESIGN</h2>
-            <p>Created the on-screen user interface for browsing photos, configuring settings, and managing network connections.</p>
+            <span class="section-label">Innovation</span>
+            <h2>NETWORK VISUALIZATION</h2>
+            <p>Created innovative visualization concepts for understanding complex network topologies and server pools—turning abstract infrastructure into tangible, interactive experiences.</p>
 
             <div class="content-image">
-                <img src="images/photoframe/homepage_o.png" alt="Homepage UI">
-                <div class="image-caption">Main home screen with photo organization options</div>
-            </div>
-
-            <div class="content-image">
-                <img src="images/photoframe/browse by folder_o.png" alt="Browse by Folder">
-                <div class="image-caption">Folder browsing interface</div>
+                <img src="images/f5/network visualization.png" alt="Network Visualization on Tablet">
+                <div class="image-caption">F5 ENVI — experimental network visualization interface showing server pools and connections</div>
             </div>
         </div>
 
         <div class="content-section">
-            <span class="section-label">Setup Experience</span>
-            <h2>NETWORK CONFIGURATION</h2>
-            <p>Designed the WiFi setup experience to be simple and approachable for users who may not be familiar with network configuration.</p>
+            <span class="section-label">Configuration Tools</span>
+            <h2>POLICY & APPLICATION BUILDERS</h2>
+            <p>Designed visual builders that allow administrators to configure complex network policies and applications through intuitive drag-and-drop interfaces.</p>
 
-            <div class="content-image">
-                <img src="images/photoframe/setup network selection_o.png" alt="Network Selection">
-                <div class="image-caption">Network selection during setup</div>
+            <div class="image-grid">
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/f5/policy builder_o.png" alt="Policy Builder">
+                    <div class="image-caption">Visual policy builder interface</div>
+                </div>
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/f5/application builder_o.png" alt="Application Builder">
+                    <div class="image-caption">Application configuration builder</div>
+                </div>
             </div>
         </div>
 
         <div class="content-section">
-            <span class="section-label">Architecture</span>
-            <h2>INTERACTION FLOW</h2>
-            <p>Developed comprehensive interaction flows mapping out all user journeys through the device.</p>
+            <span class="section-label">Industrial Design</span>
+            <h2>HARDWARE DESIGN</h2>
+            <p>Led industrial design for F5's network appliance hardware—rack-mounted servers and blade systems that house the network infrastructure.</p>
 
             <div class="content-image">
-                <img src="images/photoframe/flowchart.png" alt="Interaction Flowchart">
-                <div class="image-caption">Complete interaction flow diagram</div>
+                <img src="images/f5/Industrial-Design_o.jpg" alt="F5 Hardware Industrial Design">
+                <div class="image-caption">Industrial design concepts for F5 network appliances and blade systems</div>
+            </div>
+
+            <div class="content-image">
+                <img src="images/f5/blades_1250.png" alt="Blade System Design">
+                <div class="image-caption">Blade chassis and module design</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <span class="section-label">Mobile</span>
+            <h2>MOBILE CLIENTS</h2>
+            <p>Extended the network management experience to mobile devices, allowing administrators to monitor and respond to issues on the go.</p>
+
+            <div class="image-grid">
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/f5/mobile clients.png" alt="Mobile Client">
+                    <div class="image-caption">Mobile monitoring interface</div>
+                </div>
+                <div class="content-image" style="margin: 0;">
+                    <img src="images/f5/mobile clients 2.png" alt="Mobile Client 2">
+                    <div class="image-caption">Mobile dashboard views</div>
+                </div>
             </div>
         </div>
 
@@ -176,11 +222,12 @@
             <span class="section-label">Outcomes</span>
             <h2>IMPACT</h2>
             <ul class="outcomes-list">
-                <li>Designed complete hardware-software experience</li>
-                <li>Created intuitive WiFi setup for non-technical users</li>
-                <li>Developed on-screen UI and remote control interaction</li>
-                <li>Pioneered connected home device UX patterns</li>
-                <li>Shipped as Microsoft consumer hardware product</li>
+                <li>Won Five Star Award — F5's most prestigious employee recognition</li>
+                <li>Created innovative BIG-IQ UI paradigm adopted across F5 products</li>
+                <li>Led full UX discipline including Design, Research, and Industrial Design</li>
+                <li>Transformed complex network configuration into intuitive visual experiences</li>
+                <li>Designed hardware industrial design language for network appliances</li>
+                <li>Extended enterprise capabilities to mobile platforms</li>
             </ul>
         </div>
     </section>
