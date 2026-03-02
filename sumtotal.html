@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root { --bg-primary: #0a0a0a; --bg-secondary: #141414; --bg-card: #1a1a1a; --text-primary: #ffffff; --text-secondary: #888888; --accent: #00d4aa; --accent-dim: rgba(0, 212, 170, 0.12); --border: #2a2a2a; --nav-bg: rgba(10, 10, 10, 0.8); --shadow: 0 2px 8px rgba(0, 0, 0, 0.3); --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.4); }
-        [data-theme="light"] { --bg-primary: #ffffff; --bg-secondary: #f5f5f5; --bg-card: #ffffff; --text-primary: #1a1a1a; --text-secondary: #555555; --accent: #00d4aa; --accent-dim: rgba(0, 212, 170, 0.15); --border: #e8e8e8; --nav-bg: rgba(255, 255, 255, 0.95); --shadow: 0 2px 8px rgba(0, 0, 0, 0.08); --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12); }
+        [data-theme="light"] { --bg-primary: #ffffff; --bg-secondary: #f9f9f9; --bg-card: #ffffff; --text-primary: #1a1a1a; --text-secondary: #555555; --accent: #00d4aa; --accent-dim: rgba(0, 212, 170, 0.15); --border: #e8e8e8; --nav-bg: rgba(255, 255, 255, 0.95); --shadow: 0 2px 8px rgba(0, 0, 0, 0.08); --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12); }
         .theme-toggle { background: none; border: 1px solid var(--border); color: var(--text-secondary); cursor: pointer; padding: 0.5rem; border-radius: 4px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; margin-left: 1.5rem; } .theme-toggle:hover { border-color: var(--accent); color: var(--accent); } .theme-toggle svg { width: 18px; height: 18px; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -17,29 +17,32 @@
         ::selection { background: var(--accent); color: var(--bg-primary); }
 
         nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 4rem; display: flex; justify-content: flex-end; align-items: center; background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
         .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.1em; text-decoration: none; color: var(--text-primary); }
         .logo span { color: var(--accent); }
-        .back-link { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; }
-        .back-link:hover { color: var(--accent); }
-
-        .case-hero { padding: 10rem 4rem 4rem; max-width: 1200px; margin: 0 auto; }
-        .case-meta { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
-        .case-tag { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-secondary); }
-        .case-year { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; color: var(--accent); }
-        .case-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6rem); line-height: 0.95; margin-bottom: 2rem; }
-        .case-role { font-size: 1.5rem; color: var(--accent); margin-bottom: 1.5rem; }
-        .case-intro { font-size: 1.25rem; color: var(--text-secondary); max-width: 800px; line-height: 1.7; }
-
-        .hero-image { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 4rem; }
+        .case-hero { padding: 6rem 4rem 3rem; max-width: 1000px; margin: 0 auto; }
+        .case-hero-content { max-width: 1000px; margin: 0 auto; }
+        .case-meta { display: flex; gap: 1rem; padding-top: 1rem; flex-wrap: wrap; margin-bottom: 2rem; align-items: center; }
+        .case-tag { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; background: transparent; border: 1px solid var(--border); color: var(--text-secondary); }
+        .case-year { font-size: 0.875rem; font-weight: 600; letter-spacing: 0.1em; color: var(--accent); margin-left: 0.5rem; }
+        .project-nav-inline { display: flex; gap: 1.5rem; align-items: center; margin-left: auto; }
+        .project-nav-link { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; }
+        .project-nav-link:hover { color: var(--accent); }
+        .case-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 5rem); line-height: 0.95; margin-bottom: 1.5rem; }
+        .case-role { font-size: 1.25rem; color: var(--accent); margin-bottom: 1.5rem; font-weight: 500; }
+        .case-intro { font-size: 1.1rem; color: var(--text-secondary); max-width: 800px; line-height: 1.7; margin-bottom: 1rem; }
+.hero-image { width: 100%; max-width: 1000px; margin: 0 auto; padding: 0 4rem; }
         .hero-image img { min-width: 90%; max-width: 100%; height: auto; border: 1px solid var(--border); }
 
-        .stats-bar { background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 4rem; }
-        .stats-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; }
+        .stats-bar { background: var(--bg-secondary); margin-top: 3rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 4rem; }
+        .stats-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
         .stat { text-align: center; }
         .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--accent); line-height: 1; }
         .stat-label { font-size: 0.875rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem; }
 
-        .case-content { padding: 6rem 4rem; max-width: 1200px; margin: 0 auto; }
+        .case-content { padding: 4rem; max-width: 1000px; margin: 0 auto; }
         .content-section { margin-bottom: 6rem; }
         .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: block; }
         .content-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; line-height: 1.1; margin-bottom: 2rem; }
@@ -80,7 +83,7 @@
             .image-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
-            .stats-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .stats-grid { grid-template-columns: 1fr; gap: 2rem;             nav { padding: 1rem 1.5rem; } .nav-links { gap: 1rem; } .nav-links a { font-size: 0.65rem; letter-spacing: 0.03em; }}
             .next-case-inner { flex-direction: column; text-align: center; gap: 2rem; }
             .next-case h3 { font-size: 3rem; }
         }
@@ -88,14 +91,17 @@
 </head>
 <body>
     <nav>
-        
-        <a href="portfolio.html" class="back-link">← Back to Portfolio</a>
+        <div class="nav-links">
+            <a href="index.html">About</a>
+            <a href="portfolio.html" class="active">Portfolio</a>
+            <a href="tenets.html">Tenets</a>
+            <a href="contact.html">Contact</a>
+        </div>
             <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
                 <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
                 <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
             </button>
     </nav>
-
     <section class="case-hero">
         <div class="case-hero-content">
             <div class="case-meta">
@@ -103,6 +109,9 @@
                 <span class="case-tag">e-Learning</span>
                 <span class="case-tag">Performance Management</span>
                 <span class="case-year">2007 – 2009</span>
+                <div class="project-nav-inline">
+                    <a href="windowslive.html" class="project-nav-link">Next: Windows Live →</a>
+                </div>
             </div>
             <h1>SUMTOTAL SYSTEMS</h1>
             <p class="case-role">User Experience Manager</p>
@@ -111,7 +120,7 @@
     </section>
 
     <div class="hero-image">
-        <img src="images/sumtotal/dahboard_o.jpg" alt="SumTotal Talent Development Dashboard">
+        <img src="images/sumtotal/Screen-Shot-2023-01-19-at-2.46.52-PM_1600_c.png" alt="SumTotal Systems">
     </div>
 
     <section class="stats-bar">
@@ -119,7 +128,7 @@
             <div class="stat"><div class="stat-number">0→1</div><div class="stat-label">Built UX Team</div></div>
             <div class="stat"><div class="stat-number">US+India</div><div class="stat-label">Team Locations</div></div>
             <div class="stat"><div class="stat-number">🏆</div><div class="stat-label">Power of One Award</div></div>
-            <div class="stat"><div class="stat-number">2</div><div class="stat-label">Years</div></div>
+            
         </div>
     </section>
 
