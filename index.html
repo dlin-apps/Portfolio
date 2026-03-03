@@ -375,6 +375,35 @@
         footer { padding: 1.5rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; align-items: center; gap: 2rem; }
         .footer-text { font-size: 0.8rem; color: var(--text-secondary); }
 
+        /* Timeline click/tap support */
+        .timeline-row.expanded .timeline-details {
+            grid-template-rows: 1fr;
+        }
+        
+        .timeline-row {
+            cursor: pointer;
+        }
+        
+        .timeline-expand-hint {
+            display: none;
+            font-size: 0.65rem;
+            color: var(--accent);
+            margin-top: 0.35rem;
+            opacity: 0.8;
+        }
+        
+        .timeline-chevron {
+            display: none;
+            color: var(--accent);
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+            margin-left: auto;
+        }
+        
+        .timeline-row.expanded .timeline-chevron {
+            transform: rotate(180deg);
+        }
+        
         @media (max-width: 1024px) {
             nav, .section, footer { padding-left: 2rem; padding-right: 2rem; }
             .hero-content { padding-left: 2rem; padding-right: 2rem; grid-template-columns: 1fr; }
@@ -383,12 +412,44 @@
             .timeline-columns { grid-template-columns: 1fr; gap: 3rem; }
             .testimonials-grid { grid-template-columns: 1fr; }
         }
+        
         @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+            .nav-links a { font-size: 0.7rem; letter-spacing: 0.02em; }
+            .theme-toggle { margin-left: 0.75rem; padding: 0.4rem; }
+            .theme-toggle svg { width: 16px; height: 16px; }
+            
             .hero h1 { font-size: 3.5rem; }
             .hero-stats { flex-direction: column; gap: 2rem; }
             .about-highlights { grid-template-columns: 1fr; }
-            nav { padding: 1rem 1.5rem; } .nav-links { gap: 1rem; } .nav-links a { font-size: 0.65rem; letter-spacing: 0.03em; }
-            .timeline-row { grid-template-columns: 50px 1fr; }
+            
+            /* Timeline mobile - tap to expand instead of hover */
+            .timeline-row { 
+                grid-template-columns: 50px 1fr;
+                padding: 0.75rem;
+                margin: -0.75rem;
+                border-radius: 8px;
+                transition: background 0.2s ease;
+            }
+            .timeline-row:active {
+                background: var(--accent-dim);
+            }
+            .timeline-row:hover .timeline-details {
+                grid-template-rows: 0fr; /* Disable hover on touch */
+            }
+            .timeline-row.expanded .timeline-details {
+                grid-template-rows: 1fr;
+            }
+            .timeline-expand-hint {
+                display: block;
+            }
+            .timeline-row.expanded .timeline-expand-hint {
+                display: none;
+            }
+            .timeline-chevron {
+                display: inline-block;
+            }
         }
     </style>
 </head>
@@ -902,6 +963,35 @@
             }
             document.addEventListener('DOMContentLoaded', function() {
                 updateToggleIcons(localStorage.getItem('theme') || 'dark');
+                
+                // Timeline click/tap toggle
+                const timelineRows = document.querySelectorAll('.timeline-row');
+                timelineRows.forEach(row => {
+                    // Add "tap to expand" hint for mobile
+                    const brief = row.querySelector('.timeline-brief');
+                    if (brief) {
+                        const hint = document.createElement('span');
+                        hint.className = 'timeline-expand-hint';
+                        hint.textContent = '↓ Tap to expand';
+                        brief.after(hint);
+                    }
+                    
+                    // Add chevron to header
+                    const header = row.querySelector('.timeline-header');
+                    if (header) {
+                        const chevron = document.createElement('span');
+                        chevron.className = 'timeline-chevron';
+                        chevron.textContent = '▼';
+                        header.appendChild(chevron);
+                    }
+                    
+                    // Toggle on click
+                    row.addEventListener('click', function() {
+                        if (window.innerWidth <= 768) {
+                            this.classList.toggle('expanded');
+                        }
+                    });
+                });
             });
         })();
     </script>
