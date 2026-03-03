@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume — Daan Lindhout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-primary: #0a0a0a; --bg-secondary: #141414; --bg-card: #1a1a1a; --text-primary: #ffffff; --text-secondary: #888888; --accent: #00d4aa; --accent-dim: rgba(0, 212, 170, 0.12); --border: #2a2a2a; --nav-bg: rgba(10, 10, 10, 0.8); --shadow: 0 2px 8px rgba(0, 0, 0, 0.3); --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.4); }
+        [data-theme="light"] { --bg-primary: #ffffff; --bg-secondary: #f9f9f9; --bg-card: #ffffff; --text-primary: #1a1a1a; --text-secondary: #555555; --accent: #00d4aa; --accent-dim: rgba(0, 212, 170, 0.15); --border: #e8e8e8; --nav-bg: rgba(255, 255, 255, 0.95); --shadow: 0 2px 8px rgba(0, 0, 0, 0.08); --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12); }
+        .theme-toggle { background: none; border: 1px solid var(--border); color: var(--text-secondary); cursor: pointer; padding: 0.5rem; border-radius: 4px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; margin-left: 1.5rem; } .theme-toggle:hover { border-color: var(--accent); color: var(--accent); } .theme-toggle svg { width: 18px; height: 18px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
+        ::selection { background: var(--accent); color: var(--bg-primary); }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 4rem; display: flex; justify-content: flex-end; align-items: center; background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+        .hero { min-height: auto; display: flex; flex-direction: column; justify-content: center; padding: 7rem 0 3rem; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -20%; right: -10%; width: 60%; height: 100%; background: radial-gradient(ellipse at center, var(--accent-dim) 0%, transparent 70%); pointer-events: none; }
+        .hero-content { max-width: 1000px; margin: 0 auto; width: 100%; padding: 0 4rem; position: relative; z-index: 1; }
+        .hero-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+        .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 5rem); line-height: 1; margin-bottom: 1.5rem; }
+        .hero-subtitle { font-size: 1.125rem; color: var(--text-secondary); max-width: 700px; margin-bottom: 2rem; line-height: 1.6; }
+
+        .download-btn { display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2rem; background: var(--accent); color: var(--bg-primary); text-decoration: none; font-weight: 600; font-size: 0.875rem; letter-spacing: 0.05em; text-transform: uppercase; transition: all 0.3s ease; border: none; cursor: pointer; }
+        .download-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0, 212, 170, 0.4); }
+        .download-btn svg { width: 18px; height: 18px; }
+
+        .section { padding: 3rem 4rem; max-width: 1000px; margin: 0 auto; }
+        .section-header { margin-bottom: 2rem; }
+        .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+        .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; line-height: 1; }
+
+        .expertise-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+        .expertise-item h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 0.5rem; }
+        .expertise-item p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+
+        .experience-item { padding: 2rem 0; border-bottom: 1px solid var(--border); }
+        .experience-item:last-child { border-bottom: none; }
+        .experience-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
+        .experience-company { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; color: var(--text-primary); line-height: 1.1; }
+        .experience-role { font-size: 1rem; color: var(--accent); font-weight: 500; margin-bottom: 0.5rem; }
+        .experience-dates { font-size: 0.85rem; color: var(--text-secondary); }
+        .experience-desc { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
+        .experience-desc ul { margin-top: 1rem; padding-left: 1.25rem; }
+        .experience-desc li { margin-bottom: 0.5rem; }
+
+        .education-item { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 0.5rem; }
+        .education-item:last-child { border-bottom: none; }
+        .education-degree { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; }
+        .education-school { font-size: 0.9rem; color: var(--text-secondary); }
+
+        .awards-list { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .award-item { background: var(--bg-card); border: 1px solid var(--border); padding: 1rem 1.5rem; font-size: 0.85rem; color: var(--text-secondary); }
+
+        footer { padding: 1.5rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; align-items: center; gap: 2rem; }
+        .footer-text { font-size: 0.8rem; color: var(--text-secondary); }
+
+        @media (max-width: 1024px) {
+            nav, .section, footer { padding-left: 2rem; padding-right: 2rem; }
+            .hero-content { padding-left: 2rem; padding-right: 2rem; }
+            .expertise-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; } .nav-links { gap: 1rem; } .nav-links a { font-size: 0.65rem; letter-spacing: 0.03em; }
+            .hero h1 { font-size: 3rem; }
+            .experience-header { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-links">
+            <a href="index.html">About</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="resume.html" class="active">Resume</a>
+            <a href="tenets.html">Tenets</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+        </button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-eyebrow">Resume</p>
+            <h1>DAAN LINDHOUT</h1>
+            <p class="hero-subtitle">UX leader and design executive with 25+ years delivering complex consumer and enterprise products across web, mobile, desktop, and hardware. 16+ years building and leading multi-disciplinary UX organizations from 5 to 60+ members. Deep expertise in design systems, AI/ML product design, and transforming suites of applications into cohesive, user-centered ecosystems.</p>
+            <a href="Daan_Lindhout_Resume.docx" download class="download-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Download Resume
+            </a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <p class="section-label">Core Expertise</p>
+            <h2 class="section-title">SKILLS & CAPABILITIES</h2>
+        </div>
+        <div class="expertise-grid">
+            <div class="expertise-item">
+                <h3>DESIGN LEADERSHIP</h3>
+                <p>Team building and management (5→60+), mentoring, design strategy, cross-functional partnership, executive influence</p>
+            </div>
+            <div class="expertise-item">
+                <h3>PRODUCT CRAFT</h3>
+                <p>End-to-end product design across responsive web, iOS, Android, desktop, and hardware; UX, visual design, information architecture</p>
+            </div>
+            <div class="expertise-item">
+                <h3>AI & INNOVATION</h3>
+                <p>AI/ML-powered experiences, LLM product design, agentic UX patterns, responsible AI, human-centered AI design</p>
+            </div>
+            <div class="expertise-item">
+                <h3>TOOLS & METHODS</h3>
+                <p>Figma, prototyping, user research, usability testing, data analytics, design systems, Agile/Jira</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <p class="section-label">Experience</p>
+            <h2 class="section-title">CAREER HISTORY</h2>
+        </div>
+
+        <div class="experience-item">
+            <div class="experience-header">
+                <div>
+                    <h3 class="experience-company">NORTHEASTERN UNIVERSITY</h3>
+                    <p class="experience-role">Adjunct Professor</p>
+                </div>
+                <span class="experience-dates">Jan 2025 – Present</span>
+            </div>
+            <div class="experience-desc">
+                <p>Teaching graduate UX Design & Research courses with emphasis on platform thinking, AI-enabled experiences, and real-world product decision-making. Bridging academic theory with industry practice for designers and engineers.</p>
+            </div>
+        </div>
+
+        <div class="experience-item">
+            <div class="experience-header">
+                <div>
+                    <h3 class="experience-company">WORKDAY</h3>
+                    <p class="experience-role">Senior Director of UX</p>
+                </div>
+                <span class="experience-dates">Mar 2023 – Feb 2025</span>
+            </div>
+            <div class="experience-desc">
+                <ul>
+                    <li>Led global Product Design across Workday's enterprise platform (HR, Finance, Higher Education), evolving large-scale experiences into a cohesive ecosystem</li>
+                    <li>Partnered with Product, Engineering, and Data leadership on strategy, prioritization, and multi-year roadmaps</li>
+                    <li>Defined and led UX strategy for AI-powered enterprise capabilities, ensuring usability, trust, and scale</li>
+                    <li>Raised product craft and UX maturity across vertical and horizontal initiatives</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="experience-item">
+            <div class="experience-header">
+                <div>
+                    <h3 class="experience-company">AXON</h3>
+                    <p class="experience-role">VP of Product Design, UX Research & Technical Writing</p>
+                </div>
+                <span class="experience-dates">Mar 2018 – Mar 2023</span>
+            </div>
+            <div class="experience-desc">
+                <ul>
+                    <li>Scaled UX organization from 5 to 60+ across Product Design, UX Research, Technical Writing, and Design Operations</li>
+                    <li>Owned user experience across mission-critical software platforms and hardware ecosystems</li>
+                    <li>Created unified Axon Design System across software and hardware</li>
+                    <li>Led AI-enabled product design while championing responsible and ethical AI practices</li>
+                    <li>Built global UX organization from scratch, reporting directly to company co-founder</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="experience-item">
+            <div class="experience-header">
+                <div>
+                    <h3 class="experience-company">QUALTRICS</h3>
+                    <p class="experience-role">Head of UX Design & Research</p>
+                </div>
+                <span class="experience-dates">Sep 2015 – Mar 2018</span>
+            </div>
+            <div class="experience-desc">
+                <ul>
+                    <li>Built and led global UX Design & Research organization</li>
+                    <li>Unified seven applications and acquisitions into the Experience Management (XM) platform</li>
+                    <li>Created XM brand concept central to positioning and $8B SAP acquisition</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="experience-item">
+            <div class="experience-header">
+                <div>
+                    <h3 class="experience-company">SOCRATA</h3>
+                    <p class="experience-role">Director of Design & Research</p>
+                </div>
+                <span class="experience-dates">Apr 2014 – Sep 2015</span>
+            </div>
+            <div class="experience-desc">
+                <ul>
+                    <li>Led complete platform redesign, creating a patentable UI paradigm for data visualization and exploration</li>
+                    <li>Established User Research discipline by proving ROI of qualitative and quantitative methods</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="experience-item">
+            <div class="experience-header">
+                <div>
+                    <h3 class="experience-company">MOZ</h3>
+                    <p class="experience-role">Director of Design & UX</p>
+                </div>
+                <span class="experience-dates">Mar 2013 – Apr 2014</span>
+            </div>
+            <div class="experience-desc">
+                <ul>
+                    <li>Led UX, Creative Direction, Branding, and Motion Design</li>
+                    <li>Elevated Moz to #2 most recognized Marketing Technology brand</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="experience-item">
+            <div class="experience-header">
+                <div>
+                    <h3 class="experience-company">F5 NETWORKS</h3>
+                    <p class="experience-role">User Experience Manager</p>
+                </div>
+                <span class="experience-dates">Jan 2010 – Mar 2013</span>
+            </div>
+            <div class="experience-desc">
+                <ul>
+                    <li>Created BIG-IQ UI paradigm applied across F5 products</li>
+                    <li>Received Five Star Award, the company's highest employee recognition</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="experience-item">
+            <div class="experience-header">
+                <div>
+                    <h3 class="experience-company">SUMTOTAL SYSTEMS</h3>
+                    <p class="experience-role">Sr. Product Designer → UX Manager</p>
+                </div>
+                <span class="experience-dates">Jun 2007 – Jan 2010</span>
+            </div>
+            <div class="experience-desc">
+                <ul>
+                    <li>Started UX team and discipline; managed designers across US and India</li>
+                    <li>Won Power of One team award</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="experience-item">
+            <div class="experience-header">
+                <div>
+                    <h3 class="experience-company">MICROSOFT</h3>
+                    <p class="experience-role">Product Designer → Product Designer II</p>
+                </div>
+                <span class="experience-dates">Oct 2000 – Jun 2007</span>
+            </div>
+            <div class="experience-desc">
+                <ul>
+                    <li>Reduced Windows OOBE from 22 min / 50% failure to 2:10 / 0% failure</li>
+                    <li>Invented Microsoft Tilt Wheel, International Stevie Award for Best New Product</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="experience-item">
+            <div class="experience-header">
+                <div>
+                    <h3 class="experience-company">SKILLCAFE</h3>
+                    <p class="experience-role">Co-Founder</p>
+                </div>
+                <span class="experience-dates">2016 – 2019</span>
+            </div>
+            <div class="experience-desc">
+                <p>Founded AI/ML platform to democratize economic opportunity through skills-based job matching. Designed and shipped product from zero to market.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <p class="section-label">Education</p>
+            <h2 class="section-title">ACADEMIC BACKGROUND</h2>
+        </div>
+        <div class="education-item">
+            <div>
+                <h3 class="education-degree">MSC, INDUSTRIAL DESIGN ENGINEERING</h3>
+                <p class="education-school">Delft University of Technology, Netherlands</p>
+            </div>
+            <span class="experience-dates">2000</span>
+        </div>
+        <div class="education-item">
+            <div>
+                <h3 class="education-degree">MOBILE UX DESIGN</h3>
+                <p class="education-school">Interaction Design Foundation</p>
+            </div>
+            <span class="experience-dates">2017</span>
+        </div>
+        <div class="education-item">
+            <div>
+                <h3 class="education-degree">LEADERSHIP</h3>
+                <p class="education-school">Dale Carnegie</p>
+            </div>
+            <span class="experience-dates">2012</span>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <p class="section-label">Recognition</p>
+            <h2 class="section-title">AWARDS & ACHIEVEMENTS</h2>
+        </div>
+        <div class="awards-list">
+            <div class="award-item">International Stevie Award, Best New Product (2005)</div>
+            <div class="award-item">Five Star Employee Award, F5 Networks (2012)</div>
+            <div class="award-item">#2 Most Recognized Marketing Tech Brand, Moz (2014)</div>
+        </div>
+    </section>
+
+    <footer>
+        <span class="footer-text">© 2025 Daan Lindhout</span>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+        function updateThemeIcon(theme) {
+            const sunIcon = document.querySelector('.sun-icon');
+            const moonIcon = document.querySelector('.moon-icon');
+            if (theme === 'light') {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            } else {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            }
+        }
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+        })();
+    </script>
+</body>
+</html>
