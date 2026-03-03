@@ -65,22 +65,55 @@
         .next-case h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; line-height: 1; margin: 0; }
         .next-case a { text-decoration: none; color: var(--text-primary); transition: color 0.3s ease; }
         .next-case a:hover { color: var(--accent); }
-        .back-link { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; }
-        .back-link:hover { color: var(--accent); }
 
 
 
         footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; align-items: center; }
         .footer-text { font-size: 0.875rem; color: var(--text-secondary); }
-
-        @media (max-width: 1024px) {
-            nav, .case-hero, .stats-bar, .case-content, .next-case, footer, .hero-image { padding-left: 2rem; padding-right: 2rem; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
             .image-grid { grid-template-columns: 1fr; }
+        } .nav-links { gap: 1rem; } .nav-links a { font-size: 0.65rem; letter-spacing: 0.03em; }}
         }
+    
+        /* Mobile responsive improvements */
+        @media (max-width: 1024px) {
+            nav, .case-hero, .case-content, .next-case, footer, .stats-bar, .hero-image { padding-left: 2rem; padding-right: 2rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        
         @media (max-width: 768px) {
-            .stats-grid { grid-template-columns: 1fr; gap: 2rem;             nav { padding: 1rem 1.5rem; } .nav-links { gap: 1rem; } .nav-links a { font-size: 0.65rem; letter-spacing: 0.03em; }}
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+            .nav-links a { font-size: 0.7rem; letter-spacing: 0.02em; }
+            .theme-toggle { margin-left: 0.75rem; padding: 0.4rem; }
+            .theme-toggle svg { width: 16px; height: 16px; }
+            
+            .case-hero { padding-top: 5rem; }
+            .case-meta { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+            .case-tag { font-size: 0.65rem; padding: 0.4rem 0.75rem; }
+            .case-year { margin-left: 0; }
+            .project-nav-inline { margin-left: 0; margin-top: 0.5rem; }
+            .project-nav-link { font-size: 0.8rem; }
+            
+            .case-hero h1 { font-size: 2.5rem; }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+            
+            .next-case { padding: 3rem 1.5rem; }
+            .next-case h3 { font-size: 1.75rem; }
+            .next-case-inner { justify-content: center; }
         }
+        
+        @media (max-width: 480px) {
+            nav { padding: 0.75rem 1rem; }
+            .nav-links { gap: 0.5rem; }
+            .nav-links a { font-size: 0.6rem; }
+            
+            .case-hero, .case-content, .next-case, footer { padding-left: 1rem; padding-right: 1rem; }
+            .case-tag { font-size: 0.6rem; padding: 0.35rem 0.6rem; }
+            .case-hero h1 { font-size: 2rem; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+
     </style>
 </head>
 <body>
@@ -217,7 +250,6 @@
     </section>
     <section class="next-case">
         <div class="next-case-inner">
-            <a href="portfolio.html" class="back-link">← Back to Portfolio</a>
             <div>
                 <p class="next-label">Next Case Study</p>
                 <h3><a href="rightclick.html">RIGHT CLICK →</a></h3>
