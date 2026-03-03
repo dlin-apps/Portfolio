@@ -329,6 +329,49 @@
             letter-spacing: 0.05em;
         }
 
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            border-color: var(--accent);
+        }
+        
+        .testimonial-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .author-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+        
+        .author-title {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
         footer { padding: 1.5rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; align-items: center; gap: 2rem; }
         .footer-text { font-size: 0.8rem; color: var(--text-secondary); }
 
@@ -338,6 +381,7 @@
             .hero-quote { margin-top: 0; }
             .about-grid { grid-template-columns: 1fr; }
             .timeline-columns { grid-template-columns: 1fr; gap: 3rem; }
+            .testimonials-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
             .hero h1 { font-size: 3.5rem; }
@@ -674,16 +718,16 @@
                                     <h4 class="timeline-company">Independent</h4>
                                     <span class="timeline-role">Product Design & Dev</span>
                                 </div>
-                                <p class="timeline-brief">Building financial tools: trading scanners, portfolio management, investment dashboards.</p>
+                                <p class="timeline-brief">Designing and building consumer financial products. Exploring how AI can transform investing.</p>
                                 <div class="timeline-details">
                                     <div class="timeline-details-inner">
                                         <div class="timeline-details-content">
                                             <div class="detail-block">
                                                 <h4>Focus Areas</h4>
                                                 <ul>
-                                                    <li>Swing trading scanner</li>
-                                                    <li>Portfolio rebalancing tools</li>
-                                                    <li>AI-powered analysis</li>
+                                                    <li>Trading tools & regime scanners</li>
+                                                    <li>Sentiment analysis</li>
+                                                    <li>Portfolio management apps</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -761,14 +805,14 @@
                                     <h4 class="timeline-company">Northeastern University</h4>
                                     <span class="timeline-role">Adjunct Professor</span>
                                 </div>
-                                <p class="timeline-brief">Teaching graduate UX Design & Research courses.</p>
+                                <p class="timeline-brief">Teaching graduate UX courses and mentoring Engineers and Designers.</p>
                                 <div class="timeline-details">
                                     <div class="timeline-details-inner">
                                         <div class="timeline-details-content">
                                             <div class="detail-block">
                                                 <h4>Topics</h4>
                                                 <ul>
-                                                    <li>UX Research Methods</li>
+                                                    <li>UX Design & Research</li>
                                                     <li>Design Systems</li>
                                                     <li>AI/ML Product Design</li>
                                                 </ul>
@@ -779,6 +823,47 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <p class="section-label">Testimonials</p>
+            <h2 class="section-title">WHAT COLLEAGUES SAY</h2>
+        </div>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Daan is a seasoned UX leader with a particular aptitude in building and establishing UX teams. He established Qualtrics' User Experience team, from creating its UX hiring practices, to hiring the team, to developing a design language, to building pattern libraries and style guides. Beyond building teams he is also dedicated to building great products."</p>
+                <div class="testimonial-author">
+                    <span class="author-name">Jerrod Larson</span>
+                    <span class="author-title">Director of Product Design, Vanta</span>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Daan had a big hand in growing our team and increasing the maturity of our organization. He led us to grow our influence within Axon and expand our teams focus to include UX research and technical writing disciplines. Axon is well positioned for its next stage of growth due to the structure he established for our team."</p>
+                <div class="testimonial-author">
+                    <span class="author-name">David P. O'Hara</span>
+                    <span class="author-title">Director of Product Design, Axon</span>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Daan is an incisive, thoughtful, and experienced design leader who understands the larger business context and orients the team appropriately. He did an excellent job balancing short-term product-specific goals with longer-term work, including establishing reusable patterns and components for our entire product portfolio."</p>
+                <div class="testimonial-author">
+                    <span class="author-name">Sayce Falk</span>
+                    <span class="author-title">AI/ML Product Management Lead, Google</span>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Daan is easily the best UX leader I have worked with. He brings instant credibility with his structured thought process and his ability to communicate to engineers in a manner that they can relate to. He takes the time to understand very complex technical concepts and creates solutions that are user friendly and aesthetically pleasing."</p>
+                <div class="testimonial-author">
+                    <span class="author-name">Raghavan Kollivakkam</span>
+                    <span class="author-title">Cofounder and Head of Engineering, RIGOR AI</span>
                 </div>
             </div>
         </div>
