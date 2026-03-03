@@ -112,27 +112,49 @@
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
         
-        @media (max-width: 768px) {
+                @media (max-width: 768px) {
             nav { padding: 1rem 1.5rem; }
             .nav-links { gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
             .nav-links a { font-size: 0.7rem; letter-spacing: 0.02em; }
             .theme-toggle { margin-left: 0.75rem; padding: 0.4rem; }
             .theme-toggle svg { width: 16px; height: 16px; }
-            nav { padding: 1rem 1.5rem;
+            
+            .case-hero { padding-top: 5rem; padding-left: 1.5rem; padding-right: 1.5rem; }
+            .case-hero-content { position: relative; }
+            
+            /* Tags stay in a row, wrapping as needed */
+            .case-meta { 
+                flex-wrap: wrap; 
+                gap: 0.5rem; 
+                padding-right: 3rem;
+            }
+            .case-tag { font-size: 0.65rem; padding: 0.35rem 0.6rem; }
+            .case-year { margin-left: 0; font-size: 0.75rem; width: 100%; margin-top: 0.25rem; }
+            
+            /* Next arrow positioned top-right */
+            .project-nav-inline { 
+                position: absolute;
+                top: 1rem;
+                right: 0;
+                margin: 0;
+            }
+            .project-nav-link { 
+                font-size: 1.5rem; 
+                color: var(--accent);
+            }
+            .project-nav-link .nav-text { display: none; }
+            
+            .case-hero h1 { font-size: 2.5rem; }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+            
+            .next-case { padding: 3rem 1.5rem; }
+            .next-case h3 { font-size: 1.75rem; }
+            .next-case-inner { justify-content: center; }
         }
             .nav-links { gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
             .nav-links a { font-size: 0.7rem; letter-spacing: 0.02em; }
             .theme-toggle { margin-left: 0.75rem; padding: 0.4rem; }
             .theme-toggle svg { width: 16px; height: 16px; }
-            
-            .case-hero { padding-top: 5rem; }
-            .case-meta { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-            .case-tag { font-size: 0.65rem; padding: 0.4rem 0.75rem; }
-            .case-year { margin-left: 0; }
-            .project-nav-inline { margin-left: 0; margin-top: 0.5rem; }
-            .project-nav-link { font-size: 0.8rem; }
-            
-            .case-hero h1 { font-size: 2.5rem; }
             .stats-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
             
             .next-case { padding: 3rem 1.5rem; }
@@ -176,7 +198,7 @@
                 <span class="case-tag">Performance Management</span>
                 <span class="case-year">2007 – 2009</span>
                 <div class="project-nav-inline">
-                    <a href="windowslive.html" class="project-nav-link">Next: Windows Live →</a>
+                    <a href="windowslive.html" class="project-nav-link"><span class="nav-text">Next: Windows Live </span>→</a>
                 </div>
             </div>
             <h1>SUMTOTAL SYSTEMS</h1>
