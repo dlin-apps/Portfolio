@@ -22,7 +22,7 @@
         .nav-links a:hover, .nav-links a.active { color: var(--accent); }
         .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.1em; text-decoration: none; color: var(--text-primary); }
         .logo span { color: var(--accent); }
-        .case-hero { padding: 6rem 4rem 3rem; max-width: 1000px; margin: 0 auto; }
+        .case-hero { padding: 8rem 4rem 3rem; max-width: 1000px; margin: 0 auto; }
         .case-hero-content { max-width: 1000px; margin: 0 auto; }
         .case-meta { display: flex; gap: 1rem; padding-top: 1rem; flex-wrap: wrap; margin-bottom: 2rem; align-items: center; }
         .case-tag { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; background: transparent; border: 1px solid var(--border); color: var(--text-secondary); }
@@ -45,7 +45,6 @@
         .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--accent); line-height: 1; }
         .stat-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem; }
 
-
         .case-section { margin-bottom: 3rem; }
         .case-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; margin-bottom: 1rem; color: var(--accent); }
         .case-section p { font-size: 1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem; }
@@ -62,11 +61,10 @@
         .next-case a { text-decoration: none; color: var(--text-primary); transition: color 0.3s ease; }
         .next-case a:hover { color: var(--accent); }
 
-
         footer { padding: 1.5rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; align-items: center; gap: 2rem; }
         .footer-text { font-size: 0.8rem; color: var(--text-secondary); }
-            nav, .case-hero, .case-content, .case-nav, footer, .stats-bar, .hero-image { padding-left: 2rem; padding-right: 2rem; }
-            nav { padding: 1rem 1.5rem; } .nav-links { gap: 1rem; } .nav-links a { font-size: 0.65rem; letter-spacing: 0.03em; }.case-section .marketing-grid { flex-direction: column; }
+            nav, .case-hero, .case-content, .case-nav, footer, .stats-bar,
+nav { padding: 1rem 1.5rem; } .nav-links { gap: 1rem; } .nav-links a { font-size: 0.65rem; letter-spacing: 0.03em; }.case-section .marketing-grid { flex-direction: column; }
             .case-section .marketing-grid img { width: 100% !important; }
             .case-section .marketing-grid img:last-child { width: 180px !important; }
         }
@@ -93,23 +91,20 @@
         .patent-list { list-style: none; padding: 0; margin: 0; }
         .patent-list li { font-size: 0.85rem; color: var(--text-secondary); padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
         .patent-list li:last-child { border-bottom: none; }
-        .patent-number { font-family: monospace; color: var(--text-primary); font-size: 0.75rem; }
-
-    
+        .patent-number { font-family: monospace; color: var(--text-primary); font-size: 0.75rem; }    
         /* Mobile responsive improvements */
         @media (max-width: 1024px) {
             nav, .case-hero, .case-content, .next-case, footer, .stats-bar, .hero-image { padding-left: 2rem; padding-right: 2rem; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
-        
-                @media (max-width: 768px) {
+        @media (max-width: 768px) {
             nav { padding: 1rem 1.5rem; }
             .nav-links { gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
             .nav-links a { font-size: 0.7rem; letter-spacing: 0.02em; }
             .theme-toggle { margin-left: 0.75rem; padding: 0.4rem; }
             .theme-toggle svg { width: 16px; height: 16px; }
             
-            .case-hero { padding-top: 5rem; padding-left: 1.5rem; padding-right: 1.5rem; }
+            .case-hero { padding-top: 6rem; padding-left: 1.5rem; padding-right: 1.5rem; }
             .case-hero-content { position: relative; }
             
             /* Tags stay in a row, wrapping as needed */
@@ -141,16 +136,6 @@
             .next-case h3 { font-size: 1.75rem; }
             .next-case-inner { justify-content: center; }
         }
-            .nav-links { gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
-            .nav-links a { font-size: 0.7rem; letter-spacing: 0.02em; }
-            .theme-toggle { margin-left: 0.75rem; padding: 0.4rem; }
-            .theme-toggle svg { width: 16px; height: 16px; }
-            .stats-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-            
-            .next-case { padding: 3rem 1.5rem; }
-            .next-case h3 { font-size: 1.75rem; }
-            .next-case-inner { justify-content: center; }
-        }
         
         @media (max-width: 480px) {
             nav { padding: 0.75rem 1rem; }
@@ -162,7 +147,6 @@
             .case-hero h1 { font-size: 2rem; }
             .stats-grid { grid-template-columns: 1fr; }
         }
-
     </style>
 </head>
 <body>
