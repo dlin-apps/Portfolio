@@ -17,8 +17,6 @@
         ::selection { background: var(--accent); color: var(--bg-primary); }
 
         nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 4rem; display: flex; justify-content: flex-end; align-items: center; background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
-        .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.1em; text-decoration: none; color: var(--text-primary); }
-        .logo span { color: var(--accent); }
         .nav-links { display: flex; gap: 2.5rem; }
         .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s ease; }
         .nav-links a:hover, .nav-links a.active { color: var(--accent); }
@@ -52,13 +50,284 @@
         .highlight-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; margin-bottom: 0.5rem; }
         .highlight-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
 
-        .timeline { margin-top: 1.5rem; max-width: 800px; }
-        .timeline-item { display: grid; grid-template-columns: 70px 1fr; gap: 1.5rem; padding: 1.25rem 0; border-bottom: 1px solid var(--border); }
-        .timeline-item:last-child { border-bottom: none; }
-        .timeline-year { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--text-secondary); padding-top: 0.2rem; }
-        .timeline-role { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.15rem; }
-        .timeline-company { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--accent); margin-bottom: 0.25rem; line-height: 1.1; }
-        .timeline-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
+        /* Two column layout for timelines */
+        .timeline-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        
+        .timeline-column {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        /* Timeline group (Professional, Startups, Teaching) */
+        .timeline-group {
+            position: relative;
+        }
+        
+        .timeline-group-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+        
+        .timeline-group-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            letter-spacing: 0.05em;
+        }
+        
+        .timeline-group-count {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.25rem 0.6rem;
+            border-radius: 2px;
+        }
+
+        /* Interactive Timeline with dots and line */
+        .interactive-timeline {
+            position: relative;
+            padding-left: 32px;
+        }
+        
+        /* Vertical connecting line */
+        .interactive-timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: var(--border);
+        }
+        
+        .timeline-row {
+            position: relative;
+            display: grid;
+            grid-template-columns: 55px 1fr;
+            gap: 1rem;
+            padding: 0.9rem 0;
+            padding-right: 0.75rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            border-radius: 4px;
+            margin-left: -0.5rem;
+            padding-left: 0.5rem;
+        }
+        
+        .timeline-row:hover {
+            background: var(--bg-card);
+        }
+        
+        /* Timeline dot */
+        .timeline-dot {
+            position: absolute;
+            left: -26px;
+            top: 1.1rem;
+            width: 14px;
+            height: 14px;
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-dot::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 5px;
+            height: 5px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .timeline-row:hover .timeline-dot {
+            border-color: var(--accent);
+            transform: scale(1.15);
+        }
+        
+        .timeline-row:hover .timeline-dot::before {
+            opacity: 1;
+        }
+        
+        /* Animated circle around dot on hover */
+        .timeline-dot::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 14px;
+            height: 14px;
+            border: 1.5px solid var(--accent);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        
+        .timeline-row:hover .timeline-dot::after {
+            opacity: 1;
+            animation: dotPulse 0.6s ease-out forwards;
+        }
+        
+        @keyframes dotPulse {
+            0% {
+                width: 14px;
+                height: 14px;
+                opacity: 0.8;
+            }
+            100% {
+                width: 28px;
+                height: 28px;
+                opacity: 0;
+            }
+        }
+        
+        .timeline-year {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            padding-top: 0.1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .timeline-row:hover .timeline-year {
+            color: var(--accent);
+        }
+        
+        .timeline-main {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .timeline-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.35rem;
+        }
+        
+        .timeline-company {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            color: var(--accent);
+            line-height: 1.1;
+        }
+        
+        .timeline-role {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Brief description - always visible */
+        .timeline-brief {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        
+        /* Expandable Details */
+        .timeline-details {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s ease;
+        }
+        
+        .timeline-row:hover .timeline-details {
+            grid-template-rows: 1fr;
+        }
+        
+        .timeline-details-inner {
+            overflow: hidden;
+        }
+        
+        .timeline-details-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            padding-top: 0.75rem;
+            margin-top: 0.6rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .detail-block {
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .detail-block h4 {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 0.35rem;
+        }
+        
+        .detail-block ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .detail-block li {
+            font-size: 0.75rem;
+            color: var(--text-primary);
+            padding: 0.15rem 0;
+            padding-left: 0.8rem;
+            position: relative;
+        }
+        
+        .detail-block li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 3px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        
+        .detail-stats {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+        
+        .detail-stat {
+            text-align: left;
+        }
+        
+        .detail-stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            color: var(--accent);
+            line-height: 1;
+        }
+        
+        .detail-stat-label {
+            font-size: 0.55rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
 
         footer { padding: 1.5rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; align-items: center; gap: 2rem; }
         .footer-text { font-size: 0.8rem; color: var(--text-secondary); }
@@ -68,19 +337,19 @@
             .hero-content { padding-left: 2rem; padding-right: 2rem; grid-template-columns: 1fr; }
             .hero-quote { margin-top: 0; }
             .about-grid { grid-template-columns: 1fr; }
-            .timeline-item { grid-template-columns: 60px 1fr; gap: 1rem; }
+            .timeline-columns { grid-template-columns: 1fr; gap: 3rem; }
         }
         @media (max-width: 768px) {
             .hero h1 { font-size: 3.5rem; }
             .hero-stats { flex-direction: column; gap: 2rem; }
             .about-highlights { grid-template-columns: 1fr; }
             nav { padding: 1rem 1.5rem; } .nav-links { gap: 1rem; } .nav-links a { font-size: 0.65rem; letter-spacing: 0.03em; }
+            .timeline-row { grid-template-columns: 50px 1fr; }
         }
     </style>
 </head>
 <body>
     <nav>
-        
         <div class="nav-links">
             <a href="index.html" class="active">About</a>
             <a href="portfolio.html">Portfolio</a>
@@ -88,11 +357,10 @@
             <a href="resume.html">Resume</a>
             <a href="contact.html">Contact</a>
         </div>
-            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
-            </button>
-        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+        </button>
     </nav>
 
     <section class="hero">
@@ -102,9 +370,10 @@
                 <h1>DAAN LINDHOUT</h1>
                 <p class="hero-subtitle">Global UX leader with 25+ years of experience building teams, products, and design cultures at scale—including platforms that contributed to an $8B acquisition and products serving 100M+ users.</p>
                 <div class="hero-stats">
-                    <div class="stat"><div class="stat-number">25+</div><div class="stat-label">Years Experience</div></div>
-                    <div class="stat"><div class="stat-number">8</div><div class="stat-label">UX Teams Built</div></div>
                     <div class="stat"><div class="stat-number">100M+</div><div class="stat-label">Users Served</div></div>
+                    <div class="stat"><div class="stat-number">8</div><div class="stat-label">UX Teams Built</div></div>
+                    <div class="stat"><div class="stat-number">25+</div><div class="stat-label">Years Experience</div></div>
+                    <div class="stat"><div class="stat-number">23</div><div class="stat-label">Patents</div></div>
                 </div>
             </div>
             <div class="hero-quote">
@@ -140,109 +409,376 @@
             <p class="section-label">Experience</p>
             <h2 class="section-title">CAREER TIMELINE</h2>
         </div>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-year">2025</div>
-                <div class="timeline-content">
-                    <p class="timeline-role">ADJUNCT PROFESSOR</p>
-                    <h4 class="timeline-company">Northeastern University</h4>
-                    <p class="timeline-desc">Teach graduate UX Design & Research classes</p>
+        
+        <div class="timeline-columns">
+            <!-- Left Column: Professional Positions -->
+            <div class="timeline-column">
+                <div class="timeline-group">
+                    <div class="timeline-group-header">
+                        <h3 class="timeline-group-title">PROFESSIONAL</h3>
+                        <span class="timeline-group-count">8 positions</span>
+                    </div>
+                    
+                    <div class="interactive-timeline">
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2023</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">Workday</h4>
+                                    <span class="timeline-role">Senior Director of UX</span>
+                                </div>
+                                <p class="timeline-brief">Led global Product Design across enterprise platform—HR, Finance, Higher Education.</p>
+                                <div class="timeline-details">
+                                    <div class="timeline-details-inner">
+                                        <div class="timeline-details-content">
+                                            <div class="detail-block">
+                                                <h4>Key Outcomes</h4>
+                                                <ul>
+                                                    <li>Defined AI/ML UX strategy</li>
+                                                    <li>Elevated design craft org-wide</li>
+                                                    <li>Partnered on multi-year roadmaps</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2018</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">Axon</h4>
+                                    <span class="timeline-role">VP Product Design</span>
+                                </div>
+                                <p class="timeline-brief">Built global UX org from scratch (5→60+). Owned all software and hardware UX.</p>
+                                <div class="timeline-details">
+                                    <div class="timeline-details-inner">
+                                        <div class="timeline-details-content">
+                                            <div class="detail-block">
+                                                <h4>Key Outcomes</h4>
+                                                <ul>
+                                                    <li>Created Axon Design System</li>
+                                                    <li>Pioneered ethical AI practices</li>
+                                                    <li>HW + SW full-stack UX</li>
+                                                </ul>
+                                            </div>
+                                            <div class="detail-stats">
+                                                <div class="detail-stat">
+                                                    <div class="detail-stat-number">60+</div>
+                                                    <div class="detail-stat-label">Team Size</div>
+                                                </div>
+                                                <div class="detail-stat">
+                                                    <div class="detail-stat-number">5 yrs</div>
+                                                    <div class="detail-stat-label">Tenure</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2015</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">Qualtrics</h4>
+                                    <span class="timeline-role">Head of UX</span>
+                                </div>
+                                <p class="timeline-brief">Led global UX org. Unified 7 products into the XM Platform.</p>
+                                <div class="timeline-details">
+                                    <div class="timeline-details-inner">
+                                        <div class="timeline-details-content">
+                                            <div class="detail-block">
+                                                <h4>Key Outcomes</h4>
+                                                <ul>
+                                                    <li>Created XM brand concept</li>
+                                                    <li>Contributed to $8B acquisition</li>
+                                                </ul>
+                                            </div>
+                                            <div class="detail-stats">
+                                                <div class="detail-stat">
+                                                    <div class="detail-stat-number">$8B</div>
+                                                    <div class="detail-stat-label">Acquisition</div>
+                                                </div>
+                                                <div class="detail-stat">
+                                                    <div class="detail-stat-number">7→1</div>
+                                                    <div class="detail-stat-label">Products</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2014</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">Socrata</h4>
+                                    <span class="timeline-role">Director of Design</span>
+                                </div>
+                                <p class="timeline-brief">Led UX team for open data platform. Created patentable UI paradigm.</p>
+                                <div class="timeline-details">
+                                    <div class="timeline-details-inner">
+                                        <div class="timeline-details-content">
+                                            <div class="detail-block">
+                                                <h4>Key Outcomes</h4>
+                                                <ul>
+                                                    <li>Patentable Card UI paradigm</li>
+                                                    <li>Established UX Research discipline</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2013</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">Moz</h4>
+                                    <span class="timeline-role">Director of Design</span>
+                                </div>
+                                <p class="timeline-brief">Led UX, Creative Direction, Branding, and Motion Design.</p>
+                                <div class="timeline-details">
+                                    <div class="timeline-details-inner">
+                                        <div class="timeline-details-content">
+                                            <div class="detail-block">
+                                                <h4>Key Outcomes</h4>
+                                                <ul>
+                                                    <li>#2 Marketing Tech brand recognition</li>
+                                                    <li>Ahead of HubSpot, Salesforce, Adobe</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2010</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">F5 Networks</h4>
+                                    <span class="timeline-role">UX Manager</span>
+                                </div>
+                                <p class="timeline-brief">Led UX discipline for network infrastructure products.</p>
+                                <div class="timeline-details">
+                                    <div class="timeline-details-inner">
+                                        <div class="timeline-details-content">
+                                            <div class="detail-block">
+                                                <h4>Key Outcomes</h4>
+                                                <ul>
+                                                    <li>Created BIG-IQ UI paradigm</li>
+                                                    <li>Five Star Award</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2007</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">SumTotal Systems</h4>
+                                    <span class="timeline-role">UX Manager</span>
+                                </div>
+                                <p class="timeline-brief">Started UX team and discipline. Managed designers across US and India.</p>
+                                <div class="timeline-details">
+                                    <div class="timeline-details-inner">
+                                        <div class="timeline-details-content">
+                                            <div class="detail-block">
+                                                <h4>Key Outcomes</h4>
+                                                <ul>
+                                                    <li>Built UX team from scratch</li>
+                                                    <li>Power of One Award</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2000</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">Microsoft</h4>
+                                    <span class="timeline-role">Product Designer</span>
+                                </div>
+                                <p class="timeline-brief">Designed consumer hardware and software for hundreds of millions of users.</p>
+                                <div class="timeline-details">
+                                    <div class="timeline-details-inner">
+                                        <div class="timeline-details-content">
+                                            <div class="detail-block">
+                                                <h4>Key Outcomes</h4>
+                                                <ul>
+                                                    <li>Windows OOBE: 22min → 2:10</li>
+                                                    <li>Invented Tilt Wheel Mouse</li>
+                                                    <li>International Stevie Award</li>
+                                                </ul>
+                                            </div>
+                                            <div class="detail-stats">
+                                                <div class="detail-stat">
+                                                    <div class="detail-stat-number">100M+</div>
+                                                    <div class="detail-stat-label">Users</div>
+                                                </div>
+                                                <div class="detail-stat">
+                                                    <div class="detail-stat-number">7 yrs</div>
+                                                    <div class="detail-stat-label">Tenure</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2023</div>
-                <div class="timeline-content">
-                    <p class="timeline-role">SENIOR DIRECTOR OF UX</p>
-                    <h4 class="timeline-company">Workday</h4>
-                    <p class="timeline-desc">Led global Product Design across the entire product portfolio (HR, Finance, Higher Education). Partnered closely with Product on strategy, execution, and measuring user experience.</p>
+            
+            <!-- Right Column: Startups & Teaching -->
+            <div class="timeline-column">
+                <!-- Startups -->
+                <div class="timeline-group">
+                    <div class="timeline-group-header">
+                        <h3 class="timeline-group-title">STARTUPS & VENTURES</h3>
+                        <span class="timeline-group-count">3 ventures</span>
+                    </div>
+                    
+                    <div class="interactive-timeline">
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2025</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">Independent</h4>
+                                    <span class="timeline-role">Product Design & Dev</span>
+                                </div>
+                                <p class="timeline-brief">Building financial tools: trading scanners, portfolio management, investment dashboards.</p>
+                                <div class="timeline-details">
+                                    <div class="timeline-details-inner">
+                                        <div class="timeline-details-content">
+                                            <div class="detail-block">
+                                                <h4>Focus Areas</h4>
+                                                <ul>
+                                                    <li>Swing trading scanner</li>
+                                                    <li>Portfolio rebalancing tools</li>
+                                                    <li>AI-powered analysis</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2016</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">SkillCafe</h4>
+                                    <span class="timeline-role">Co-Founder</span>
+                                </div>
+                                <p class="timeline-brief">AI/ML-powered job matching platform for skills-based hiring.</p>
+                                <div class="timeline-details">
+                                    <div class="timeline-details-inner">
+                                        <div class="timeline-details-content">
+                                            <div class="detail-block">
+                                                <h4>Key Outcomes</h4>
+                                                <ul>
+                                                    <li>Built product from zero to market</li>
+                                                    <li>ML-powered matching algorithms</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2013</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">Spoom Design</h4>
+                                    <span class="timeline-role">Owner</span>
+                                </div>
+                                <p class="timeline-brief">Full-service product design consultancy. UX and design systems expertise.</p>
+                                <div class="timeline-details">
+                                    <div class="timeline-details-inner">
+                                        <div class="timeline-details-content">
+                                            <div class="detail-block">
+                                                <h4>Services</h4>
+                                                <ul>
+                                                    <li>Product Design</li>
+                                                    <li>UX Strategy</li>
+                                                    <li>Design Systems</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2018</div>
-                <div class="timeline-content">
-                    <p class="timeline-role">VP OF PRODUCT DESIGN, UX RESEARCH & TECHNICAL WRITING</p>
-                    <h4 class="timeline-company">Axon</h4>
-                    <p class="timeline-desc">Grew the team from a handful to 60+ across Product Design, UX Research, Technical Writing and Design Operations. Responsible for UX of all software products and hardware interaction design. Created the Axon Design System.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2018</div>
-                <div class="timeline-content">
-                    <p class="timeline-role">CO-FOUNDER</p>
-                    <h4 class="timeline-company">Skill Cafe</h4>
-                    <p class="timeline-desc">AI/ML skill & location based job search and learning platform.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2015</div>
-                <div class="timeline-content">
-                    <p class="timeline-role">HEAD OF UX DESIGN & RESEARCH</p>
-                    <h4 class="timeline-company">Qualtrics</h4>
-                    <p class="timeline-desc">Led the global UX Design & Research organization reporting to the co-founder. Built the team and discipline from the ground up. Brought all products together into the Experience Management (XM) platform.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2014</div>
-                <div class="timeline-content">
-                    <p class="timeline-role">DIRECTOR OF UX DESIGN & RESEARCH</p>
-                    <h4 class="timeline-company">Socrata</h4>
-                    <p class="timeline-desc">Managed a team of UX and visual designers and researchers. Completely redesigned the main Socrata product resulting in a patentable new user interface paradigm for visualizing and exploring data.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2012</div>
-                <div class="timeline-content">
-                    <p class="timeline-role">DIRECTOR OF DESIGN & USER EXPERIENCE</p>
-                    <h4 class="timeline-company">Moz</h4>
-                    <p class="timeline-desc">Led the Design and Creative team including UX Design, Information Architecture & Strategy, Creative Direction, Branding, Motion Design, and Illustration. Identified Moz as the second most recognizable Marketing Tech brand.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2009</div>
-                <div class="timeline-content">
-                    <p class="timeline-role">USER EXPERIENCE MANAGER</p>
-                    <h4 class="timeline-company">F5 Networks</h4>
-                    <p class="timeline-desc">Led the UX discipline including UX Design, UX Research and Industrial Design. Won the Five Star award for significant contributions to the company.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2007</div>
-                <div class="timeline-content">
-                    <p class="timeline-role">USER EXPERIENCE MANAGER</p>
-                    <h4 class="timeline-company">SumTotal Systems</h4>
-                    <p class="timeline-desc">Started and built the UX team and discipline. Won the Power of One team award for special achievements.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2006</div>
-                <div class="timeline-content">
-                    <p class="timeline-role">PRODUCT DESIGNER II</p>
-                    <h4 class="timeline-company">Microsoft Live</h4>
-                    <p class="timeline-desc">Led the Windows Live user experience around pictures, videos and music including Windows Live Photo Gallery and Live Spaces media sharing.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2003</div>
-                <div class="timeline-content">
-                    <p class="timeline-role">PRODUCT DESIGNER</p>
-                    <h4 class="timeline-company">Microsoft Windows</h4>
-                    <p class="timeline-desc">Responsible for dramatic improvements to the first experience of Windows reducing the out of the box experience from 22 minutes and 50% failure rate to 2 min and 0% failure.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2000</div>
-                <div class="timeline-content">
-                    <p class="timeline-role">PRODUCT DESIGNER</p>
-                    <h4 class="timeline-company">Microsoft Hardware</h4>
-                    <p class="timeline-desc">Hardware interaction design of desktop productivity devices. Generated significant intellectual property including the Microsoft Tilt Wheel which generated more revenue than the optical mouse. Won International Stevie Award for best new product.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">1994</div>
-                <div class="timeline-content">
-                    <p class="timeline-role">MSc INDUSTRIAL DESIGN ENGINEERING</p>
-                    <h4 class="timeline-company">Delft University of Technology</h4>
-                    <p class="timeline-desc">Specialized in Hardware and Software convergence</p>
+                
+                <!-- Teaching -->
+                <div class="timeline-group">
+                    <div class="timeline-group-header">
+                        <h3 class="timeline-group-title">TEACHING</h3>
+                        <span class="timeline-group-count">1 position</span>
+                    </div>
+                    
+                    <div class="interactive-timeline">
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2025</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">Northeastern University</h4>
+                                    <span class="timeline-role">Adjunct Professor</span>
+                                </div>
+                                <p class="timeline-brief">Teaching graduate UX Design & Research courses.</p>
+                                <div class="timeline-details">
+                                    <div class="timeline-details-inner">
+                                        <div class="timeline-details-content">
+                                            <div class="detail-block">
+                                                <h4>Topics</h4>
+                                                <ul>
+                                                    <li>UX Research Methods</li>
+                                                    <li>Design Systems</li>
+                                                    <li>AI/ML Product Design</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
