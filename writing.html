@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing — Daan Lindhout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-primary: #0a0a0a; --bg-secondary: #141414; --bg-card: #1a1a1a; --text-primary: #ffffff; --text-secondary: #888888; --accent: #00d4aa; --accent-dim: rgba(0, 212, 170, 0.12); --border: #2a2a2a; --nav-bg: rgba(10, 10, 10, 0.8); --shadow: 0 2px 8px rgba(0, 0, 0, 0.3); --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.4); }
+        [data-theme="light"] { --bg-primary: #ffffff; --bg-secondary: #f9f9f9; --bg-card: #ffffff; --text-primary: #1a1a1a; --text-secondary: #555555; --accent: #00d4aa; --accent-dim: rgba(0, 212, 170, 0.15); --border: #e8e8e8; --nav-bg: rgba(255, 255, 255, 0.95); --shadow: 0 2px 8px rgba(0, 0, 0, 0.08); --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12); }
+        .theme-toggle { background: none; border: 1px solid var(--border); color: var(--text-secondary); cursor: pointer; padding: 0.5rem; border-radius: 4px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; margin-left: 1.5rem; } .theme-toggle:hover { border-color: var(--accent); color: var(--accent); } .theme-toggle svg { width: 18px; height: 18px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
+        ::selection { background: var(--accent); color: var(--bg-primary); }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 4rem; display: flex; justify-content: flex-end; align-items: center; background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+        .hero { min-height: auto; display: flex; flex-direction: column; justify-content: center; padding: 7rem 0 3rem; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -20%; right: -10%; width: 60%; height: 100%; background: radial-gradient(ellipse at center, var(--accent-dim) 0%, transparent 70%); pointer-events: none; }
+        .hero-content { max-width: 1400px; margin: 0 auto; width: 100%; padding: 0 4rem; position: relative; z-index: 1; }
+        .hero-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+        .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 5rem); line-height: 1; margin-bottom: 1.5rem; }
+        .hero-subtitle { font-size: 1.125rem; color: var(--text-secondary); max-width: 700px; line-height: 1.6; }
+
+        .section { padding: 4rem 4rem; max-width: 1400px; margin: 0 auto; }
+        .section-header { margin-bottom: 2rem; }
+        .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+        .section-title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; line-height: 1; }
+
+        /* Article Cards */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .article-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .article-date {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+        
+        .article-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            color: var(--accent);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .article-card:hover .article-title {
+            color: var(--text-primary);
+        }
+        
+        .article-excerpt {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .article-category {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: var(--accent-dim);
+            padding: 0.35rem 0.75rem;
+            border-radius: 2px;
+        }
+        
+        /* Featured Article */
+        .featured-article {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            padding: 3rem;
+        }
+        
+        .featured-article .article-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .featured-article .article-date {
+            margin-bottom: 1rem;
+        }
+        
+        .featured-article .article-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .featured-article .article-excerpt {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .featured-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--bg-primary);
+            background: var(--accent);
+            padding: 0.35rem 0.75rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .featured-visual {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .featured-quote {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            text-align: center;
+            max-width: 400px;
+        }
+        
+        .featured-quote strong {
+            color: var(--accent);
+            font-style: normal;
+        }
+
+        footer { padding: 1.5rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; align-items: center; gap: 2rem; }
+        .footer-text { font-size: 0.8rem; color: var(--text-secondary); }
+
+        @media (max-width: 1024px) {
+            nav, .section, footer { padding-left: 2rem; padding-right: 2rem; }
+            .hero-content { padding: 0 2rem; }
+            .articles-grid { grid-template-columns: 1fr; }
+            .featured-article { grid-template-columns: 1fr; }
+            .featured-visual { display: none; }
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { gap: 1rem; }
+            .nav-links a { font-size: 0.65rem; letter-spacing: 0.03em; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-links">
+            <a href="index.html">About</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="tenets.html">Tenets</a>
+            <a href="writing.html" class="active">Writing</a>
+            <a href="resume.html">Resume</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+        </button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-eyebrow">Thoughts & Perspectives</p>
+            <h1>WRITING</h1>
+            <p class="hero-subtitle">Articles on UX leadership, design strategy, hiring, and building teams. Perspectives shaped by 25+ years of building products and organizations at scale.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="articles-grid">
+            <!-- Featured Article -->
+            <a href="https://www.linkedin.com/pulse/forgetting-part-innovation-daan-lindhout-dy3ac" target="_blank" class="article-card featured-article">
+                <div class="article-content">
+                    <span class="featured-label">Latest</span>
+                    <div class="article-date">January 2026</div>
+                    <h2 class="article-title">Forgetting Is Part of Innovation</h2>
+                    <p class="article-excerpt">Most organizations say they want to innovate by learning from the past. But in practice, many stalled innovation efforts aren't caused by a lack of knowledge—they're caused by knowledge that has quietly hardened into certainty. "We already know customers don't want this." Those statements were true at some point. The problem is that they tend to stick around long after the conditions that produced them have changed.</p>
+                    <span class="article-category">Innovation</span>
+                </div>
+                <div class="featured-visual">
+                    <p class="featured-quote">"<strong>This didn't work then</strong>" slowly becomes "<strong>this doesn't work</strong>," and eventually "<strong>this isn't something we do.</strong>"</p>
+                </div>
+            </a>
+            
+            <!-- Hiring Articles -->
+            <a href="https://www.linkedin.com/pulse/what-i-look-when-hiring-user-experience-designers-daan-lindhout" target="_blank" class="article-card">
+                <div class="article-date">2022</div>
+                <h2 class="article-title">What I Look for When Hiring UX Designers</h2>
+                <p class="article-excerpt">A comprehensive guide to evaluating UX design candidates. What separates good designers from great ones, and the qualities that predict success in product design roles.</p>
+                <span class="article-category">Hiring</span>
+            </a>
+            
+            <a href="https://www.linkedin.com/in/daanlindhout/recent-activity/articles/" target="_blank" class="article-card">
+                <div class="article-date">2022</div>
+                <h2 class="article-title">What I Look for When Hiring UX Researchers</h2>
+                <p class="article-excerpt">The qualities and skills that make exceptional UX researchers. Not just the craft, but the potential impact they can have on product decisions.</p>
+                <span class="article-category">Hiring</span>
+            </a>
+            
+            <a href="https://www.linkedin.com/in/daanlindhout/recent-activity/articles/" target="_blank" class="article-card">
+                <div class="article-date">October 2019</div>
+                <h2 class="article-title">How to Break into the Field of UX</h2>
+                <p class="article-excerpt">User Experience Design is high on the list of best jobs in the United States. A question I get a lot is: "How do I break into UX?" Here are 12 things to consider—including which educational investments actually pay off.</p>
+                <span class="article-category">Career</span>
+            </a>
+            
+            <!-- Leadership Articles -->
+            <a href="https://www.linkedin.com/pulse/executive-sampling-daan-lindhout" target="_blank" class="article-card">
+                <div class="article-date">2022</div>
+                <h2 class="article-title">Executive Sampling</h2>
+                <p class="article-excerpt">Principles for answering difficult questions from stakeholders. Detailed questions from executives are often a form of sampling, not a genuine interest to go deep. Learn to recognize and respond appropriately.</p>
+                <span class="article-category">Leadership</span>
+            </a>
+            
+            <a href="https://www.linkedin.com/pulse/its-design-democracy-trust-your-elected-officials-daan-lindhout" target="_blank" class="article-card">
+                <div class="article-date">2016</div>
+                <h2 class="article-title">It's a Design Democracy</h2>
+                <p class="article-excerpt">The purpose of a UX team is to create an environment where great creative ideas see the light of day—no matter where they come from. Your team should represent the great ideas of the masses.</p>
+                <span class="article-category">Leadership</span>
+            </a>
+            
+            <!-- Strategy Articles -->
+            <a href="https://www.linkedin.com/pulse/competitive-blindness-daan-lindhout" target="_blank" class="article-card">
+                <div class="article-date">July 2016</div>
+                <h2 class="article-title">Competitive Blindness</h2>
+                <p class="article-excerpt">In 2001 I was working on a digital pen product. It was a failure—not because of competitors, but because we forgot our real competition: the way things get done without those products altogether. A regular pen on paper.</p>
+                <span class="article-category">Strategy</span>
+            </a>
+            
+            <a href="https://www.linkedin.com/pulse/users-cant-tell-you-what-want-daan-lindhout" target="_blank" class="article-card">
+                <div class="article-date">2016</div>
+                <h2 class="article-title">Users Can't Tell You What They Want</h2>
+                <p class="article-excerpt">It's a common belief at companies large and small. But to dismiss user feedback under this moniker is a fallacy. Users can tell you want they want—they just cannot design a great product for you.</p>
+                <span class="article-category">Research</span>
+            </a>
+            
+            <!-- Design Philosophy -->
+            <a href="https://www.linkedin.com/in/daanlindhout/recent-activity/articles/" target="_blank" class="article-card">
+                <div class="article-date">December 2014</div>
+                <h2 class="article-title">The Craft of Software Design</h2>
+                <p class="article-excerpt">Is there really a lack of craft in UI design? Having lived in both industrial design and UI design worlds, I can honestly say there is as much if not more craft in UI design than physical product design. Here's why.</p>
+                <span class="article-category">Design</span>
+            </a>
+            
+            <a href="https://www.linkedin.com/pulse/cheating-user-experience-daan-lindhout" target="_blank" class="article-card">
+                <div class="article-date">2016</div>
+                <h2 class="article-title">Cheating User Experience</h2>
+                <p class="article-excerpt">Sometimes the best UX solution isn't designing a better interface—it's removing the need for an interface altogether. Thoughts on when to design and when to simplify.</p>
+                <span class="article-category">Design</span>
+            </a>
+            
+            <a href="https://www.linkedin.com/pulse/scrappy-crappy-daan-lindhout" target="_blank" class="article-card">
+                <div class="article-date">2016</div>
+                <h2 class="article-title">Scrappy vs Crappy</h2>
+                <p class="article-excerpt">There's an important distinction between being scrappy and shipping crappy work. How to move fast without sacrificing quality, and knowing where to draw the line.</p>
+                <span class="article-category">Quality</span>
+            </a>
+            
+            <a href="https://www.linkedin.com/pulse/business-luck-daan-lindhout" target="_blank" class="article-card">
+                <div class="article-date">2016</div>
+                <h2 class="article-title">Business Luck</h2>
+                <p class="article-excerpt">Reflections on the role of luck in business success, and how to position yourself and your team to be ready when opportunity arrives.</p>
+                <span class="article-category">Career</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2025 Daan Lindhout</p>
+        <p class="footer-text">Seattle, WA</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleIcons(newTheme);
+        }
+        function updateToggleIcons(theme) {
+            const sunIcon = document.querySelector('.sun-icon');
+            const moonIcon = document.querySelector('.moon-icon');
+            if (theme === 'light') {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            } else {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            }
+        }
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+            document.addEventListener('DOMContentLoaded', function() {
+                updateToggleIcons(localStorage.getItem('theme') || 'dark');
+            });
+        })();
+    </script>
+</body>
+</html>
