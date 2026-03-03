@@ -59,14 +59,16 @@
         .outcomes-list li { display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem 0; border-bottom: 1px solid var(--border); font-size: 1.125rem; color: var(--text-secondary); }
         .outcomes-list li:last-child { border-bottom: none; }
         .outcomes-list li::before { content: '→'; color: var(--accent); font-weight: bold; flex-shrink: 0; }
-
-        .next-case { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 6rem 4rem; }
-        .next-case-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: flex-end; align-items: center; }
-        .next-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 1rem; }
-        .next-case h3 { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; line-height: 1; margin: 0; }
+        .next-case { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 4rem; }
+        .next-case-inner { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .next-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.75rem; }
+        .next-case h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; line-height: 1; margin: 0; }
         .next-case a { text-decoration: none; color: var(--text-primary); transition: color 0.3s ease; }
         .next-case a:hover { color: var(--accent); }
-        .next-arrow { font-size: 4rem; color: var(--accent); }
+        .back-link { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; }
+        .back-link:hover { color: var(--accent); }
+
+
 
         footer { padding: 2rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; align-items: center; }
         .footer-text { font-size: 0.875rem; color: var(--text-secondary); }
@@ -77,8 +79,6 @@
         }
         @media (max-width: 768px) {
             .stats-grid { grid-template-columns: 1fr; gap: 2rem;             nav { padding: 1rem 1.5rem; } .nav-links { gap: 1rem; } .nav-links a { font-size: 0.65rem; letter-spacing: 0.03em; }}
-            .next-case-inner { flex-direction: column; text-align: center; gap: 2rem; }
-            .next-case h3 { font-size: 3rem; }
         }
     </style>
 </head>
@@ -201,18 +201,17 @@
             </ul>
         </div>
     </section>
-
     <section class="next-case">
         <div class="next-case-inner">
+            <a href="portfolio.html" class="back-link">← Back to Portfolio</a>
             <div>
                 <p class="next-label">Next Case Study</p>
-                <h3><a href="sumtotal.html">SUMTOTAL SYSTEMS →</a></h3>
+                <h3><a href="microsoft.html">MICROSOFT WINDOWS →</a></h3>
             </div>
-            <span class="next-arrow">→</span>
         </div>
     </section>
 
-    <footer>
+<footer>
         <p class="footer-text">© 2025 Daan Lindhout</p>
         <p class="footer-text">Seattle, WA</p>
     </footer>

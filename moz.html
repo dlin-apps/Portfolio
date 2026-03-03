@@ -55,10 +55,15 @@
         .case-section .marketing-grid img:first-child { width: 45%; }
         .case-section .marketing-grid img:nth-child(2) { width: 35%; }
         .case-section .marketing-grid img:last-child { width: 15%; }
+        .next-case { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 4rem; }
+        .next-case-inner { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .next-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.75rem; }
+        .next-case h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; line-height: 1; margin: 0; }
+        .next-case a { text-decoration: none; color: var(--text-primary); transition: color 0.3s ease; }
+        .next-case a:hover { color: var(--accent); }
+        .back-link { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; }
+        .back-link:hover { color: var(--accent); }
 
-        .case-nav { display: flex; justify-content: space-between; padding: 3rem 4rem; border-top: 1px solid var(--border); max-width: 900px; margin: 0 auto; }
-        .case-nav a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; }
-        .case-nav a:hover { color: var(--accent); }
 
         footer { padding: 1.5rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; align-items: center; gap: 2rem; }
         .footer-text { font-size: 0.8rem; color: var(--text-secondary); }
@@ -232,13 +237,17 @@
         </div>
 
     </section>
+    <section class="next-case">
+        <div class="next-case-inner">
+            <a href="portfolio.html" class="back-link">← Back to Portfolio</a>
+            <div>
+                <p class="next-label">Next Case Study</p>
+                <h3><a href="socrata.html">SOCRATA →</a></h3>
+            </div>
+        </div>
+    </section>
 
-    <div class="case-nav">
-        <a href="socrata.html">← Previous: Socrata</a>
-        <a href="f5.html">Next: F5 Networks →</a>
-    </div>
-
-    <footer>
+<footer>
         <p class="footer-text">© 2025 Daan Lindhout</p>
         <p class="footer-text">Seattle, WA</p>
     </footer>
