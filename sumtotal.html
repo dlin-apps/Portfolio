@@ -87,6 +87,31 @@
             .next-case-inner { flex-direction: column; text-align: center; gap: 2rem; }
             .next-case h3 { font-size: 3rem; }
         }
+    
+        /* Testimonials */
+        .testimonials-section { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border); }
+        .testimonials-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; margin-bottom: 2rem; color: var(--accent); }
+        .testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        .testimonial-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; }
+        .testimonial-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; font-style: italic; margin-bottom: 1rem; }
+        .testimonial-author { display: flex; flex-direction: column; gap: 0.15rem; }
+        .testimonial-name { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--accent); }
+        .testimonial-title { font-size: 0.7rem; color: var(--text-secondary); }
+        
+        /* Awards */
+        .award-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent-dim); border: 1px solid var(--accent); padding: 0.5rem 1rem; margin-top: 1.5rem; }
+        .award-icon { color: var(--accent); }
+        .award-text { font-size: 0.8rem; color: var(--text-primary); }
+        .award-year { font-size: 0.7rem; color: var(--text-secondary); margin-left: 0.5rem; }
+        
+        /* Patents */
+        .patents-section { margin-top: 2rem; padding: 1.5rem; background: var(--bg-card); border: 1px solid var(--border); }
+        .patents-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; color: var(--accent); margin-bottom: 1rem; }
+        .patent-list { list-style: none; padding: 0; margin: 0; }
+        .patent-list li { font-size: 0.85rem; color: var(--text-secondary); padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+        .patent-list li:last-child { border-bottom: none; }
+        .patent-number { font-family: monospace; color: var(--text-primary); font-size: 0.75rem; }
+
     </style>
 </head>
 <body>
@@ -299,7 +324,33 @@
                 <li>Created comprehensive 360° feedback and performance management interfaces</li>
             </ul>
         </div>
-    </section>
+    
+        <div class="award-badge">
+            <svg class="award-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+            <span class="award-text">Power of One Team Award</span>
+            <span class="award-year">2008</span>
+        </div>
+
+        <div class="testimonials-section">
+            <h2>What Colleagues Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Daan is simply the best in his field. His natural flair for imagination and creativity, coupled with superlative business adaptation and teamwork makes him a perfect leader for User Experience. He created the UX team at SumTotal and induced a dose of UX culture in the entire company."</p>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">Vinodh Soundarajan</span>
+                        <span class="testimonial-title">Chief Technology Officer, Prochant</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"With his leadership, the design team quickly became a visible and driving force in the company. Daan has a way of kindly pushing his team to stretch, innovate, and design products that wow management and please customers."</p>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">Matthew Hamm</span>
+                        <span class="testimonial-title">Director of Digital Experience, Scaled Agile</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
 
     <section class="next-case">
         <div class="next-case-inner">

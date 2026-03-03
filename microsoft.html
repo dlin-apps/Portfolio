@@ -102,6 +102,31 @@
             .big-number { font-size: 4rem; }
             .comparison-number { font-size: 3rem; }
         }
+    
+        /* Testimonials */
+        .testimonials-section { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border); }
+        .testimonials-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; margin-bottom: 2rem; color: var(--accent); }
+        .testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        .testimonial-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; }
+        .testimonial-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; font-style: italic; margin-bottom: 1rem; }
+        .testimonial-author { display: flex; flex-direction: column; gap: 0.15rem; }
+        .testimonial-name { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--accent); }
+        .testimonial-title { font-size: 0.7rem; color: var(--text-secondary); }
+        
+        /* Awards */
+        .award-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent-dim); border: 1px solid var(--accent); padding: 0.5rem 1rem; margin-top: 1.5rem; }
+        .award-icon { color: var(--accent); }
+        .award-text { font-size: 0.8rem; color: var(--text-primary); }
+        .award-year { font-size: 0.7rem; color: var(--text-secondary); margin-left: 0.5rem; }
+        
+        /* Patents */
+        .patents-section { margin-top: 2rem; padding: 1.5rem; background: var(--bg-card); border: 1px solid var(--border); }
+        .patents-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; color: var(--accent); margin-bottom: 1rem; }
+        .patent-list { list-style: none; padding: 0; margin: 0; }
+        .patent-list li { font-size: 0.85rem; color: var(--text-secondary); padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+        .patent-list li:last-child { border-bottom: none; }
+        .patent-number { font-family: monospace; color: var(--text-primary); font-size: 0.75rem; }
+
     </style>
 </head>
 <body>
@@ -277,7 +302,43 @@
                 <li>Shipped with millions of Windows installations worldwide</li>
             </ul>
         </div>
-    </section>
+    
+        <div class="patents-section">
+            <h3>Related Patents</h3>
+            <ul class="patent-list">
+                <li>Input Device for Scrolling in Multiple Directions (Tilt Wheel) <span class="patent-number">#7,463,239</span></li>
+                <li>Scrolling Apparatus Multi-directional Movement <span class="patent-number">#7,193,612</span></li>
+                <li>Scroll Wheel Assembly for Manipulating Images <span class="patent-number">#7,042,441</span></li>
+                <li>Destination Shortcuts <span class="patent-number">#20040239637</span></li>
+            </ul>
+        </div>
+
+        <div class="award-badge">
+            <svg class="award-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+            <span class="award-text">International Stevie Award</span>
+            <span class="award-year">2005</span>
+        </div>
+
+        <div class="testimonials-section">
+            <h2>What Colleagues Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Daan and I worked with product planning, engineering, and project management to define ground-breaking technology development for digital ink and paper. Daan was instrumental in leading the design effort, creating numerous concepts for user research that were of exemplary quality."</p>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">Hugh McLoone</span>
+                        <span class="testimonial-title">Ergonomist/User Researcher, T-Mobile</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Daan and his team quickly generated a collection of organizing themes and concepts which allowed us to make smart choices in Vista and Windows 7. People are still blown away when I show them the original concept work. I'd work with Daan again any time."</p>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">Mark Svancarek</span>
+                        <span class="testimonial-title">Principal Program Manager, Microsoft</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
 
     <section class="next-case">
         <div class="next-case-inner">

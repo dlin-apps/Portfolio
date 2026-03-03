@@ -63,6 +63,31 @@
             .hero-image { padding-left: 2rem; padding-right: 2rem; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
             nav, .case-hero, .case-content, .case-nav, footer,nav { padding: 1rem 1.5rem; } .nav-links { gap: 1rem; } .nav-links a { font-size: 0.65rem; letter-spacing: 0.03em; }}
+    
+        /* Testimonials */
+        .testimonials-section { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border); }
+        .testimonials-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; margin-bottom: 2rem; color: var(--accent); }
+        .testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        .testimonial-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; }
+        .testimonial-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; font-style: italic; margin-bottom: 1rem; }
+        .testimonial-author { display: flex; flex-direction: column; gap: 0.15rem; }
+        .testimonial-name { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--accent); }
+        .testimonial-title { font-size: 0.7rem; color: var(--text-secondary); }
+        
+        /* Awards */
+        .award-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent-dim); border: 1px solid var(--accent); padding: 0.5rem 1rem; margin-top: 1.5rem; }
+        .award-icon { color: var(--accent); }
+        .award-text { font-size: 0.8rem; color: var(--text-primary); }
+        .award-year { font-size: 0.7rem; color: var(--text-secondary); margin-left: 0.5rem; }
+        
+        /* Patents */
+        .patents-section { margin-top: 2rem; padding: 1.5rem; background: var(--bg-card); border: 1px solid var(--border); }
+        .patents-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; color: var(--accent); margin-bottom: 1rem; }
+        .patent-list { list-style: none; padding: 0; margin: 0; }
+        .patent-list li { font-size: 0.85rem; color: var(--text-secondary); padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+        .patent-list li:last-child { border-bottom: none; }
+        .patent-number { font-family: monospace; color: var(--text-primary); font-size: 0.75rem; }
+
     </style>
 </head>
 <body>
@@ -187,6 +212,34 @@
             <p>Of course part of building a UX team at a company also includes building a UX team identity. Here is a key piece of that representing the many facets and craft of UX. Besides using this in presentations, guidelines and swag, we also used it to recognize others. We ran a UX ambassador program to recognize individuals not on the UX team who contributed significantly to the user experience of our products by giving them swag with this brand on it to proudly wear (and they did).</p>
             <img src="images/qualtrics/identity.png" alt="Qualtrics UX Team Identity">
         </div>
+        <div class="patents-section">
+            <h3>Related Patents</h3>
+            <ul class="patent-list">
+                <li>Guiding Creation of an Electronic Survey <span class="patent-number">#10,909,868</span></li>
+                <li>Text Topic Exploration <span class="patent-number">#20055.536</span></li>
+            </ul>
+        </div>
+
+        <div class="testimonials-section">
+            <h2>What Colleagues Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Daan established Qualtrics' User Experience team, from creating its UX hiring practices, to hiring the team, to developing a design language, to building pattern libraries and style guides. Beyond building teams he is dedicated to building great products."</p>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">Jerrod Larson</span>
+                        <span class="testimonial-title">Director of Product Design, Vanta</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"His design leadership contributed significantly to Survey Platform growth in customer satisfaction, renewal rate and usage! Daan was able to get everyone along—Product, Engineering, UX, Marketing—on making tough product design decisions."</p>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">Milind Kopikar</span>
+                        <span class="testimonial-title">Product Manager, Qualtrics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <div class="case-nav">

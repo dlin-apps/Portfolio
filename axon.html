@@ -64,6 +64,31 @@
         @media (max-width: 768px) {
             nav, .case-hero, .case-content, .case-nav, footer, .stats-bar, .hero-image,.stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
             nav { padding: 1rem 1.5rem; } .nav-links { gap: 1rem; } .nav-links a { font-size: 0.65rem; letter-spacing: 0.03em; }}
+    
+        /* Testimonials */
+        .testimonials-section { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border); }
+        .testimonials-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; margin-bottom: 2rem; color: var(--accent); }
+        .testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        .testimonial-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; }
+        .testimonial-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; font-style: italic; margin-bottom: 1rem; }
+        .testimonial-author { display: flex; flex-direction: column; gap: 0.15rem; }
+        .testimonial-name { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--accent); }
+        .testimonial-title { font-size: 0.7rem; color: var(--text-secondary); }
+        
+        /* Awards */
+        .award-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent-dim); border: 1px solid var(--accent); padding: 0.5rem 1rem; margin-top: 1.5rem; }
+        .award-icon { color: var(--accent); }
+        .award-text { font-size: 0.8rem; color: var(--text-primary); }
+        .award-year { font-size: 0.7rem; color: var(--text-secondary); margin-left: 0.5rem; }
+        
+        /* Patents */
+        .patents-section { margin-top: 2rem; padding: 1.5rem; background: var(--bg-card); border: 1px solid var(--border); }
+        .patents-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; color: var(--accent); margin-bottom: 1rem; }
+        .patent-list { list-style: none; padding: 0; margin: 0; }
+        .patent-list li { font-size: 0.85rem; color: var(--text-secondary); padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+        .patent-list li:last-child { border-bottom: none; }
+        .patent-number { font-family: monospace; color: var(--text-primary); font-size: 0.75rem; }
+
     </style>
 </head>
 <body>
@@ -257,6 +282,33 @@
                 <iframe src="https://player.vimeo.com/video/624790888" title="Axon UX Interview" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
+        <div class="testimonials-section">
+            <h2>What Colleagues Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Daan had a big hand in growing our team and increasing the maturity of our organization. He led us to grow our influence within Axon and expand our teams focus to include UX research and technical writing disciplines. Axon is well positioned for its next stage of growth due to the structure he established for our team."</p>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">David P. O'Hara</span>
+                        <span class="testimonial-title">Director of Product Design, Axon</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"He had a clear vision for the role in which design plays in a large organization and he advocated hard for it. Without him, we could never have the room to make such impactful changes to the lives of our users. He is a phenomenal design leader that will take your organization to the next level."</p>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">Jay Vu</span>
+                        <span class="testimonial-title">Senior Product Designer, Axon</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Daan did an excellent job balancing short-term product-specific goals with longer-term work, including establishing reusable patterns and components for our entire product portfolio. He has considerable strengths in stakeholder engagement, especially with senior executives."</p>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">Sayce Falk</span>
+                        <span class="testimonial-title">AI/ML Product Management Lead, Google (formerly Axon)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <div class="case-nav">

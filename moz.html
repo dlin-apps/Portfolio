@@ -70,6 +70,31 @@
             .case-section .marketing-grid img { width: 100% !important; }
             .case-section .marketing-grid img:last-child { width: 180px !important; }
         }
+    
+        /* Testimonials */
+        .testimonials-section { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border); }
+        .testimonials-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; margin-bottom: 2rem; color: var(--accent); }
+        .testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        .testimonial-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; }
+        .testimonial-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; font-style: italic; margin-bottom: 1rem; }
+        .testimonial-author { display: flex; flex-direction: column; gap: 0.15rem; }
+        .testimonial-name { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--accent); }
+        .testimonial-title { font-size: 0.7rem; color: var(--text-secondary); }
+        
+        /* Awards */
+        .award-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent-dim); border: 1px solid var(--accent); padding: 0.5rem 1rem; margin-top: 1.5rem; }
+        .award-icon { color: var(--accent); }
+        .award-text { font-size: 0.8rem; color: var(--text-primary); }
+        .award-year { font-size: 0.7rem; color: var(--text-secondary); margin-left: 0.5rem; }
+        
+        /* Patents */
+        .patents-section { margin-top: 2rem; padding: 1.5rem; background: var(--bg-card); border: 1px solid var(--border); }
+        .patents-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; color: var(--accent); margin-bottom: 1rem; }
+        .patent-list { list-style: none; padding: 0; margin: 0; }
+        .patent-list li { font-size: 0.85rem; color: var(--text-secondary); padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+        .patent-list li:last-child { border-bottom: none; }
+        .patent-number { font-family: monospace; color: var(--text-primary); font-size: 0.75rem; }
+
     </style>
 </head>
 <body>
@@ -180,6 +205,32 @@
                 <img src="images/moz/hero.png" alt="Moz Vertical Banner">
             </div>
         </div>
+        <div class="award-badge">
+            <svg class="award-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+            <span class="award-text">#2 Most Recognized Marketing Tech Brand</span>
+            <span class="award-year">2014</span>
+        </div>
+
+        <div class="testimonials-section">
+            <h2>What Colleagues Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"It's not often you have a manager that effects a company in such a positive way as Daan did at Moz. He really cares about the people on his team and went out of his way to ensure that we all grew as professionals. Daan put in place a design process that we still use here at Moz."</p>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">Derric Wise</span>
+                        <span class="testimonial-title">Sr. Marketing Design, Merkle</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Daan set a process in place that allowed us to easily manage our goals and pushed us to be the strong voice of design. He has the ability to nurture the skills that someone has and guide them in the right direction. His feedback and leadership helped me develop as an individual."</p>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">Nick Santos</span>
+                        <span class="testimonial-title">Staff Product Designer, Spotify</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <div class="case-nav">

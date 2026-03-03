@@ -86,6 +86,31 @@
             .next-case-inner { flex-direction: column; text-align: center; gap: 2rem; }
             .next-case h3 { font-size: 3rem; }
         }
+    
+        /* Testimonials */
+        .testimonials-section { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border); }
+        .testimonials-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; margin-bottom: 2rem; color: var(--accent); }
+        .testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        .testimonial-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; }
+        .testimonial-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; font-style: italic; margin-bottom: 1rem; }
+        .testimonial-author { display: flex; flex-direction: column; gap: 0.15rem; }
+        .testimonial-name { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--accent); }
+        .testimonial-title { font-size: 0.7rem; color: var(--text-secondary); }
+        
+        /* Awards */
+        .award-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent-dim); border: 1px solid var(--accent); padding: 0.5rem 1rem; margin-top: 1.5rem; }
+        .award-icon { color: var(--accent); }
+        .award-text { font-size: 0.8rem; color: var(--text-primary); }
+        .award-year { font-size: 0.7rem; color: var(--text-secondary); margin-left: 0.5rem; }
+        
+        /* Patents */
+        .patents-section { margin-top: 2rem; padding: 1.5rem; background: var(--bg-card); border: 1px solid var(--border); }
+        .patents-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; color: var(--accent); margin-bottom: 1rem; }
+        .patent-list { list-style: none; padding: 0; margin: 0; }
+        .patent-list li { font-size: 0.85rem; color: var(--text-secondary); padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+        .patent-list li:last-child { border-bottom: none; }
+        .patent-number { font-family: monospace; color: var(--text-primary); font-size: 0.75rem; }
+
     </style>
 </head>
 <body>
@@ -247,7 +272,40 @@
                 <li>Extended enterprise capabilities to mobile platforms</li>
             </ul>
         </div>
-    </section>
+    
+        <div class="patents-section">
+            <h3>Related Patents</h3>
+            <ul class="patent-list">
+                <li>Methods for Managing a Network Environment <span class="patent-number">#14/215,325</span></li>
+            </ul>
+        </div>
+
+        <div class="award-badge">
+            <svg class="award-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+            <span class="award-text">Five Star Award</span>
+            <span class="award-year">2012</span>
+        </div>
+
+        <div class="testimonials-section">
+            <h2>What Colleagues Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Daan is easily the best UX leader I have worked with. He brings instant credibility with his structured thought process and his ability to communicate to engineers in a manner that they can relate to. I have become a better UI engineer as a result of his tutelage."</p>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">Raghavan Kollivakkam</span>
+                        <span class="testimonial-title">Cofounder & Head of Engineering, RIGOR AI</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Daan is a stellar design leader, with the ability to quickly filter the noise and find the signal, even in the most large-scale products and complex user scenarios. He has a solid track record of building UX teams within organizations that really do need them."</p>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">Bob Lynch</span>
+                        <span class="testimonial-title">Principal Designer & Co-founder, LDG</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
 
     <section class="next-case">
         <div class="next-case-inner">
