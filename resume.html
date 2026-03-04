@@ -45,20 +45,56 @@
         .expertise-item h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 0.5rem; }
         .expertise-item p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
 
-        .experience-item { padding: 2rem 0; border-bottom: 1px solid var(--border); }
-        .experience-item:last-child { border-bottom: none; }
-        .experience-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
-        .experience-company { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; color: var(--text-primary); line-height: 1.1; }
-        .experience-role { font-size: 1rem; color: var(--accent); font-weight: 500; margin-bottom: 0.5rem; }
-        .experience-dates { font-size: 0.85rem; color: var(--text-secondary); }
-        .experience-desc { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
-        .experience-desc ul { margin-top: 1rem; padding-left: 1.25rem; }
-        .experience-desc li { margin-bottom: 0.5rem; }
+        /* Timeline Columns Layout */
+        .timeline-columns { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+        .timeline-column { display: flex; flex-direction: column; gap: 3rem; }
 
+        /* Timeline group header */
+        .timeline-group { position: relative; }
+        .timeline-group-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
+        .timeline-group-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; color: var(--text-primary); letter-spacing: 0.05em; }
+        .timeline-group-count { font-size: 0.7rem; color: var(--text-secondary); background: var(--bg-card); border: 1px solid var(--border); padding: 0.25rem 0.6rem; border-radius: 2px; }
+
+        /* Interactive Timeline */
+        .interactive-timeline { position: relative; padding-left: 32px; }
+        .interactive-timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; background: var(--border); }
+        
+        .timeline-row { position: relative; display: grid; grid-template-columns: 70px 1fr; gap: 1rem; padding: 1rem 0; padding-right: 0.75rem; cursor: pointer; transition: background 0.3s ease; border-radius: 4px; margin-left: -0.5rem; padding-left: 0.5rem; }
+        .timeline-row:hover { background: var(--bg-card); }
+        
+        .timeline-dot { position: absolute; left: -26px; top: 1.2rem; width: 14px; height: 14px; background: var(--bg-primary); border: 2px solid var(--border); border-radius: 50%; transition: all 0.3s ease; }
+        .timeline-dot::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 5px; height: 5px; background: var(--accent); border-radius: 50%; opacity: 0; transition: opacity 0.3s ease; }
+        .timeline-row:hover .timeline-dot { border-color: var(--accent); transform: scale(1.15); }
+        .timeline-row:hover .timeline-dot::before { opacity: 1; }
+        
+        .timeline-year { font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem; color: var(--text-secondary); padding-top: 0.1rem; transition: color 0.3s ease; white-space: nowrap; }
+        .timeline-row:hover .timeline-year { color: var(--accent); }
+        
+        .timeline-main { display: flex; flex-direction: column; }
+        .timeline-header { display: flex; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+        .timeline-company { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--accent); line-height: 1.1; }
+        .timeline-role { font-size: 0.7rem; font-weight: 500; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+        
+        /* Responsibilities - always visible */
+        .timeline-responsibilities { margin-top: 0.5rem; }
+        .timeline-responsibilities ul { list-style: none; padding: 0; margin: 0; }
+        .timeline-responsibilities li { font-size: 0.85rem; color: var(--text-secondary); padding: 0.2rem 0; padding-left: 1rem; position: relative; line-height: 1.5; }
+        .timeline-responsibilities li::before { content: ''; position: absolute; left: 0; top: 0.55rem; width: 4px; height: 4px; background: var(--border); border-radius: 50%; }
+        .timeline-responsibilities p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
+        
+        /* Key Outcomes - always visible */
+        .timeline-outcomes-content { padding-top: 0.75rem; margin-top: 0.75rem; border-top: 1px solid var(--border); }
+        .timeline-outcomes-content h4 { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+        .timeline-outcomes-content ul { list-style: none; padding: 0; margin: 0; }
+        .timeline-outcomes-content li { font-size: 0.8rem; color: var(--text-primary); padding: 0.2rem 0; padding-left: 1rem; position: relative; }
+        .timeline-outcomes-content li::before { content: ''; position: absolute; left: 0; top: 0.5rem; width: 4px; height: 4px; background: var(--accent); border-radius: 50%; }
+
+        /* Education */
         .education-item { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 0.5rem; }
         .education-item:last-child { border-bottom: none; }
         .education-degree { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; }
         .education-school { font-size: 0.9rem; color: var(--text-secondary); }
+        .education-dates { font-size: 0.85rem; color: var(--text-secondary); }
 
         .awards-list { display: flex; flex-wrap: wrap; gap: 1rem; }
         .award-item { background: var(--bg-card); border: 1px solid var(--border); padding: 1rem 1.5rem; font-size: 0.85rem; color: var(--text-secondary); }
@@ -67,18 +103,21 @@
         .footer-text { font-size: 0.8rem; color: var(--text-secondary); }
 
         @media (max-width: 1024px) {
-            nav, .section, footer { padding-left: 2rem; padding-right: 2rem; }
+            .section, footer { padding-left: 2rem; padding-right: 2rem; }
             .hero-content { padding-left: 2rem; padding-right: 2rem; }
             .expertise-grid { grid-template-columns: 1fr; }
         }
+        
         @media (max-width: 768px) {
             .hero h1 { font-size: 3rem; }
-            .experience-header { flex-direction: column; }
+            .timeline-row { grid-template-columns: 60px 1fr; }
+            .timeline-year { font-size: 0.75rem; }
+            .timeline-company { font-size: 1.3rem; }
         }
     </style>
 </head>
 <body>
-        <nav></nav>
+    <nav></nav>
 
     <section class="hero">
         <div class="hero-content">
@@ -100,22 +139,10 @@
             <h2 class="section-title">SKILLS & CAPABILITIES</h2>
         </div>
         <div class="expertise-grid">
-            <div class="expertise-item">
-                <h3>DESIGN LEADERSHIP</h3>
-                <p>Team building and management (5→60+), mentoring, design strategy, cross-functional partnership, executive influence</p>
-            </div>
-            <div class="expertise-item">
-                <h3>PRODUCT CRAFT</h3>
-                <p>End-to-end product design across responsive web, iOS, Android, desktop, and hardware; UX, visual design, information architecture</p>
-            </div>
-            <div class="expertise-item">
-                <h3>AI & INNOVATION</h3>
-                <p>AI/ML-powered experiences, LLM product design, agentic UX patterns, responsible AI, human-centered AI design</p>
-            </div>
-            <div class="expertise-item">
-                <h3>TOOLS & METHODS</h3>
-                <p>Figma, prototyping, user research, usability testing, data analytics, design systems, Agile/Jira</p>
-            </div>
+            <div class="expertise-item"><h3>DESIGN LEADERSHIP</h3><p>Team building and management (5→60+), mentoring, design strategy, cross-functional partnership, executive influence</p></div>
+            <div class="expertise-item"><h3>PRODUCT CRAFT</h3><p>End-to-end product design across responsive web, iOS, Android, desktop, and hardware; UX, visual design, information architecture</p></div>
+            <div class="expertise-item"><h3>AI & INNOVATION</h3><p>AI/ML-powered experiences, LLM product design, agentic UX patterns, responsible AI, human-centered AI design</p></div>
+            <div class="expertise-item"><h3>TOOLS & METHODS</h3><p>Figma, prototyping, user research, usability testing, data analytics, design systems, Agile/Jira</p></div>
         </div>
     </section>
 
@@ -124,164 +151,310 @@
             <p class="section-label">Experience</p>
             <h2 class="section-title">CAREER HISTORY</h2>
         </div>
-
-        <div class="experience-item">
-            <div class="experience-header">
-                <div>
-                    <h3 class="experience-company">NORTHEASTERN UNIVERSITY</h3>
-                    <p class="experience-role">Adjunct Professor</p>
+        
+        <div class="timeline-columns">
+            <div class="timeline-column">
+                <div class="timeline-group">
+                    <div class="timeline-group-header">
+                        <h3 class="timeline-group-title">PROFESSIONAL</h3>
+                        <span class="timeline-group-count">9 positions</span>
+                    </div>
+                    
+                    <div class="interactive-timeline">
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2025–Now</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">Spoom Design</h4>
+                                    <span class="timeline-role">Owner</span>
+                                </div>
+                                <div class="timeline-responsibilities">
+                                    <ul>
+                                        <li>Designing and building proprietary financial technology applications and quantitative trading tools</li>
+                                        <li>Developing sophisticated trading scanners, portfolio management dashboards, and market analysis systems</li>
+                                        <li>Combining 25+ years of UX expertise with hands-on technical implementation in Python and web technologies</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-outcomes"><div class="timeline-outcomes-inner"><div class="timeline-outcomes-content">
+                                    <h4>Key Outcomes</h4>
+                                    <ul>
+                                        <li>Built comprehensive swing trading scanner with automated paper trading</li>
+                                        <li>Created portfolio rebalancing tools with strategic allocation management</li>
+                                        <li>Integrated multiple financial data APIs and ML-based market analysis</li>
+                                    </ul>
+                                </div></div></div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2023–2025</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">Workday</h4>
+                                    <span class="timeline-role">Senior Director of UX</span>
+                                </div>
+                                <div class="timeline-responsibilities">
+                                    <ul>
+                                        <li>Led global Product Design across Workday's enterprise platform (HR, Finance, Higher Education), evolving large-scale experiences into a cohesive ecosystem</li>
+                                        <li>Partnered with Product, Engineering, and Data leadership on strategy, prioritization, and multi-year roadmaps</li>
+                                        <li>Defined and led UX strategy for AI-powered enterprise capabilities, ensuring usability, trust, and scale</li>
+                                        <li>Raised product craft and UX maturity across vertical and horizontal initiatives</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-outcomes"><div class="timeline-outcomes-inner"><div class="timeline-outcomes-content">
+                                    <h4>Key Outcomes</h4>
+                                    <ul>
+                                        <li>Established AI/ML UX strategy adopted across product portfolio</li>
+                                        <li>Drove measurable improvements in design system adoption</li>
+                                        <li>Built cross-functional partnerships improving product velocity</li>
+                                    </ul>
+                                </div></div></div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2018–2023</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">Axon</h4>
+                                    <span class="timeline-role">VP Product Design, UX Research & Technical Writing</span>
+                                </div>
+                                <div class="timeline-responsibilities">
+                                    <ul>
+                                        <li>Scaled UX organization from 5 to 60+ across Product Design, UX Research, Technical Writing, and Design Operations</li>
+                                        <li>Owned user experience across mission-critical software platforms and hardware ecosystems</li>
+                                        <li>Created unified Axon Design System across software and hardware</li>
+                                        <li>Led AI-enabled product design while championing responsible and ethical AI practices</li>
+                                        <li>Built global UX organization from scratch, reporting directly to company co-founder</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-outcomes"><div class="timeline-outcomes-inner"><div class="timeline-outcomes-content">
+                                    <h4>Key Outcomes</h4>
+                                    <ul>
+                                        <li>12x team growth while maintaining quality and culture</li>
+                                        <li>Design System achieved 80%+ adoption across products</li>
+                                        <li>Established ethical AI design practices as industry model</li>
+                                    </ul>
+                                </div></div></div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2015–2018</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">Qualtrics</h4>
+                                    <span class="timeline-role">Head of UX Design & Research</span>
+                                </div>
+                                <div class="timeline-responsibilities">
+                                    <ul>
+                                        <li>Built and led global UX Design & Research organization</li>
+                                        <li>Unified seven applications and acquisitions into the Experience Management (XM) platform</li>
+                                        <li>Created XM brand concept central to positioning and $8B SAP acquisition</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-outcomes"><div class="timeline-outcomes-inner"><div class="timeline-outcomes-content">
+                                    <h4>Key Outcomes</h4>
+                                    <ul>
+                                        <li>XM platform became cornerstone of $8B acquisition by SAP</li>
+                                        <li>Unified 7 disparate products into cohesive experience</li>
+                                        <li>Brand concept adopted as company-wide positioning</li>
+                                    </ul>
+                                </div></div></div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2014–2015</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">Socrata</h4>
+                                    <span class="timeline-role">Director of Design & Research</span>
+                                </div>
+                                <div class="timeline-responsibilities">
+                                    <ul>
+                                        <li>Led complete platform redesign, creating a patentable UI paradigm for data visualization and exploration</li>
+                                        <li>Established User Research discipline by proving ROI of qualitative and quantitative methods</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-outcomes"><div class="timeline-outcomes-inner"><div class="timeline-outcomes-content">
+                                    <h4>Key Outcomes</h4>
+                                    <ul>
+                                        <li>2 patents granted for data visualization innovations</li>
+                                        <li>Research practice became model for organization</li>
+                                    </ul>
+                                </div></div></div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2013–2014</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">Moz</h4>
+                                    <span class="timeline-role">Director of Design & UX</span>
+                                </div>
+                                <div class="timeline-responsibilities">
+                                    <ul>
+                                        <li>Led UX, Creative Direction, Branding, and Motion Design</li>
+                                        <li>Elevated Moz to #2 most recognized Marketing Technology brand</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-outcomes"><div class="timeline-outcomes-inner"><div class="timeline-outcomes-content">
+                                    <h4>Key Outcomes</h4>
+                                    <ul>
+                                        <li>#2 most recognized Marketing Technology brand (2014)</li>
+                                        <li>Established cohesive brand identity across all touchpoints</li>
+                                    </ul>
+                                </div></div></div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2010–2013</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">F5 Networks</h4>
+                                    <span class="timeline-role">UX Manager</span>
+                                </div>
+                                <div class="timeline-responsibilities">
+                                    <ul>
+                                        <li>Created BIG-IQ UI paradigm applied across F5 products</li>
+                                        <li>Received Five Star Award, the company's highest employee recognition</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-outcomes"><div class="timeline-outcomes-inner"><div class="timeline-outcomes-content">
+                                    <h4>Key Outcomes</h4>
+                                    <ul>
+                                        <li>UI paradigm adopted across entire product portfolio</li>
+                                        <li>Five Star Award—highest employee recognition</li>
+                                    </ul>
+                                </div></div></div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2007–2010</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">SumTotal Systems</h4>
+                                    <span class="timeline-role">Sr. Designer → UX Manager</span>
+                                </div>
+                                <div class="timeline-responsibilities">
+                                    <ul>
+                                        <li>Started UX team and discipline; managed designers across US and India</li>
+                                        <li>Won Power of One team award</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-outcomes"><div class="timeline-outcomes-inner"><div class="timeline-outcomes-content">
+                                    <h4>Key Outcomes</h4>
+                                    <ul>
+                                        <li>Established UX practice from scratch</li>
+                                        <li>Power of One team award for collaboration</li>
+                                    </ul>
+                                </div></div></div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2000–2007</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">Microsoft</h4>
+                                    <span class="timeline-role">Product Designer → Product Designer II</span>
+                                </div>
+                                <div class="timeline-responsibilities">
+                                    <ul>
+                                        <li>Reduced Windows OOBE from 22 min / 50% failure to 2:10 / 0% failure</li>
+                                        <li>Invented Microsoft Tilt Wheel, International Stevie Award for Best New Product</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-outcomes"><div class="timeline-outcomes-inner"><div class="timeline-outcomes-content">
+                                    <h4>Key Outcomes</h4>
+                                    <ul>
+                                        <li>10x improvement in Windows setup success rate</li>
+                                        <li>Tilt Wheel shipped on 100M+ devices</li>
+                                        <li>International Stevie Award for Best New Product</li>
+                                    </ul>
+                                </div></div></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <span class="experience-dates">Jan 2025 – Present</span>
             </div>
-            <div class="experience-desc">
-                <p>Teaching graduate UX Design & Research courses with emphasis on platform thinking, AI-enabled experiences, and real-world product decision-making. Bridging academic theory with industry practice for designers and engineers.</p>
-            </div>
-        </div>
-
-        <div class="experience-item">
-            <div class="experience-header">
-                <div>
-                    <h3 class="experience-company">WORKDAY</h3>
-                    <p class="experience-role">Senior Director of UX</p>
+            
+            <div class="timeline-column">
+                <div class="timeline-group">
+                    <div class="timeline-group-header">
+                        <h3 class="timeline-group-title">STARTUPS & VENTURES</h3>
+                        <span class="timeline-group-count">1 venture</span>
+                    </div>
+                    
+                    <div class="interactive-timeline">
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2016–2019</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">SkillCafe</h4>
+                                    <span class="timeline-role">Co-Founder</span>
+                                </div>
+                                <div class="timeline-responsibilities">
+                                    <p>Founded AI/ML platform to democratize economic opportunity through skills-based job matching. Designed and shipped product from zero to market.</p>
+                                </div>
+                                <div class="timeline-outcomes"><div class="timeline-outcomes-inner"><div class="timeline-outcomes-content">
+                                    <h4>Key Outcomes</h4>
+                                    <ul>
+                                        <li>Built and launched product from concept to market</li>
+                                        <li>Developed AI/ML-powered matching algorithms</li>
+                                        <li>Led all product design and user experience</li>
+                                    </ul>
+                                </div></div></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <span class="experience-dates">Mar 2023 – Feb 2025</span>
             </div>
-            <div class="experience-desc">
-                <ul>
-                    <li>Led global Product Design across Workday's enterprise platform (HR, Finance, Higher Education), evolving large-scale experiences into a cohesive ecosystem</li>
-                    <li>Partnered with Product, Engineering, and Data leadership on strategy, prioritization, and multi-year roadmaps</li>
-                    <li>Defined and led UX strategy for AI-powered enterprise capabilities, ensuring usability, trust, and scale</li>
-                    <li>Raised product craft and UX maturity across vertical and horizontal initiatives</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="experience-item">
-            <div class="experience-header">
-                <div>
-                    <h3 class="experience-company">AXON</h3>
-                    <p class="experience-role">VP of Product Design, UX Research & Technical Writing</p>
+            
+            <div class="timeline-column">
+                <div class="timeline-group">
+                    <div class="timeline-group-header">
+                        <h3 class="timeline-group-title">TEACHING</h3>
+                        <span class="timeline-group-count">1 position</span>
+                    </div>
+                    
+                    <div class="interactive-timeline">
+                        <div class="timeline-row">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-year">2025–Now</div>
+                            <div class="timeline-main">
+                                <div class="timeline-header">
+                                    <h4 class="timeline-company">Northeastern University</h4>
+                                    <span class="timeline-role">Adjunct Professor</span>
+                                </div>
+                                <div class="timeline-responsibilities">
+                                    <p>Teaching graduate UX Design & Research courses with emphasis on platform thinking, AI-enabled experiences, and real-world product decision-making. Bridging academic theory with industry practice for designers and engineers.</p>
+                                </div>
+                                <div class="timeline-outcomes"><div class="timeline-outcomes-inner"><div class="timeline-outcomes-content">
+                                    <h4>Key Outcomes</h4>
+                                    <ul>
+                                        <li>Developed curriculum bridging theory and practice</li>
+                                        <li>Preparing next generation of UX professionals</li>
+                                    </ul>
+                                </div></div></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <span class="experience-dates">Mar 2018 – Mar 2023</span>
-            </div>
-            <div class="experience-desc">
-                <ul>
-                    <li>Scaled UX organization from 5 to 60+ across Product Design, UX Research, Technical Writing, and Design Operations</li>
-                    <li>Owned user experience across mission-critical software platforms and hardware ecosystems</li>
-                    <li>Created unified Axon Design System across software and hardware</li>
-                    <li>Led AI-enabled product design while championing responsible and ethical AI practices</li>
-                    <li>Built global UX organization from scratch, reporting directly to company co-founder</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="experience-item">
-            <div class="experience-header">
-                <div>
-                    <h3 class="experience-company">QUALTRICS</h3>
-                    <p class="experience-role">Head of UX Design & Research</p>
-                </div>
-                <span class="experience-dates">Sep 2015 – Mar 2018</span>
-            </div>
-            <div class="experience-desc">
-                <ul>
-                    <li>Built and led global UX Design & Research organization</li>
-                    <li>Unified seven applications and acquisitions into the Experience Management (XM) platform</li>
-                    <li>Created XM brand concept central to positioning and $8B SAP acquisition</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="experience-item">
-            <div class="experience-header">
-                <div>
-                    <h3 class="experience-company">SOCRATA</h3>
-                    <p class="experience-role">Director of Design & Research</p>
-                </div>
-                <span class="experience-dates">Apr 2014 – Sep 2015</span>
-            </div>
-            <div class="experience-desc">
-                <ul>
-                    <li>Led complete platform redesign, creating a patentable UI paradigm for data visualization and exploration</li>
-                    <li>Established User Research discipline by proving ROI of qualitative and quantitative methods</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="experience-item">
-            <div class="experience-header">
-                <div>
-                    <h3 class="experience-company">MOZ</h3>
-                    <p class="experience-role">Director of Design & UX</p>
-                </div>
-                <span class="experience-dates">Mar 2013 – Apr 2014</span>
-            </div>
-            <div class="experience-desc">
-                <ul>
-                    <li>Led UX, Creative Direction, Branding, and Motion Design</li>
-                    <li>Elevated Moz to #2 most recognized Marketing Technology brand</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="experience-item">
-            <div class="experience-header">
-                <div>
-                    <h3 class="experience-company">F5 NETWORKS</h3>
-                    <p class="experience-role">User Experience Manager</p>
-                </div>
-                <span class="experience-dates">Jan 2010 – Mar 2013</span>
-            </div>
-            <div class="experience-desc">
-                <ul>
-                    <li>Created BIG-IQ UI paradigm applied across F5 products</li>
-                    <li>Received Five Star Award, the company's highest employee recognition</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="experience-item">
-            <div class="experience-header">
-                <div>
-                    <h3 class="experience-company">SUMTOTAL SYSTEMS</h3>
-                    <p class="experience-role">Sr. Product Designer → UX Manager</p>
-                </div>
-                <span class="experience-dates">Jun 2007 – Jan 2010</span>
-            </div>
-            <div class="experience-desc">
-                <ul>
-                    <li>Started UX team and discipline; managed designers across US and India</li>
-                    <li>Won Power of One team award</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="experience-item">
-            <div class="experience-header">
-                <div>
-                    <h3 class="experience-company">MICROSOFT</h3>
-                    <p class="experience-role">Product Designer → Product Designer II</p>
-                </div>
-                <span class="experience-dates">Oct 2000 – Jun 2007</span>
-            </div>
-            <div class="experience-desc">
-                <ul>
-                    <li>Reduced Windows OOBE from 22 min / 50% failure to 2:10 / 0% failure</li>
-                    <li>Invented Microsoft Tilt Wheel, International Stevie Award for Best New Product</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="experience-item">
-            <div class="experience-header">
-                <div>
-                    <h3 class="experience-company">SKILLCAFE</h3>
-                    <p class="experience-role">Co-Founder</p>
-                </div>
-                <span class="experience-dates">2016 – 2019</span>
-            </div>
-            <div class="experience-desc">
-                <p>Founded AI/ML platform to democratize economic opportunity through skills-based job matching. Designed and shipped product from zero to market.</p>
             </div>
         </div>
     </section>
@@ -291,27 +464,9 @@
             <p class="section-label">Education</p>
             <h2 class="section-title">ACADEMIC BACKGROUND</h2>
         </div>
-        <div class="education-item">
-            <div>
-                <h3 class="education-degree">MSC, INDUSTRIAL DESIGN ENGINEERING</h3>
-                <p class="education-school">Delft University of Technology, Netherlands</p>
-            </div>
-            <span class="experience-dates">2000</span>
-        </div>
-        <div class="education-item">
-            <div>
-                <h3 class="education-degree">MOBILE UX DESIGN</h3>
-                <p class="education-school">Interaction Design Foundation</p>
-            </div>
-            <span class="experience-dates">2017</span>
-        </div>
-        <div class="education-item">
-            <div>
-                <h3 class="education-degree">LEADERSHIP</h3>
-                <p class="education-school">Dale Carnegie</p>
-            </div>
-            <span class="experience-dates">2012</span>
-        </div>
+        <div class="education-item"><div><h3 class="education-degree">MSC, INDUSTRIAL DESIGN ENGINEERING</h3><p class="education-school">Delft University of Technology, Netherlands</p></div><span class="education-dates">2000</span></div>
+        <div class="education-item"><div><h3 class="education-degree">MOBILE UX DESIGN</h3><p class="education-school">Interaction Design Foundation</p></div><span class="education-dates">2017</span></div>
+        <div class="education-item"><div><h3 class="education-degree">LEADERSHIP</h3><p class="education-school">Dale Carnegie</p></div><span class="education-dates">2012</span></div>
     </section>
 
     <section class="section">
@@ -326,9 +481,7 @@
         </div>
     </section>
 
-    <footer>
-        <span class="footer-text">© 2025 Daan Lindhout</span>
-    </footer>
+    <footer><span class="footer-text">© 2025 Daan Lindhout</span></footer>
 
     <script>
         function toggleTheme() {
@@ -342,13 +495,8 @@
         function updateThemeIcon(theme) {
             const sunIcon = document.querySelector('.sun-icon');
             const moonIcon = document.querySelector('.moon-icon');
-            if (theme === 'light') {
-                sunIcon.style.display = 'none';
-                moonIcon.style.display = 'block';
-            } else {
-                sunIcon.style.display = 'block';
-                moonIcon.style.display = 'none';
-            }
+            if (theme === 'light') { sunIcon.style.display = 'none'; moonIcon.style.display = 'block'; }
+            else { sunIcon.style.display = 'block'; moonIcon.style.display = 'none'; }
         }
         (function() {
             const savedTheme = localStorage.getItem('theme') || 'dark';
