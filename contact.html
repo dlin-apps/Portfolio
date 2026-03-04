@@ -13,6 +13,13 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com;">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     
@@ -68,11 +75,11 @@
             <p>Interested in talking about UX? Please reach out.</p>
             
             <div class="contact-links">
-                <a href="/cdn-cgi/l/email-protection#c7a2aaa6aeab87a3a6a6a9abaea9a3afa8b2b3e9a4a8aa" class="contact-link">
+                <a href="mailto:email@daanlindhout.com" class="contact-link">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    <span class="__cf_email__" data-cfemail="cbaea6aaa2a78bafaaaaa5a7a2a5afa3a4bebfe5a8a4a6">[email&#160;protected]</span>
+                    email@daanlindhout.com
                 </a>
                 <a href="https://linkedin.com/in/daanlindhout" class="contact-link" target="_blank">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
@@ -91,7 +98,7 @@
         <p class="footer-text">Seattle, WA</p>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         function toggleTheme() {
             const html = document.documentElement;
             const currentTheme = html.getAttribute('data-theme');
@@ -114,4 +121,12 @@
         (function() {
             const savedTheme = localStorage.getItem('theme') || 'dark';
             if (savedTheme === 'light') {
-                document.documentElement.setAttrib
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+            document.addEventListener('DOMContentLoaded', function() {
+                updateToggleIcons(localStorage.getItem('theme') || 'dark');
+            });
+        })();
+    </script>
+</body>
+</html>
