@@ -13,6 +13,17 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Axon Case Study — Daan Lindhout">
+    <meta property="og:description" content="VP of Product Design leading 60+ person UX org. Built design system, scaled team 12x, shipped hardware and software.">
+    <meta property="og:image" content="images/axon/hero.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="description" content="VP of Product Design leading 60+ person UX org. Built design system, scaled team 12x, shipped hardware and software.">
+
     <title>Axon — Daan Lindhout</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -86,11 +97,67 @@
         .patent-list { list-style: none; padding: 0; margin: 0; }
         .patent-list li { font-size: 0.85rem; color: var(--text-secondary); padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
         .patent-list li:last-child { border-bottom: none; }
-        .patent-number { font-family: monospace; color: var(--text-primary); font-size: 0.75rem; }    
+        .patent-number { font-family: monospace; color: var(--text-primary); font-size: 0.75rem; }
+        
+        /* Sticky Table of Contents */
+        .case-toc {
+            position: fixed;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            max-width: 180px;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .case-toc.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .case-toc-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+        
+        .case-toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .case-toc li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .case-toc a {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            display: block;
+            padding: 0.2rem 0;
+            padding-left: 0.75rem;
+            border-left: 2px solid transparent;
+        }
+        
+        .case-toc a:hover,
+        .case-toc a.active {
+            color: var(--accent);
+            border-left-color: var(--accent);
+        }
+        
         /* Mobile responsive improvements */
         @media (max-width: 1024px) {
             nav, .case-hero, .case-content, .next-case, footer, .stats-bar, .hero-image { padding-left: 2rem; padding-right: 2rem; }
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .case-toc { display: none; }
         }
         @media (max-width: 768px) {
             
@@ -137,7 +204,23 @@
     </style>
 </head>
 <body>
-        <nav></nav>
+    <!-- Sticky Table of Contents -->
+    <aside class="case-toc" aria-label="Table of contents">
+        <p class="case-toc-label">On This Page</p>
+        <ul>
+            <li><a href="#ux-mission">UX Mission</a></li>
+            <li><a href="#ux-org">UX Org</a></li>
+            <li><a href="#future-vision">Future Vision</a></li>
+            <li><a href="#workflows">Workflows</a></li>
+            <li><a href="#discipline">Discipline Building</a></li>
+            <li><a href="#hardware">Hardware Devices</a></li>
+            <li><a href="#software">Software Design</a></li>
+            <li><a href="#design-system">Design System</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+        </ul>
+    </aside>
+
+    <nav></nav>
     <section class="case-hero">
         <div class="case-hero-content">
             <div class="case-meta">
@@ -177,19 +260,19 @@
     <section class="case-content">
         
 
-        <div class="case-section">
+        <div class="case-section" id="ux-mission">
             <h2>UX Mission</h2>
             <img src="images/axon/ux-mission.png" alt="UX Mission Framework">
             <p>Our UX mission at Axon had 3 focus areas. A strategic one focused on building great products and a connected ecosystem, a tactical one focused on maturing the UX disciplines, and an operational one with focus on the best team and culture. We set yearly and quarterly goals that aligned with each of these missions.</p>
         </div>
 
-        <div class="case-section">
+        <div class="case-section" id="ux-org">
             <h2>UX Org</h2>
             <p>During my 5 years at Axon, I built the UX org from a few Product Designers to 60+ people. I grew and hired people from mid and senior level into Director level roles. I built full UX teams for each of the product lines with a UX leader and an additional level of management under them. I introduced UX Research to the company, initially with embedded UX Researchers horizontally organized, and later organized under the UX Directors on each of the product lines to streamline common mission and goals. I also built a central Tech Writing and User Assistance org and grew a leader for the discipline. Additionally, I introduced and grew a Design System and Operations team designing and building everything that was common between all the products and different UX teams. Org design is one of my personal passions, especially matrix org structures balancing deep vertical execution with horizontal discipline building.</p>
             <img src="images/axon/org-structure.png" alt="UX Organization Structure">
         </div>
 
-        <div class="case-section">
+        <div class="case-section" id="future-vision">
             <h2>Axon Future Vision</h2>
             <p>At Axon we worked relentlessly on envisioning the future of first responders. To frame our vision work and help the company get a clear joint vision of where the industry and Axon itself was heading, I worked with the executive team and external industry experts to develop a Policing Maturity Model.</p>
             <img src="images/axon/maturity-model.png" alt="Policing Maturity Model">
@@ -220,13 +303,13 @@
             <img src="images/axon/vision-timeline.png" alt="Detective Timeline View">
         </div>
 
-        <div class="case-section">
+        <div class="case-section" id="workflows">
             <h2>Design for Workflows</h2>
             <p>A major contribution to the company that my team and I established and evolved was to design for the workflows of our users across many different products and contexts. Our users don't think of products separately, they talk about Axon in general. For example: using 911 dispatch to gather information and send out a response, using our body, car and drone cameras to livestream and coordinate during the incident, and using our Records and Evidence Management applications in the car and at station to summarize what happened and prepare things for court if needed. Here is an example of how we visualize those workflows including where major painpoints are.</p>
             <img src="images/axon/workflow.png" alt="User Workflow Visualization">
         </div>
 
-        <div class="case-section">
+        <div class="case-section" id="discipline">
             <h2>UX Discipline Building</h2>
             <p>I established and evolved ladder levels for Product Design, UX Research and Technical Writing at the company to make sure everyone had clear career goals and an understanding of how to work towards them. We were the first team at the company to have these completed and used. Also established our hiring approach, process and content, including how to include other disciplines in hiring UX team members and keeping a high bar for our talent. Hired 60+ people onto the UX team directly and was part of the hiring team for 150+ people from other disciplines like Product Management and Engineering.</p>
             <img src="images/axon/discipline-building.png" alt="UX Discipline Building">
@@ -239,13 +322,13 @@
             <img src="images/axon/mechanisms-2.png" alt="UX Review Types">
         </div>
 
-        <div class="case-section">
+        <div class="case-section" id="hardware">
             <h2>Hardware Devices</h2>
             <p>Axon had a substantial hardware portfolio of connected devices. Here are some samples of ones my team and I worked on. Key to the success of all of these was the way they enabled workflows for first responders, for example by live streaming video, and automated steps such as evidence upload or 911 incident creation through connected sensors.</p>
             <img src="images/axon/hardware-devices.png" alt="Axon Hardware Portfolio">
         </div>
 
-        <div class="case-section">
+        <div class="case-section" id="software">
             <h2>Software Design Samples: Before</h2>
             <p>When I joined Axon this was the state of the main software product line Evidence Management.</p>
             <img src="images/axon/evidence-before.png" alt="Evidence.com Before Redesign">
@@ -286,7 +369,7 @@
             <img src="images/axon/vr-training.png" alt="VR Training Experience">
         </div>
 
-        <div class="case-section">
+        <div class="case-section" id="design-system">
             <h2>The Axon Design System</h2>
             <p>I built the first Design System at the company and created a Design Operations team to expand and evolve it over time. The Axon Design System governed interaction, visual, and workflow design and best practices across all Axon products. This included mobile, in-car/tablet and desktop form factors in both light and dark themes to accommodate for context.</p>
             <p>The design system was used on the Design side in Figma as a library with version control and metrics across 40+ Product Designers, and on the Engineering side with a component library built and evolved by a centralized Engineering team. We set and tracked adoption goals and metrics across all product lines and reviewed them on a monthly basis. We achieved around 80% adoption across product lines. Some examples:</p>
@@ -314,7 +397,7 @@
                 <iframe title="vimeo-player" src="https://player.vimeo.com/video/624790888?h=c03ef61d80" width="640" height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
             </div>
         </div>
-        <div class="testimonials-section">
+        <div class="testimonials-section" id="testimonials">
             <h2>What Colleagues Say</h2>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
@@ -383,6 +466,65 @@
             }
             document.addEventListener('DOMContentLoaded', function() {
                 updateToggleIcons(localStorage.getItem('theme') || 'dark');
+                
+                // TOC functionality
+                const toc = document.querySelector('.case-toc');
+                const tocLinks = document.querySelectorAll('.case-toc a');
+                const sections = document.querySelectorAll('[id]');
+                const heroEnd = document.querySelector('.stats-bar');
+                const footer = document.querySelector('footer');
+                
+                // Show/hide TOC based on scroll position
+                function updateTocVisibility() {
+                    if (!toc || !heroEnd) return;
+                    const heroEndPos = heroEnd.getBoundingClientRect().bottom;
+                    const footerPos = footer ? footer.getBoundingClientRect().top : Infinity;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (heroEndPos < 0 && footerPos > windowHeight * 0.5) {
+                        toc.classList.add('visible');
+                    } else {
+                        toc.classList.remove('visible');
+                    }
+                }
+                
+                // Highlight active section in TOC
+                function updateActiveSection() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const rect = section.getBoundingClientRect();
+                        if (rect.top <= 150) {
+                            currentSection = section.id;
+                        }
+                    });
+                    
+                    tocLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + currentSection) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+                
+                // Smooth scroll for TOC links
+                tocLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        const target = document.getElementById(targetId);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    });
+                });
+                
+                window.addEventListener('scroll', function() {
+                    updateTocVisibility();
+                    updateActiveSection();
+                });
+                
+                updateTocVisibility();
+                updateActiveSection();
             });
         })();
     </script>

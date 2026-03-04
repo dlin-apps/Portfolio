@@ -13,6 +13,17 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Daan Lindhout — UX Design Leadership">
+    <meta property="og:description" content="Product design leader with 25 years delivering end-to-end consumer and enterprise experiences. Currently building AI-powered financial tools.">
+    <meta property="og:image" content="images/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="description" content="Product design leader with 25 years delivering end-to-end consumer and enterprise experiences. Currently building AI-powered financial tools.">
+
     <title>About — Daan Lindhout</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -333,6 +344,58 @@
             letter-spacing: 0.05em;
         }
 
+        /* Current Work Section */
+        .current-work-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .current-work-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .current-work-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .current-work-icon {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .current-work-card h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+        
+        .current-work-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        .current-work-status {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.75rem;
+            background: var(--accent-dim);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
         /* Testimonials */
         .testimonials-grid {
             display: grid;
@@ -415,6 +478,7 @@
             .about-grid { grid-template-columns: 1fr; }
             .timeline-columns { grid-template-columns: 1fr; gap: 3rem; }
             .testimonials-grid { grid-template-columns: 1fr; }
+            .current-work-grid { grid-template-columns: 1fr; }
         }
         
         @media (max-width: 768px) {
@@ -496,11 +560,36 @@
         </div>
     </section>
 
-    <section class="section">
+    <section class="section current-work-section">
         <div class="section-header">
-            <p class="section-label">Experience</p>
-            <h2 class="section-title">CAREER TIMELINE</h2>
+            <p class="section-label">Current Focus</p>
+            <h2 class="section-title">WHAT I'M WORKING ON NOW</h2>
         </div>
+        <div class="current-work-grid">
+            <div class="current-work-card">
+                <div class="current-work-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <h3>Spoom Design</h3>
+                <p>Designing and building proprietary financial technology applications—trading scanners, portfolio management dashboards, and AI-powered market analysis tools. Combining 25+ years of UX expertise with hands-on technical implementation.</p>
+                <span class="current-work-status">Active</span>
+            </div>
+            <div class="current-work-card">
+                <div class="current-work-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                    </svg>
+                </div>
+                <h3>Northeastern University</h3>
+                <p>Teaching graduate UX Design & Research courses with emphasis on platform thinking, AI-enabled experiences, and real-world product decision-making. Bridging academic theory with industry practice.</p>
+                <span class="current-work-status">Active</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
         
         <div class="timeline-columns">
             <!-- Left Column: Professional Positions -->

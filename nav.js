@@ -21,8 +21,10 @@
     navCSS += '.nav-links { display: flex; gap: 2.5rem; }';
     navCSS += '.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s ease; }';
     navCSS += '.nav-links a:hover, .nav-links a.active { color: var(--accent); }';
+    navCSS += '.nav-links a:focus { outline: 2px solid var(--accent); outline-offset: 2px; color: var(--accent); }';
     navCSS += '.theme-toggle { background: none; border: 1px solid var(--border); color: var(--text-secondary); cursor: pointer; padding: 0.5rem; border-radius: 4px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; margin-left: 1.5rem; }';
     navCSS += '.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }';
+    navCSS += '.theme-toggle:focus { outline: 2px solid var(--accent); outline-offset: 2px; border-color: var(--accent); color: var(--accent); }';
     navCSS += '.theme-toggle svg { width: 18px; height: 18px; }';
     navCSS += '@media (max-width: 768px) { nav { padding: 1rem 1.5rem; } .nav-links { gap: 0.75rem; flex-wrap: wrap; justify-content: center; } .nav-links a { font-size: 0.7rem; letter-spacing: 0.02em; } .theme-toggle { margin-left: 0.75rem; padding: 0.4rem; } .theme-toggle svg { width: 16px; height: 16px; } }';
     navCSS += '@media (max-width: 480px) { nav { padding: 0.75rem 1rem; } .nav-links { gap: 0.5rem; } .nav-links a { font-size: 0.6rem; } }';
