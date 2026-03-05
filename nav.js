@@ -20,9 +20,9 @@
         '</div>';
 
     // Navigation CSS
-    var navCSS = 'nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0.25rem 4rem; display: flex; justify-content: space-between; align-items: center; background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); max-width: 100%; }';
-    navCSS += '.nav-logo { display: flex; align-items: center; }';
-    navCSS += '.nav-logo img { height: 48px; width: auto; background: transparent; }';
+    var navCSS = 'nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); max-width: 100%; }';
+    navCSS += '.nav-logo { display: flex; align-items: center; margin: -0.75rem 0; }';
+    navCSS += '.nav-logo img { height: 56px; width: auto; background: transparent; }';
     navCSS += '.nav-right { display: flex; align-items: center; }';
     navCSS += '.nav-links { display: flex; gap: 2.5rem; }';
     navCSS += '.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s ease; }';
@@ -32,9 +32,9 @@
     navCSS += '.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }';
     navCSS += '.theme-toggle:focus { outline: 2px solid var(--accent); outline-offset: 2px; border-color: var(--accent); color: var(--accent); }';
     navCSS += '.theme-toggle svg { width: 18px; height: 18px; }';
-    navCSS += '@media (max-width: 1024px) { nav { padding: 0.25rem 2rem; } }';
-    navCSS += '@media (max-width: 768px) { nav { padding: 0.5rem 1.5rem; justify-content: flex-end; } .nav-logo { display: none; } .nav-links { gap: 0.75rem; flex-wrap: wrap; justify-content: center; } .nav-links a { font-size: 0.7rem; letter-spacing: 0.02em; } .theme-toggle { margin-left: 0.75rem; padding: 0.4rem; } .theme-toggle svg { width: 16px; height: 16px; } }';
-    navCSS += '@media (max-width: 480px) { nav { padding: 0.5rem 1rem; } .nav-links { gap: 0.5rem; } .nav-links a { font-size: 0.6rem; } }';
+    navCSS += '@media (max-width: 1024px) { nav { padding: 1.5rem 2rem; } }';
+    navCSS += '@media (max-width: 768px) { nav { padding: 1rem 1.5rem; justify-content: flex-end; } .nav-logo { display: none; } .nav-links { gap: 0.75rem; flex-wrap: wrap; justify-content: center; } .nav-links a { font-size: 0.7rem; letter-spacing: 0.02em; } .theme-toggle { margin-left: 0.75rem; padding: 0.4rem; } .theme-toggle svg { width: 16px; height: 16px; } }';
+    navCSS += '@media (max-width: 480px) { nav { padding: 0.75rem 1rem; } .nav-links { gap: 0.5rem; } .nav-links a { font-size: 0.6rem; } }';
 
     // Determine active page from URL
     function getActivePage() {
