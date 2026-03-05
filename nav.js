@@ -3,7 +3,9 @@
 
 (function() {
     // Navigation HTML template
-    var navHTML = '<div class="nav-links">' +
+    var navHTML = '<a href="index.html" class="nav-logo"><img src="images/logo.png" alt="DL Logo"></a>' +
+        '<div class="nav-right">' +
+        '<div class="nav-links">' +
         '<a href="index.html" data-page="about">About</a>' +
         '<a href="portfolio.html" data-page="portfolio">Portfolio</a>' +
         '<a href="tenets.html" data-page="tenets">Tenets</a>' +
@@ -14,10 +16,14 @@
         '<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">' +
         '<svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>' +
         '<svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display:none;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>' +
-        '</button>';
+        '</button>' +
+        '</div>';
 
     // Navigation CSS
-    var navCSS = 'nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.5rem 4rem; display: flex; justify-content: flex-end; align-items: center; background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }';
+    var navCSS = 'nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0.25rem 4rem; display: flex; justify-content: space-between; align-items: center; background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); max-width: 100%; }';
+    navCSS += '.nav-logo { display: flex; align-items: center; }';
+    navCSS += '.nav-logo img { height: 48px; width: auto; background: transparent; }';
+    navCSS += '.nav-right { display: flex; align-items: center; }';
     navCSS += '.nav-links { display: flex; gap: 2.5rem; }';
     navCSS += '.nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s ease; }';
     navCSS += '.nav-links a:hover, .nav-links a.active { color: var(--accent); }';
@@ -26,8 +32,9 @@
     navCSS += '.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }';
     navCSS += '.theme-toggle:focus { outline: 2px solid var(--accent); outline-offset: 2px; border-color: var(--accent); color: var(--accent); }';
     navCSS += '.theme-toggle svg { width: 18px; height: 18px; }';
-    navCSS += '@media (max-width: 768px) { nav { padding: 1rem 1.5rem; } .nav-links { gap: 0.75rem; flex-wrap: wrap; justify-content: center; } .nav-links a { font-size: 0.7rem; letter-spacing: 0.02em; } .theme-toggle { margin-left: 0.75rem; padding: 0.4rem; } .theme-toggle svg { width: 16px; height: 16px; } }';
-    navCSS += '@media (max-width: 480px) { nav { padding: 0.75rem 1rem; } .nav-links { gap: 0.5rem; } .nav-links a { font-size: 0.6rem; } }';
+    navCSS += '@media (max-width: 1024px) { nav { padding: 0.25rem 2rem; } }';
+    navCSS += '@media (max-width: 768px) { nav { padding: 0.5rem 1.5rem; justify-content: flex-end; } .nav-logo { display: none; } .nav-links { gap: 0.75rem; flex-wrap: wrap; justify-content: center; } .nav-links a { font-size: 0.7rem; letter-spacing: 0.02em; } .theme-toggle { margin-left: 0.75rem; padding: 0.4rem; } .theme-toggle svg { width: 16px; height: 16px; } }';
+    navCSS += '@media (max-width: 480px) { nav { padding: 0.5rem 1rem; } .nav-links { gap: 0.5rem; } .nav-links a { font-size: 0.6rem; } }';
 
     // Determine active page from URL
     function getActivePage() {
