@@ -51,7 +51,7 @@
             'contact.html': 'contact'
         };
         
-        var projectPages = ['axon', 'qualtrics', 'moz', 'socrata', 'f5', 'sumtotal', 
+        var projectPages = ['workday', 'axon', 'qualtrics', 'moz', 'socrata', 'f5', 'sumtotal', 
                             'windowslive', 'photoframe', 'microsoft', 'digitalpen', 
                             'tiltwheel', 'hardwareapps', 'keyboards', 'rightclick', 'bicycle'];
         
