@@ -231,6 +231,8 @@
         }
         /* Screenshots shown inside a browser window frame */
         .case-section img.framed, .hero-image img.framed { border: none; border-radius: 10px; box-shadow: var(--shadow-hover); }
+        /* Phone screenshots inside a device frame (transparent PNG) */
+        .img-pair img.phone { border: none; width: 100%; max-width: 320px; margin: 1.5rem auto 0.5rem; display: block; }
     </style>
 
 <body>
@@ -329,8 +331,8 @@
             <h3>Always On, Including on a Phone</h3>
             <p>Markets move during the day, so the whole app works on a phone, in light and dark mode, with live prices. A shared component library kept the screens consistent as features kept being added.</p>
             <div class="img-pair">
-                <img src="images/swingscanner/mobile-dashboard.jpg" alt="Swing Scanner dashboard on a phone in dark mode">
-                <img src="images/swingscanner/mobile-holdings.jpg" alt="Swing Scanner holdings on a phone in light mode">
+                <img class="phone" src="images/swingscanner/mobile-dashboard.png" alt="Swing Scanner dashboard on a phone in dark mode">
+                <img class="phone" src="images/swingscanner/mobile-holdings.png" alt="Swing Scanner holdings on a phone in light mode">
             </div>
 
             <h3>Controls That Respect Risk</h3>
