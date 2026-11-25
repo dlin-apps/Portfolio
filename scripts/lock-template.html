@@ -95,7 +95,16 @@
             function open(key) {
                 return crypto.subtle.decrypt({ name: 'AES-GCM', iv: bytes(P.iv) }, key, bytes(P.ct)).then(function (plain) {
                     var html = new TextDecoder().decode(plain);
-                    document.open(); document.write(html); document.close();
+                    // Swap in the case study only once this page has finished loading. When a
+                    // remembered key unlocks the page straight away, the decrypt can finish while
+                    // the lock screen is still being parsed; writing then would append the case
+                    // study below the lock screen (two navs, content under the footer).
+                    function write() { document.open(); document.write(html); document.close(); }
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', function () { setTimeout(write, 0); }, { once: true });
+                    } else {
+                        write();
+                    }
                     return key;
                 });
             }
