@@ -329,7 +329,7 @@
             <p class="caption">Account figures and positions in these screenshots are sample data.</p>
 
             <h3>Always On, Including on a Phone</h3>
-            <p>Markets move during the day, so the whole app works on a phone, in light and dark mode, with live prices. A shared component library kept the screens consistent as features kept being added.</p>
+            <p>Markets move during the day, so the whole app works on a phone, in light and dark mode, with live prices. A shared design system keeps the screens consistent as features keep being added.</p>
             <div class="img-pair">
                 <img class="phone" src="images/swingscanner/mobile-dashboard.png" alt="Swing Scanner dashboard on a phone in dark mode">
                 <img class="phone" src="images/swingscanner/mobile-holdings.png" alt="Swing Scanner holdings on a phone in light mode">
@@ -346,6 +346,8 @@
             <p>I haven't written production code in years. For this project, Claude Code, an AI coding agent, wrote the code, and I worked the way I would with an engineering team: I set the product direction, designed the experience, reviewed every change, and decided what shipped.</p>
             <p>The speed was remarkable. Features that would have been a quarter-long roadmap item for a team took an afternoon.</p>
             <p>But speed moved the bottleneck. Writing code stopped being the hard part. Knowing whether the code, and the claims about it, were actually right became the hard part.</p>
+            <p>Visual design had the same problem in a different form. The agent makes hundreds of small styling decisions in every session and remembers none of them the next time. After months of features, the app had nearly 6,000 hard-coded color choices and three competing ways of handling dark mode.</p>
+            <p>So I treated the design system as something the agent reads and is held to, not a style guide it might remember: named color tokens that switch with the theme, one icon set, written specs for each component, and an automated check that rejects any change using a color, icon or value outside the system. Then every page was moved onto it, one at a time, with each change checked against the page it replaced.</p>
         </div>
 
         <div class="case-section">
