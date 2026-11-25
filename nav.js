@@ -77,7 +77,7 @@
         };
         
         // Lab (independent) case studies highlight Lab, not Portfolio
-        var labPages = ['swingscanner'];
+        var labPages = ['swingscanner', 'chessmatch', 'sessiontimer'];
         for (var j = 0; j < labPages.length; j++) {
             if (filename.indexOf(labPages[j]) !== -1) {
                 return 'lab';
