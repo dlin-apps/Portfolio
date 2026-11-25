@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S6JRT8C9LC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-S6JRT8C9LC');
+    </script>
+    <script defer src="nav.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; frame-src https://player.vimeo.com;">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Swing Scanner Case Study — Daan Lindhout">
+    <meta property="og:description" content="A stock screening and automated investment platform I designed and built with an AI coding agent: scanning, scoring, entries and staged exits, plus what it took to trust it with real money.">
+    <meta property="og:image" content="images/swingscanner/hero.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="description" content="A stock screening and automated investment platform I designed and built with an AI coding agent: scanning, scoring, entries and staged exits, plus what it took to trust it with real money.">
+
+    <title>Swing Scanner — Daan Lindhout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-primary: #0a0a0a; --bg-secondary: #141414; --bg-card: #1a1a1a; --text-primary: #ffffff; --text-secondary: #a0a0a0; --accent: #00d4aa; --accent-dim: rgba(0, 212, 170, 0.12); --border: #2a2a2a; --nav-bg: rgba(10, 10, 10, 0.8); --shadow: 0 2px 8px rgba(0, 0, 0, 0.3); --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.4); }
+        [data-theme="light"] { --bg-primary: #ffffff; --bg-secondary: #f9f9f9; --bg-card: #ffffff; --text-primary: #1a1a1a; --text-secondary: #444444; --accent: #00d4aa; --accent-dim: rgba(0, 212, 170, 0.15); --border: #e8e8e8; --nav-bg: rgba(255, 255, 255, 0.95); --shadow: 0 2px 8px rgba(0, 0, 0, 0.08); --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+        ::selection { background: var(--accent); color: var(--bg-primary); }
+        .case-hero { padding: 8rem 4rem 3rem; max-width: 1000px; margin: 0 auto; }
+        .case-hero-content { max-width: 1000px; margin: 0 auto; }
+        .case-meta { display: flex; gap: 1rem; padding-top: 1rem; flex-wrap: wrap; margin-bottom: 2rem; align-items: center; }
+        .case-tag { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; background: transparent; border: 1px solid var(--border); color: var(--text-secondary); }
+        .case-year { font-size: 0.875rem; font-weight: 600; letter-spacing: 0.1em; color: var(--accent); margin-left: 0.5rem; }
+        .project-nav-inline { display: flex; gap: 1.5rem; align-items: center; margin-left: auto; }
+        .project-nav-link { color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; }
+        .project-nav-link:hover { color: var(--accent); }
+        .case-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 5rem); line-height: 0.95; margin-bottom: 1.5rem; }
+        .case-role { font-size: 1.25rem; color: var(--accent); margin-bottom: 1.5rem; font-weight: 500; }
+        .case-intro { font-size: 0.925rem; color: var(--text-secondary); max-width: 800px; line-height: 1.7; margin-bottom: 1rem; }
+.case-content { max-width: 1000px; margin: 0 auto; padding: 4rem; }
+
+        .stats-bar { background: var(--bg-secondary); margin-top: 3rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 4rem; }
+        .stats-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; }
+
+.hero-image { width: 100%; max-width: 1000px; margin: 0 auto; padding: 0 4rem; }
+        .hero-image img { min-width: 90%; max-width: 100%; height: auto; border: 1px solid var(--border); }
+
+        .stat { text-align: center; }
+        .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--accent); line-height: 1; }
+        .stat-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem; }
+
+        .case-section { margin-bottom: 4rem; }
+        .case-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; margin-bottom: 1rem; color: var(--accent); scroll-margin-top: 100px; }
+        .testimonials-section h2 { scroll-margin-top: 100px; }
+        .case-section p { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
+        .case-section img { max-width: 100%; height: auto; margin: 1.5rem 0; border: 1px solid var(--border); }
+        .section-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.75rem; display: block; }
+        .case-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.35rem; margin: 2.5rem 0 0.75rem; color: var(--text-primary); }
+        .case-section .caption { font-size: 0.875rem; font-style: italic; color: var(--text-secondary); margin-top: -1rem; margin-bottom: 1.5rem; }
+        .case-section .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 1.5rem 0; border: 1px solid var(--border); }
+        .case-section .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .next-case { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 4rem; }
+        .next-case-inner { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .next-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 0.75rem; }
+        .next-case h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; line-height: 1; margin: 0; }
+        .next-case a { text-decoration: none; color: var(--text-primary); transition: color 0.3s ease; }
+        .next-case a:hover { color: var(--accent); }
+
+        footer { padding: 1.5rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; align-items: center; gap: 2rem; }
+        .footer-text { font-size: 0.8rem; color: var(--text-secondary); }
+    
+        /* Testimonials */
+        .testimonials-section { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border); }
+        .testimonials-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.75rem; margin-bottom: 2rem; color: var(--accent); }
+        .testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        .testimonial-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; }
+        .testimonial-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; font-style: italic; margin-bottom: 1rem; }
+        .testimonial-author { display: flex; flex-direction: column; gap: 0.15rem; }
+        .testimonial-name { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: var(--accent); }
+        .testimonial-title { font-size: 0.7rem; color: var(--text-secondary); }
+        
+        /* Awards */
+        .award-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent-dim); border: 1px solid var(--accent); padding: 0.5rem 1rem; margin-top: 1.5rem; }
+        .award-icon { color: var(--accent); }
+        .award-text { font-size: 0.8rem; color: var(--text-primary); }
+        .award-year { font-size: 0.7rem; color: var(--text-secondary); margin-left: 0.5rem; }
+        
+        /* Patents */
+        .patents-section { margin-top: 2rem; padding: 1.5rem; background: var(--bg-card); border: 1px solid var(--border); }
+        .patents-section h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; color: var(--accent); margin-bottom: 1rem; }
+        .patent-list { list-style: none; padding: 0; margin: 0; }
+        .patent-list li { font-size: 0.85rem; color: var(--text-secondary); padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+        .patent-list li:last-child { border-bottom: none; }
+        .patent-number { font-family: monospace; color: var(--text-primary); font-size: 0.75rem; }
+        
+        /* Sticky Table of Contents */
+        .case-toc {
+            position: fixed;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            max-width: 180px;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .case-toc.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .case-toc-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+        
+        .case-toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .case-toc li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .case-toc a {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            display: block;
+            padding: 0.2rem 0;
+            padding-left: 0.75rem;
+            border-left: 2px solid transparent;
+        }
+        
+        .case-toc a:hover,
+        .case-toc a.active {
+            color: var(--accent);
+            border-left-color: var(--accent);
+        }
+        
+        /* Mobile responsive improvements */
+        @media (max-width: 1024px) {
+            nav, .case-hero, .case-content, .next-case, footer, .stats-bar, .hero-image { padding-left: 2rem; padding-right: 2rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .case-toc { display: none; }
+        }
+        @media (max-width: 768px) {
+            
+            .case-hero { padding-top: 6rem; padding-left: 1.5rem; padding-right: 1.5rem; }
+            .case-hero-content { position: relative; }
+            
+            /* Tags stay in a row, wrapping as needed */
+            .case-meta { 
+                flex-wrap: wrap; 
+                gap: 0.5rem; 
+                padding-right: 3rem;
+            }
+            .case-tag { font-size: 0.65rem; padding: 0.35rem 0.6rem; }
+            .case-year { margin-left: 0; font-size: 0.75rem; width: 100%; margin-top: 0.25rem; }
+            
+            /* Next arrow positioned top-right */
+            .project-nav-inline { 
+                position: absolute;
+                top: 1rem;
+                right: 0;
+                margin: 0;
+            }
+            .project-nav-link { 
+                font-size: 1.5rem; 
+                color: var(--accent);
+            }
+            .project-nav-link .nav-text { display: none; }
+            
+            .case-hero h1 { font-size: 2.5rem; }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+            
+            .next-case { padding: 3rem 1.5rem; }
+            .next-case h3 { font-size: 1.75rem; }
+            .next-case-inner { justify-content: center; }
+        }
+        
+        @media (max-width: 480px) {
+            
+            .case-hero, .case-content, .next-case, footer { padding-left: 1rem; padding-right: 1rem; }
+            .case-tag { font-size: 0.6rem; padding: 0.35rem 0.6rem; }
+            .case-hero h1 { font-size: 2rem; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Swing Scanner additions */
+        .callout { background: var(--accent-dim); border-left: 3px solid var(--accent); padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+        .callout p { margin-bottom: 0; color: var(--text-primary); }
+        .callout .callout-label, .finding-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+        .flow-list, .rules-list { padding-left: 1.25rem; margin: 0 0 1.5rem; }
+        .flow-list li, .rules-list li { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.6rem; }
+        .flow-list strong, .rules-list strong { color: var(--text-primary); font-weight: 600; }
+        .img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
+        .img-pair img { width: 100%; margin: 1.5rem 0 0.5rem; }
+        .findings { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+        .finding { background: var(--bg-card); border: 1px solid var(--border); padding: 1.25rem; }
+        .finding p { margin-bottom: 0; }
+        .claims-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.85rem; }
+        .claims-table th { text-align: left; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border); }
+        .claims-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; }
+        .claims-table td:last-child { color: var(--text-primary); }
+        .disclaimer { border-top: 1px solid var(--border); padding-top: 1.5rem; }
+        .disclaimer p { font-size: 0.75rem; color: var(--text-secondary); font-style: italic; }
+        @media (max-width: 768px) {
+            .findings, .img-pair { grid-template-columns: 1fr; }
+            .claims-table { font-size: 0.78rem; }
+            .claims-table th, .claims-table td { padding: 0.5rem 0.4rem; }
+        }
+    </style>
+
+<body>
+    <!-- Sticky Table of Contents -->
+    <aside class="case-toc" aria-label="Table of contents">
+        <p class="case-toc-label">On This Page</p>
+        <ul>
+            <li><a href="#problem">The Problem</a></li>
+            <li><a href="#platform">The Platform</a></li>
+            <li><a href="#design">Designing the Product</a></li>
+            <li><a href="#building">Building with AI</a></li>
+            <li><a href="#results">Real Money</a></li>
+            <li><a href="#discipline">Trust, but Measure</a></li>
+            <li><a href="#learnings">Learnings</a></li>
+        </ul>
+    </aside>
+
+    <nav></nav>
+    <section class="case-hero">
+        <div class="case-hero-content">
+            <div class="case-meta">
+                <span class="case-tag">FINTECH</span>
+                <span class="case-tag">AI-ASSISTED BUILD</span>
+                <span class="case-tag">0 → 1</span>
+                <span class="case-year">2026</span>
+
+                <div class="project-nav-inline">
+                    <a href="workday.html" class="project-nav-link"><span class="nav-text">Next: Workday </span>→</a>
+                </div>
+            </div>
+            <h1>SWING SCANNER</h1>
+            <p class="case-role">Stock Screening &amp; Automated Investment Platform</p>
+            <p class="case-intro">A friend and I had been following a swing trading strategy for a while: finding stocks in a strong uptrend that pull back or break out, holding them for days to weeks, and exiting in stages. It worked, but it was very labor intensive. Every day meant visiting many sites, aggregating data across them by hand, placing entry and exit orders manually, and updating stop losses as positions moved.</p>
+            <p class="case-intro">During my sabbatical I designed and built a platform that does all of that: it scans about 600 stocks every 15 minutes, scores and explains every signal, opens positions, and manages each one through a three-stage exit, with a dashboard that works on desktop and phone. I'm a designer, not an engineer; the code was written with Claude Code, an AI coding agent, while I owned the product, the design, the research, and every decision about what to trust.</p>
+        </div>
+    </section>
+
+    <div class="hero-image">
+        <img src="images/swingscanner/hero.jpg" alt="Swing Scanner dashboard in dark mode showing market regime, hedge level, and graded stock signals">
+    </div>
+
+    <section class="stats-bar">
+        <div class="stats-grid">
+            <div class="stat"><div class="stat-number">~600</div><div class="stat-label">Stocks Scanned Every 15 Min</div></div>
+            <div class="stat"><div class="stat-number">15+</div><div class="stat-label">Strategies Detected</div></div>
+            <div class="stat"><div class="stat-number">1,000+</div><div class="stat-label">Commits in 11 Months</div></div>
+        </div>
+    </section>
+
+    <section class="case-content">
+
+        <div class="case-section">
+            <span class="section-label">The Problem</span>
+            <h2 id="problem">A Strategy That Ate the Day</h2>
+            <p>Swing trading rewards discipline more than insight. The rules were clear: only trade when the market is healthy, look for strong stocks that pull back or break out on volume, size each position to its risk, take partial profits at a target, and trail a stop on the rest. Doing that by hand meant checking charts, volume, earnings dates, sector strength and market conditions across a handful of sites, then entering orders and moving stops one at a time.</p>
+            <p>The manual process failed in predictable ways. Setups were missed because nobody was looking at that moment. Stops lagged because updating them was tedious. And the rules bent under pressure, which is exactly when they matter most.</p>
+            <div class="callout">
+                <p class="callout-label">Design goal</p>
+                <p>Turn a strategy that lived in two people's heads and a dozen browser tabs into a product that applies the rules the same way every time, for any user, and shows its reasoning so a person can still overrule it.</p>
+            </div>
+        </div>
+
+        <div class="case-section">
+            <span class="section-label">The Platform</span>
+            <h2 id="platform">From Scan to Exit, End to End</h2>
+            <p>The platform follows the same workflow we used to run by hand, from market check to final exit:</p>
+            <ol class="flow-list">
+                <li><strong>Read the market.</strong> A regime check (volatility, the S&amp;P 500's trend) decides whether new positions are allowed at all, and a graduated hedge can offset risk when conditions turn.</li>
+                <li><strong>Scan.</strong> Every 15 minutes during market hours, the S&amp;P 500 and Nasdaq 100 are checked against pullback and breakout patterns, plus a set of additional strategies on their own page.</li>
+                <li><strong>Score and explain.</strong> Each signal gets a 0–100 score and a letter grade built from its backtest, volume, trend, relative strength, earnings and sentiment, shown alongside the evidence behind it.</li>
+                <li><strong>Guard.</strong> Hard rules block entries near earnings, in extreme volatility, after a run of losses, and on wash-sale conflicts.</li>
+                <li><strong>Enter and manage.</strong> Positions open through the Alpaca brokerage API and exit in three stages: half at the first target, a quarter on a trailing stop, and the last quarter held against a profit floor. Stops are real broker orders, re-priced automatically.</li>
+                <li><strong>Notify.</strong> Entries, exits and warnings go to each user's Telegram.</li>
+            </ol>
+            <img src="images/swingscanner/dashboard.jpg" alt="Dashboard with market regime, economic calendar, Fear and Greed, and a table of graded signals">
+            <p class="caption">The dashboard: market regime and hedge level at the top, then every signal with its grade, score and status.</p>
+            <img src="images/swingscanner/edge.jpg" alt="Edge strategies page with tabs for additional strategy signals">
+            <p class="caption">Additional strategies live on their own page, separate from the signals that can open positions.</p>
+        </div>
+
+        <div class="case-section">
+            <span class="section-label">Design</span>
+            <h2 id="design">Designing a Product, Not a Script</h2>
+            <p>It started as a tool for two people, but I designed it as a product for anyone who wants to trade a disciplined strategy without living in a dozen browser tabs. Each user signs up with their own account, connects their own brokerage (keys are stored encrypted), and gets their own watchlist, risk limits, strategy switches and Telegram alerts. An admin layer sits on top for operating the service. It was built multi-user from day one, with the start of a subscription flow in place, so opening it up is a business decision rather than a rebuild. I've held back from inviting more users because a tool that places trades for other people starts to look like investment advice, which is a legal question, not a design one.</p>
+            <p>Designing for that wider audience shaped every screen. Experienced traders need dense, changing information that is quick to scan; newer ones need to understand why the system did what it did. The answer to both was the same: don't simplify the strategy, make its decisions easy to see and audit.</p>
+
+            <h3>Show the Why, Not Just the What</h3>
+            <p>A score alone invites blind trust. So every signal row carries its evidence next to it: its backtest record (trades, win rate, expectancy), volume, momentum, news sentiment, days until earnings, and the stop and target it would use. A Criteria popup on the dashboard documents every rule in plain language and is updated whenever the logic changes. It loads straight from a single criteria page, so there is only one copy of the rules to keep accurate.</p>
+            <img src="images/swingscanner/criteria.jpg" alt="Signal Criteria popup over the dashboard, explaining the STRONG, HMPS and breakout signal rules">
+
+            <h3>Positions as a Process</h3>
+            <p>A position isn't a single row with a profit number; it moves through stages. The Holdings page shows where each position is in its exit plan, where its stop sits, and what happens next, with a built-in guide to the tranche strategy.</p>
+            <img src="images/swingscanner/holdings.jpg" alt="Holdings page showing positions by exit stage with stops and targets">
+            <p class="caption">Holdings, with each position's stage and next exit. Account figures and positions in these screenshots are sample data.</p>
+
+            <h3>Always On, Including on a Phone</h3>
+            <p>Markets move during the day, so the whole app works on a phone, in light and dark mode. Live prices stream in over WebSockets, and a Figma library of 16 components in both themes kept the screens consistent as features kept being added.</p>
+            <div class="img-pair">
+                <img src="images/swingscanner/mobile-dashboard.jpg" alt="Swing Scanner dashboard on a phone in dark mode">
+                <img src="images/swingscanner/mobile-holdings.jpg" alt="Swing Scanner holdings on a phone in light mode">
+            </div>
+            <p class="caption">The same product on a phone, in dark and light mode.</p>
+
+            <h3>Controls That Respect Risk</h3>
+            <p>Every automated behavior has a switch, per user and per strategy: entry thresholds, position sizing, loss limits, hedging. Safety stops don't quietly undo themselves. A pause after a losing streak stays on until a person clears it.</p>
+            <img src="images/swingscanner/settings.jpg" alt="Settings page with entry thresholds, risk limits and per-strategy switches">
+        </div>
+
+        <div class="case-section">
+            <span class="section-label">Building with AI</span>
+            <h2 id="building">A Designer With an AI Engineering Team</h2>
+            <p>I haven't written production code in years. For this project, Claude Code wrote the code: a Python backend with a PostgreSQL database, the scanner and trading engine, more than 130 API endpoints, and the web front end. I worked the way I would with an engineering team. I wrote the product requirements, designed the experience, reviewed every change, and shipped through GitHub to Railway, where each push deploys automatically.</p>
+            <p>The speed was remarkable. Over 11 months the project grew to more than 1,000 commits and about 66,000 lines of code. Features that would have been a quarter-long roadmap item for a team took an afternoon.</p>
+            <p>But speed moved the bottleneck. Writing code stopped being the hard part. Knowing whether the code, and the claims about it, were actually right became the hard part.</p>
+        </div>
+
+        <div class="case-section">
+            <span class="section-label">Candidly</span>
+            <h2 id="results">Real Money, Real Lessons</h2>
+            <p>I run the platform on a real-money brokerage account. That changes how you look at everything: a bug isn't a broken screen, it's a position with no stop. And early live results lagged the market. So a large part of this project became research: finding out why, with the same rigor I'd bring to a user research program.</p>
+
+            <h3>The Biggest Problem Wasn't the Strategy</h3>
+            <p>The scanner looked at the day's price bar while it was still forming and entered the moment a pullback qualified. On a day that kept falling, that meant buying near the top of the day's range. On the same 40 signals, with identical exit rules and only the entry price changed, live entries averaged −3.6% per trade; entering at the day's close would have averaged +0.1%.</p>
+            <p>The fix that captured most of that, resting limit orders, was one I chose not to ship. Scans run every 15 minutes, so orders waiting to fill would have turned a simple, stateless system into one that has to reconcile pending orders against new signals across restarts and deploys, on a live account. Less money on paper, much less risk in practice. That is a product call, not a math problem.</p>
+
+            <h3>Measuring What We Believed</h3>
+            <p>Several features we had assumed were helping were tested properly and turned out not to be:</p>
+            <div class="findings">
+                <div class="finding">
+                    <p class="finding-label">The 0–100 signal score</p>
+                    <p>Across 17,146 backtested trades from 2012 to 2026, high-scoring signals did no better than low-scoring ones.</p>
+                </div>
+                <div class="finding">
+                    <p class="finding-label">The machine-learning market predictor</p>
+                    <p>Tested walk-forward over 2013–2026, it was right 53.8% of the time, versus 54.8% for simply always predicting "up." Its most confident calls were its worst.</p>
+                </div>
+                <div class="finding">
+                    <p class="finding-label">Pausing after losing streaks</p>
+                    <p>Trades taken after a bad run did slightly better, not worse, because losing streaks tend to coincide with selloffs that pullback entries then benefit from.</p>
+                </div>
+                <div class="finding">
+                    <p class="finding-label">Analytics vs. live trading</p>
+                    <p>The analytics, the backtest and the live system had three different implementations of the exit rules. The analytics split positions differently from live and had silently frozen for three months. They now share one implementation, so what we measure is what we trade.</p>
+                </div>
+            </div>
+            <p class="caption">All results are from backtests and live logs on this project; they describe this system, not markets in general.</p>
+        </div>
+
+        <div class="case-section">
+            <span class="section-label">Trust, but Measure</span>
+            <h2 id="discipline">When the AI Is Confidently Wrong</h2>
+            <p>The most important thing I learned is how an AI collaborator fails. It rarely writes broken code. It writes a plausible explanation and states it as fact. A backtest once showed that widening a trailing stop improved results by about 29%. It turned out the simulation was peeking at a price it could not have known in real life; corrected, the gain was about zero. Other confident estimates, like how much memory the app would save, missed by 3 to 10 times.</p>
+            <table class="claims-table">
+                <thead><tr><th>What the AI estimated</th><th>What we measured</th></tr></thead>
+                <tbody>
+                    <tr><td>Wider trailing stop: about 29% better results</td><td>About zero, once the simulation stopped using future prices</td></tr>
+                    <tr><td>Scan data uses 200–350 MB of memory</td><td>About 24 MB</td></tr>
+                    <tr><td>Prediction model uses 30–80 MB</td><td>13–25 MB; one of its three models was never installed</td></tr>
+                    <tr><td>Two server settings would cut memory meaningfully</td><td>About 0 MB</td></tr>
+                </tbody>
+            </table>
+            <p>None of this is a reason not to use AI. It's a reason to manage it like a fast, brilliant, overconfident new hire. I turned what I learned into written working rules that the agent loads at the start of every session:</p>
+            <ul class="rules-list">
+                <li><strong>No estimate unless it was measured.</strong> "Unknown, and here is how to measure it" is an acceptable answer.</li>
+                <li><strong>Build the instrument first.</strong> A diagnostic page or a log line settles a question in one deploy; reasoning about it often doesn't.</li>
+                <li><strong>Read before you recommend.</strong> A proposed "safe" fallback, once read, would have cancelled a position's stop.</li>
+                <li><strong>Separate diagnosis from proposal.</strong> Findings first, then a decision, never both in one breath.</li>
+                <li><strong>Ask for the counter-test.</strong> The best single question was "what could make this wrong?" It caught errors that self-review didn't.</li>
+            </ul>
+            <p>These are the same habits that make good UX research credible: separate observation from interpretation, state your sample size, and don't let a compelling story outrun the evidence.</p>
+        </div>
+
+        <div class="case-section">
+            <span class="section-label">Reflection</span>
+            <h2 id="learnings">What I'm Taking Forward</h2>
+            <h3>Judgment Is the Scarce Resource</h3>
+            <p>When an AI can build almost anything quickly, the value moves to deciding what's worth building, what is actually true, and what risk is acceptable. Those were always design and product leadership skills; AI makes them the whole job.</p>
+            <h3>Design the Evidence, Not Just the Interface</h3>
+            <p>The most useful screens I built weren't the prettiest ones. They were the diagnostic pages that let anyone check, in a browser, whether the system was doing what we believed.</p>
+            <h3>Explainability Builds Calibrated Trust</h3>
+            <p>Showing the reasoning behind every signal didn't just help us trust the system. It showed us exactly where not to.</p>
+        </div>
+
+        <div class="disclaimer">
+            <p>Swing Scanner is a personal project. Nothing on this page is investment advice, and past or backtested results don't predict future returns.</p>
+        </div>
+
+    </section>
+    <section class="next-case">
+        <div class="next-case-inner">
+            <div>
+                <p class="next-label">Next Case Study</p>
+                <h3><a href="workday.html">WORKDAY →</a></h3>
+            </div>
+        </div>
+    </section>
+
+
+<footer>
+        <p class="footer-text">© 2026 Daan Lindhout</p>
+        <p class="footer-text">Seattle, WA</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleIcons(newTheme);
+        }
+        function updateToggleIcons(theme) {
+            const sunIcon = document.querySelector('.sun-icon');
+            const moonIcon = document.querySelector('.moon-icon');
+            if (theme === 'light') {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            } else {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            }
+        }
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+            document.addEventListener('DOMContentLoaded', function() {
+                updateToggleIcons(localStorage.getItem('theme') || 'dark');
+                
+                // TOC functionality
+                const toc = document.querySelector('.case-toc');
+                const tocLinks = document.querySelectorAll('.case-toc a');
+                const sections = document.querySelectorAll('[id]');
+                const heroEnd = document.querySelector('.stats-bar');
+                const footer = document.querySelector('footer');
+                
+                // Show/hide TOC based on scroll position
+                function updateTocVisibility() {
+                    if (!toc || !heroEnd) return;
+                    const heroEndPos = heroEnd.getBoundingClientRect().bottom;
+                    const footerPos = footer ? footer.getBoundingClientRect().top : Infinity;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (heroEndPos < 0 && footerPos > windowHeight * 0.5) {
+                        toc.classList.add('visible');
+                    } else {
+                        toc.classList.remove('visible');
+                    }
+                }
+                
+                // Highlight active section in TOC
+                function updateActiveSection() {
+                    let currentSection = '';
+                    sections.forEach(section => {
+                        const rect = section.getBoundingClientRect();
+                        if (rect.top <= 150) {
+                            currentSection = section.id;
+                        }
+                    });
+                    
+                    tocLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + currentSection) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+                
+                // Smooth scroll for TOC links
+                tocLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        const target = document.getElementById(targetId);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    });
+                });
+                
+                window.addEventListener('scroll', function() {
+                    updateTocVisibility();
+                    updateActiveSection();
+                });
+                
+                updateTocVisibility();
+                updateActiveSection();
+            });
+        })();
+    </script>
+</body>
+</html>
