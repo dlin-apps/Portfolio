@@ -3,14 +3,19 @@
 
 (function() {
     // Navigation HTML template
-    var navHTML = '<a href="index.html" class="nav-logo"><img src="images/logo.png" alt="DL Logo"></a>' +
+    var navHTML = '<button class="nav-menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav-links">' +
+        '<svg class="icon-open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-width="2" d="M4 7h16M4 12h16M4 17h16" /></svg>' +
+        '<svg class="icon-close" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-width="2" d="M6 6l12 12M18 6L6 18" /></svg>' +
+        '</button>' +
+        '<a href="index.html" class="nav-logo"><img src="images/logo.png" alt="DL Logo"></a>' +
         '<div class="nav-right">' +
-        '<div class="nav-links">' +
+        '<div class="nav-links" id="site-nav-links">' +
         '<a href="index.html" data-page="about">About</a>' +
         '<a href="portfolio.html" data-page="portfolio">Portfolio</a>' +
         '<a href="tenets.html" data-page="tenets">Tenets</a>' +
         '<a href="writing.html" data-page="writing">Writing</a>' +
         '<a href="resume.html" data-page="resume">Resume</a>' +
+        '<a href="lab.html" data-page="lab">Lab</a>' +
         '<a href="contact.html" data-page="contact">Contact</a>' +
         '</div>' +
         '<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">' +
@@ -33,8 +38,27 @@
     navCSS += '.theme-toggle:focus { outline: 2px solid var(--accent); outline-offset: 2px; border-color: var(--accent); color: var(--accent); }';
     navCSS += '.theme-toggle svg { width: 18px; height: 18px; }';
     navCSS += '@media (max-width: 1024px) { nav { padding: 1.5rem 2rem; } }';
-    navCSS += '@media (max-width: 768px) { nav { padding: 1rem 1.5rem; justify-content: flex-end; } .nav-logo { display: none; } .nav-links { gap: 0.75rem; flex-wrap: wrap; justify-content: center; } .nav-links a { font-size: 0.7rem; letter-spacing: 0.02em; } .theme-toggle { margin-left: 0.75rem; padding: 0.4rem; } .theme-toggle svg { width: 16px; height: 16px; } }';
-    navCSS += '@media (max-width: 480px) { nav { padding: 0.75rem 1rem; } .nav-links { gap: 0.5rem; } .nav-links a { font-size: 0.6rem; } }';
+    // Menu button (hidden on desktop)
+    navCSS += '.nav-menu-btn { display: none; background: none; border: 1px solid var(--border); color: var(--text-secondary); cursor: pointer; padding: 0.5rem; border-radius: 4px; align-items: center; justify-content: center; transition: all 0.3s ease; }';
+    navCSS += '.nav-menu-btn:hover, .nav-menu-btn[aria-expanded="true"] { border-color: var(--accent); color: var(--accent); }';
+    navCSS += '.nav-menu-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }';
+    navCSS += '.nav-menu-btn svg { width: 18px; height: 18px; display: block; }';
+    navCSS += '.nav-menu-btn .icon-close { display: none; }';
+    navCSS += '.nav-menu-btn[aria-expanded="true"] .icon-open { display: none; }';
+    navCSS += '.nav-menu-btn[aria-expanded="true"] .icon-close { display: block; }';
+    // Phones and small tablets: menu button top left, theme toggle top right, links in a dropdown panel
+    navCSS += '@media (max-width: 768px) {' +
+        ' nav { padding: 0.75rem 1.25rem; justify-content: space-between; }' +
+        ' .nav-logo { display: none; }' +
+        ' .nav-menu-btn { display: flex; }' +
+        ' .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; padding: 0.5rem 0; background: var(--bg-primary, #0a0a0a); border-bottom: 1px solid var(--border); box-shadow: var(--shadow-hover, 0 8px 24px rgba(0, 0, 0, 0.3)); }' +
+        ' nav.menu-open .nav-links { display: flex; }' +
+        ' .nav-links a { font-size: 0.9rem; letter-spacing: 0.08em; padding: 0.85rem 1.25rem; border-left: 2px solid transparent; }' +
+        ' .nav-links a.active { border-left-color: var(--accent); }' +
+        ' .nav-links a:focus { outline-offset: -2px; }' +
+        ' .theme-toggle { margin-left: 0; padding: 0.5rem; }' +
+        ' .theme-toggle svg { width: 18px; height: 18px; }' +
+        ' }';
 
     // Determine active page from URL
     function getActivePage() {
@@ -48,10 +72,19 @@
             'tenets.html': 'tenets',
             'writing.html': 'writing',
             'resume.html': 'resume',
+            'lab.html': 'lab',
             'contact.html': 'contact'
         };
         
-        var projectPages = ['swingscanner', 'workday', 'axon', 'qualtrics', 'moz', 'socrata', 'f5', 'sumtotal', 
+        // Lab (independent) case studies highlight Lab, not Portfolio
+        var labPages = ['swingscanner'];
+        for (var j = 0; j < labPages.length; j++) {
+            if (filename.indexOf(labPages[j]) !== -1) {
+                return 'lab';
+            }
+        }
+
+        var projectPages = ['workday', 'axon', 'qualtrics', 'moz', 'socrata', 'f5', 'sumtotal', 
                             'windowslive', 'photoframe', 'microsoft', 'digitalpen', 
                             'tiltwheel', 'hardwareapps', 'keyboards', 'rightclick', 'bicycle'];
         
@@ -84,7 +117,45 @@
             if (typeof updateToggleIcons === 'function') {
                 updateToggleIcons(localStorage.getItem('theme') || 'dark');
             }
+
+            initMenu(navEl);
         }
+    }
+
+    // Mobile menu: open/close the dropdown panel
+    function initMenu(navEl) {
+        var btn = navEl.querySelector('.nav-menu-btn');
+        if (!btn) return;
+
+        function setOpen(open) {
+            navEl.classList.toggle('menu-open', open);
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        }
+
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            setOpen(!navEl.classList.contains('menu-open'));
+        });
+        // Close after choosing a page
+        navEl.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() { setOpen(false); });
+        });
+        // Close when tapping outside the nav
+        document.addEventListener('click', function(e) {
+            if (navEl.classList.contains('menu-open') && !navEl.contains(e.target)) setOpen(false);
+        });
+        // Close with Escape and return focus to the button
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navEl.classList.contains('menu-open')) {
+                setOpen(false);
+                btn.focus();
+            }
+        });
+        // Close if the window grows back to desktop width
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && navEl.classList.contains('menu-open')) setOpen(false);
+        });
     }
 
     // Run on DOM ready

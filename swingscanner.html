@@ -224,16 +224,10 @@
         .findings { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
         .finding { background: var(--bg-card); border: 1px solid var(--border); padding: 1.25rem; }
         .finding p { margin-bottom: 0; }
-        .claims-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.85rem; }
-        .claims-table th { text-align: left; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border); }
-        .claims-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; }
-        .claims-table td:last-child { color: var(--text-primary); }
         .disclaimer { border-top: 1px solid var(--border); padding-top: 1.5rem; }
         .disclaimer p { font-size: 0.75rem; color: var(--text-secondary); font-style: italic; }
         @media (max-width: 768px) {
             .findings, .img-pair { grid-template-columns: 1fr; }
-            .claims-table { font-size: 0.78rem; }
-            .claims-table th, .claims-table td { padding: 0.5rem 0.4rem; }
         }
     </style>
 
@@ -256,19 +250,19 @@
     <section class="case-hero">
         <div class="case-hero-content">
             <div class="case-meta">
+                <span class="case-tag">INDEPENDENT PROJECT</span>
                 <span class="case-tag">FINTECH</span>
                 <span class="case-tag">AI-ASSISTED BUILD</span>
-                <span class="case-tag">0 → 1</span>
                 <span class="case-year">2026</span>
 
                 <div class="project-nav-inline">
-                    <a href="workday.html" class="project-nav-link"><span class="nav-text">Next: Workday </span>→</a>
+                    <a href="lab.html" class="project-nav-link"><span class="nav-text">All Lab projects </span>→</a>
                 </div>
             </div>
             <h1>SWING SCANNER</h1>
             <p class="case-role">Stock Screening &amp; Automated Investment Platform</p>
             <p class="case-intro">A friend and I had been following a swing trading strategy for a while: finding stocks in a strong uptrend that pull back or break out, holding them for days to weeks, and exiting in stages. It worked, but it was very labor intensive. Every day meant visiting many sites, aggregating data across them by hand, placing entry and exit orders manually, and updating stop losses as positions moved.</p>
-            <p class="case-intro">During my sabbatical I designed and built a platform that does all of that: it scans about 600 stocks every 15 minutes, scores and explains every signal, opens positions, and manages each one through a three-stage exit, with a dashboard that works on desktop and phone. I'm a designer, not an engineer; the code was written with Claude Code, an AI coding agent, while I owned the product, the design, the research, and every decision about what to trust.</p>
+            <p class="case-intro">As a part-time project while teaching at Northeastern University, I designed and built a platform that does all of that. It scans the market throughout the day, scores and explains every signal, opens positions, and manages each one through to its exit, on desktop and phone. I'm a designer, not an engineer: Claude Code, an AI coding agent, wrote the code, while I owned the product, the design, the research, and every decision about what to trust.</p>
         </div>
     </section>
 
@@ -289,7 +283,7 @@
         <div class="case-section">
             <span class="section-label">The Problem</span>
             <h2 id="problem">A Strategy That Ate the Day</h2>
-            <p>Swing trading rewards discipline more than insight. The rules were clear: only trade when the market is healthy, look for strong stocks that pull back or break out on volume, size each position to its risk, take partial profits at a target, and trail a stop on the rest. Doing that by hand meant checking charts, volume, earnings dates, sector strength and market conditions across a handful of sites, then entering orders and moving stops one at a time.</p>
+            <p>Swing trading rewards discipline more than insight. The rules were clear: only trade when the market is healthy, look for strong stocks that pull back or break out, size each position to its risk, take partial profits on the way up, and protect the rest with a stop. Doing that by hand meant checking charts, earnings dates and market conditions across a handful of sites, then entering orders and moving stops one at a time.</p>
             <p>The manual process failed in predictable ways. Setups were missed because nobody was looking at that moment. Stops lagged because updating them was tedious. And the rules bent under pressure, which is exactly when they matter most.</p>
             <div class="callout">
                 <p class="callout-label">Design goal</p>
@@ -300,17 +294,17 @@
         <div class="case-section">
             <span class="section-label">The Platform</span>
             <h2 id="platform">From Scan to Exit, End to End</h2>
-            <p>The platform follows the same workflow we used to run by hand, from market check to final exit:</p>
+            <p>The platform follows the same workflow we used to run by hand:</p>
             <ol class="flow-list">
-                <li><strong>Read the market.</strong> A regime check (volatility, the S&amp;P 500's trend) decides whether new positions are allowed at all, and a graduated hedge can offset risk when conditions turn.</li>
-                <li><strong>Scan.</strong> Every 15 minutes during market hours, the S&amp;P 500 and Nasdaq 100 are checked against pullback and breakout patterns, plus a set of additional strategies on their own page.</li>
-                <li><strong>Score and explain.</strong> Each signal gets a 0–100 score and a letter grade built from its backtest, volume, trend, relative strength, earnings and sentiment, shown alongside the evidence behind it.</li>
-                <li><strong>Guard.</strong> Hard rules block entries near earnings, in extreme volatility, after a run of losses, and on wash-sale conflicts.</li>
-                <li><strong>Enter and manage.</strong> Positions open through the Alpaca brokerage API and exit in three stages: half at the first target, a quarter on a trailing stop, and the last quarter held against a profit floor. Stops are real broker orders, re-priced automatically.</li>
-                <li><strong>Notify.</strong> Entries, exits and warnings go to each user's Telegram.</li>
+                <li><strong>Read the market.</strong> Decide whether conditions are healthy enough to open new positions at all, and add protection when they turn.</li>
+                <li><strong>Scan.</strong> Check the S&amp;P 500 and Nasdaq 100 throughout the trading day for the patterns the strategy looks for.</li>
+                <li><strong>Score and explain.</strong> Grade every signal and show the evidence behind the grade.</li>
+                <li><strong>Guard.</strong> Apply hard safety rules, such as staying out ahead of earnings or in extreme volatility.</li>
+                <li><strong>Enter and manage.</strong> Open positions through the brokerage and take profits in stages, with protective stops that move as the trade develops.</li>
+                <li><strong>Notify.</strong> Tell each user what happened, on their phone.</li>
             </ol>
-            <img src="images/swingscanner/dashboard.jpg" alt="Dashboard with market regime, economic calendar, Fear and Greed, and a table of graded signals">
-            <p class="caption">The dashboard: market regime and hedge level at the top, then every signal with its grade, score and status.</p>
+            <img src="images/swingscanner/dashboard.jpg" alt="Dashboard with market regime, hedge level and a table of graded signals">
+            <p class="caption">The dashboard: market conditions at the top, then every signal with its grade and status.</p>
             <img src="images/swingscanner/edge.jpg" alt="Edge strategies page with tabs for additional strategy signals">
             <p class="caption">Additional strategies live on their own page, separate from the signals that can open positions.</p>
         </div>
@@ -318,93 +312,83 @@
         <div class="case-section">
             <span class="section-label">Design</span>
             <h2 id="design">Designing a Product, Not a Script</h2>
-            <p>It started as a tool for two people, but I designed it as a product for anyone who wants to trade a disciplined strategy without living in a dozen browser tabs. Each user signs up with their own account, connects their own brokerage (keys are stored encrypted), and gets their own watchlist, risk limits, strategy switches and Telegram alerts. An admin layer sits on top for operating the service. It was built multi-user from day one, with the start of a subscription flow in place, so opening it up is a business decision rather than a rebuild. I've held back from inviting more users because a tool that places trades for other people starts to look like investment advice, which is a legal question, not a design one.</p>
+            <p>It started as a tool for two people, but I designed it as a product for anyone who wants to follow a disciplined strategy without living in a dozen browser tabs. Every user has their own account, brokerage connection, watchlist, risk limits and alerts. It was built multi-user from day one, so opening it up is a business decision rather than a rebuild. I've held back from inviting more users because a tool that places trades for other people starts to look like investment advice, which is a legal question, not a design one.</p>
             <p>Designing for that wider audience shaped every screen. Experienced traders need dense, changing information that is quick to scan; newer ones need to understand why the system did what it did. The answer to both was the same: don't simplify the strategy, make its decisions easy to see and audit.</p>
 
             <h3>Show the Why, Not Just the What</h3>
-            <p>A score alone invites blind trust. So every signal row carries its evidence next to it: its backtest record (trades, win rate, expectancy), volume, momentum, news sentiment, days until earnings, and the stop and target it would use. A Criteria popup on the dashboard documents every rule in plain language and is updated whenever the logic changes. It loads straight from a single criteria page, so there is only one copy of the rules to keep accurate.</p>
-            <img src="images/swingscanner/criteria.jpg" alt="Signal Criteria popup over the dashboard, explaining the STRONG, HMPS and breakout signal rules">
+            <p>A score alone invites blind trust. So every signal carries its evidence alongside it, and the rules behind every decision are documented in plain language, one click away from the dashboard. When the logic changes, the explanation changes with it.</p>
+            <img src="images/swingscanner/criteria.jpg" alt="Signal Criteria popup over the dashboard, explaining the signal rules">
 
             <h3>Positions as a Process</h3>
-            <p>A position isn't a single row with a profit number; it moves through stages. The Holdings page shows where each position is in its exit plan, where its stop sits, and what happens next, with a built-in guide to the tranche strategy.</p>
+            <p>A position isn't a single row with a profit number; it moves through stages. The Holdings page shows where each position is in its exit plan, how it is protected, and what happens next.</p>
             <img src="images/swingscanner/holdings.jpg" alt="Holdings page showing positions by exit stage with stops and targets">
-            <p class="caption">Holdings, with each position's stage and next exit. Account figures and positions in these screenshots are sample data.</p>
+            <p class="caption">Account figures and positions in these screenshots are sample data.</p>
 
             <h3>Always On, Including on a Phone</h3>
-            <p>Markets move during the day, so the whole app works on a phone, in light and dark mode. Live prices stream in over WebSockets, and a Figma library of 16 components in both themes kept the screens consistent as features kept being added.</p>
+            <p>Markets move during the day, so the whole app works on a phone, in light and dark mode, with live prices. A shared component library kept the screens consistent as features kept being added.</p>
             <div class="img-pair">
                 <img src="images/swingscanner/mobile-dashboard.jpg" alt="Swing Scanner dashboard on a phone in dark mode">
                 <img src="images/swingscanner/mobile-holdings.jpg" alt="Swing Scanner holdings on a phone in light mode">
             </div>
-            <p class="caption">The same product on a phone, in dark and light mode.</p>
 
             <h3>Controls That Respect Risk</h3>
-            <p>Every automated behavior has a switch, per user and per strategy: entry thresholds, position sizing, loss limits, hedging. Safety stops don't quietly undo themselves. A pause after a losing streak stays on until a person clears it.</p>
-            <img src="images/swingscanner/settings.jpg" alt="Stock trading settings with auto paper-trading switched on: minimum signal score, entries per scan, watchlist only, per-strategy switches and the hedge overlay">
+            <p>Every automated behavior has a switch, per user and per strategy. Safety stops don't quietly undo themselves: a pause after a losing streak stays on until a person clears it.</p>
+            <img src="images/swingscanner/settings.jpg" alt="Stock trading settings with auto paper-trading switched on and per-strategy switches">
         </div>
 
         <div class="case-section">
             <span class="section-label">Building with AI</span>
             <h2 id="building">A Designer With an AI Engineering Team</h2>
-            <p>I haven't written production code in years. For this project, Claude Code wrote the code: a Python backend with a PostgreSQL database, the scanner and trading engine, more than 130 API endpoints, and the web front end. I worked the way I would with an engineering team. I wrote the product requirements, designed the experience, reviewed every change, and shipped through GitHub to Railway, where each push deploys automatically.</p>
-            <p>The speed was remarkable. Over 11 months the project grew to more than 1,000 commits and about 66,000 lines of code. Features that would have been a quarter-long roadmap item for a team took an afternoon.</p>
+            <p>I haven't written production code in years. For this project, Claude Code, an AI coding agent, wrote the code, and I worked the way I would with an engineering team: I set the product direction, designed the experience, reviewed every change, and decided what shipped.</p>
+            <p>The speed was remarkable. Features that would have been a quarter-long roadmap item for a team took an afternoon.</p>
             <p>But speed moved the bottleneck. Writing code stopped being the hard part. Knowing whether the code, and the claims about it, were actually right became the hard part.</p>
         </div>
 
         <div class="case-section">
             <span class="section-label">Candidly</span>
             <h2 id="results">Real Money, Real Lessons</h2>
-            <p>I run the platform on a real-money brokerage account. That changes how you look at everything: a bug isn't a broken screen, it's a position with no stop. And early live results lagged the market. So a large part of this project became research: finding out why, with the same rigor I'd bring to a user research program.</p>
+            <p>I run the platform on a real-money brokerage account. That changes how you look at everything: a bug isn't a broken screen, it's a position without protection. And early live results lagged the market. So a large part of this project became research: finding out why, with the same rigor I'd bring to a user research program.</p>
 
             <h3>The Biggest Problem Wasn't the Strategy</h3>
-            <p>The scanner looked at the day's price bar while it was still forming and entered the moment a pullback qualified. On a day that kept falling, that meant buying near the top of the day's range. On the same 40 signals, with identical exit rules and only the entry price changed, live entries averaged −3.6% per trade; entering at the day's close would have averaged +0.1%.</p>
-            <p>The fix that captured most of that, resting limit orders, was one I chose not to ship. Scans run every 15 minutes, so orders waiting to fill would have turned a simple, stateless system into one that has to reconcile pending orders against new signals across restarts and deploys, on a live account. Less money on paper, much less risk in practice. That is a product call, not a math problem.</p>
+            <p>The strategy itself held up. What hurt was timing: the system acted on information that was still changing during the day, so it tended to enter at worse prices than the strategy assumed. How it executed mattered more than what it picked.</p>
+            <p>The fix that would have recovered most of that was one I chose not to ship. It would have made the system far more complex to run safely on a live account. Less return on paper, much less risk in practice. That is a product call, not a math problem.</p>
 
             <h3>Measuring What We Believed</h3>
-            <p>Several features we had assumed were helping were tested properly and turned out not to be:</p>
+            <p>Several features we had assumed were helping turned out not to, once they were tested properly:</p>
             <div class="findings">
                 <div class="finding">
-                    <p class="finding-label">The 0–100 signal score</p>
-                    <p>Across 17,146 backtested trades from 2012 to 2026, high-scoring signals did no better than low-scoring ones.</p>
+                    <p class="finding-label">The signal score</p>
+                    <p>Higher-scoring signals did no better than lower-scoring ones.</p>
                 </div>
                 <div class="finding">
-                    <p class="finding-label">The machine-learning market predictor</p>
-                    <p>Tested walk-forward over 2013–2026, it was right 53.8% of the time, versus 54.8% for simply always predicting "up." Its most confident calls were its worst.</p>
+                    <p class="finding-label">The machine-learning predictor</p>
+                    <p>It did no better than always guessing the market goes up, and its most confident calls were its worst.</p>
                 </div>
                 <div class="finding">
                     <p class="finding-label">Pausing after losing streaks</p>
-                    <p>Trades taken after a bad run did slightly better, not worse, because losing streaks tend to coincide with selloffs that pullback entries then benefit from.</p>
+                    <p>Trades after a bad run did no worse, often better, because losing streaks tend to end in selloffs that set up good entries.</p>
                 </div>
                 <div class="finding">
-                    <p class="finding-label">Analytics vs. live trading</p>
-                    <p>The analytics, the backtest and the live system had three different implementations of the exit rules. The analytics split positions differently from live and had silently frozen for three months. They now share one implementation, so what we measure is what we trade.</p>
+                    <p class="finding-label">A stock's own track record</p>
+                    <p>Each stock had too little history for its past results to say anything about its next trade.</p>
                 </div>
             </div>
-            <p class="caption">All results are from backtests and live logs on this project; they describe this system, not markets in general.</p>
+            <p>The pattern was the same each time: a feature that sounded right and looked sophisticated, but had never been tested against the simplest alternative.</p>
         </div>
 
         <div class="case-section">
             <span class="section-label">Trust, but Measure</span>
             <h2 id="discipline">When the AI Is Confidently Wrong</h2>
-            <p>The most important thing I learned is how an AI collaborator fails. It rarely writes broken code. It writes a plausible explanation and states it as fact. A backtest once showed that widening a trailing stop improved results by about 29%. It turned out the simulation was peeking at a price it could not have known in real life; corrected, the gain was about zero. Other confident estimates, like how much memory the app would save, missed by 3 to 10 times.</p>
-            <table class="claims-table">
-                <thead><tr><th>What the AI estimated</th><th>What we measured</th></tr></thead>
-                <tbody>
-                    <tr><td>Wider trailing stop: about 29% better results</td><td>About zero, once the simulation stopped using future prices</td></tr>
-                    <tr><td>Scan data uses 200–350 MB of memory</td><td>About 24 MB</td></tr>
-                    <tr><td>Prediction model uses 30–80 MB</td><td>13–25 MB; one of its three models was never installed</td></tr>
-                    <tr><td>Two server settings would cut memory meaningfully</td><td>About 0 MB</td></tr>
-                </tbody>
-            </table>
-            <p>None of this is a reason not to use AI. It's a reason to manage it like a fast, brilliant, overconfident new hire. I turned what I learned into written working rules that the agent loads at the start of every session:</p>
+            <p>The most important thing I learned is how an AI collaborator fails. It rarely writes broken code. It writes a plausible explanation and states it as fact. One backtest showed a large improvement from a small rule change; it turned out the simulation was using information it couldn't have had in real life, and the real improvement was zero. Its estimates of size and effect were often off by several times, always with the same confidence.</p>
+            <p>None of this is a reason not to use AI. It's a reason to manage it like a fast, brilliant, overconfident new hire. I turned what I learned into written working rules that the agent follows in every session:</p>
             <ul class="rules-list">
-                <li><strong>No estimate unless it was measured.</strong> "Unknown, and here is how to measure it" is an acceptable answer.</li>
-                <li><strong>Build the instrument first.</strong> A diagnostic page or a log line settles a question in one deploy; reasoning about it often doesn't.</li>
-                <li><strong>Read before you recommend.</strong> A proposed "safe" fallback, once read, would have cancelled a position's stop.</li>
+                <li><strong>No estimate unless it was measured.</strong> "Unknown, and here is how to find out" is an acceptable answer.</li>
+                <li><strong>Build the instrument first.</strong> A small diagnostic settles a question faster than any amount of reasoning about it.</li>
+                <li><strong>Read before you recommend.</strong> A fix that sounds safe can do the opposite of what it promises.</li>
                 <li><strong>Separate diagnosis from proposal.</strong> Findings first, then a decision, never both in one breath.</li>
-                <li><strong>Ask for the counter-test.</strong> The best single question was "what could make this wrong?" It caught errors that self-review didn't.</li>
+                <li><strong>Ask for the counter-test.</strong> The most useful question was "what could make this wrong?"</li>
             </ul>
-            <p>These are the same habits that make good UX research credible: separate observation from interpretation, state your sample size, and don't let a compelling story outrun the evidence.</p>
+            <p>These are the same habits that make good UX research credible: separate observation from interpretation, know your sample size, and don't let a compelling story outrun the evidence.</p>
         </div>
 
         <div class="case-section">
@@ -412,8 +396,8 @@
             <h2 id="learnings">What I'm Taking Forward</h2>
             <h3>Judgment Is the Scarce Resource</h3>
             <p>When an AI can build almost anything quickly, the value moves to deciding what's worth building, what is actually true, and what risk is acceptable. Those were always design and product leadership skills; AI makes them the whole job.</p>
-            <h3>Design the Evidence, Not Just the Interface</h3>
-            <p>The most useful screens I built weren't the prettiest ones. They were the diagnostic pages that let anyone check, in a browser, whether the system was doing what we believed.</p>
+            <h3>Simple and Safe Beats Clever</h3>
+            <p>With real money on the line, I kept choosing the simpler design over the one that looked better on paper. Safety rules are enforced by the system itself, never by someone remembering a step after a release. A clever system that only works when it is operated perfectly is a fragile one.</p>
             <h3>Explainability Builds Calibrated Trust</h3>
             <p>Showing the reasoning behind every signal didn't just help us trust the system. It showed us exactly where not to.</p>
         </div>
@@ -426,8 +410,8 @@
     <section class="next-case">
         <div class="next-case-inner">
             <div>
-                <p class="next-label">Next Case Study</p>
-                <h3><a href="workday.html">WORKDAY →</a></h3>
+                <p class="next-label">Lab</p>
+                <h3><a href="lab.html">ALL LAB PROJECTS →</a></h3>
             </div>
         </div>
     </section>
