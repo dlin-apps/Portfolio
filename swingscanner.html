@@ -229,6 +229,8 @@
         @media (max-width: 768px) {
             .findings, .img-pair { grid-template-columns: 1fr; }
         }
+        /* Screenshots shown inside a browser window frame */
+        .case-section img.framed, .hero-image img.framed { border: none; border-radius: 10px; box-shadow: var(--shadow-hover); }
     </style>
 
 <body>
@@ -267,7 +269,7 @@
     </section>
 
     <div class="hero-image">
-        <img src="images/swingscanner/hero.jpg" alt="Swing Scanner dashboard in dark mode showing market regime, hedge level, and graded stock signals">
+        <img class="framed" src="images/swingscanner/hero.jpg" alt="Swing Scanner dashboard in dark mode showing market regime, hedge level, and graded stock signals">
     </div>
 
     <section class="stats-bar">
@@ -303,9 +305,9 @@
                 <li><strong>Enter and manage.</strong> Open positions through the brokerage and take profits in stages, with protective stops that move as the trade develops.</li>
                 <li><strong>Notify.</strong> Tell each user what happened, on their phone.</li>
             </ol>
-            <img src="images/swingscanner/dashboard.jpg" alt="Dashboard with market regime, hedge level and a table of graded signals">
+            <img class="framed" src="images/swingscanner/dashboard.jpg" alt="Dashboard with market regime, hedge level and a table of graded signals">
             <p class="caption">The dashboard: market conditions at the top, then every signal with its grade and status.</p>
-            <img src="images/swingscanner/edge.jpg" alt="Edge strategies page with tabs for additional strategy signals">
+            <img class="framed" src="images/swingscanner/edge.jpg" alt="Edge strategies page with tabs for additional strategy signals">
             <p class="caption">Additional strategies live on their own page, separate from the signals that can open positions.</p>
         </div>
 
@@ -317,11 +319,11 @@
 
             <h3>Show the Why, Not Just the What</h3>
             <p>A score alone invites blind trust. So every signal carries its evidence alongside it, and the rules behind every decision are documented in plain language, one click away from the dashboard. When the logic changes, the explanation changes with it.</p>
-            <img src="images/swingscanner/criteria.jpg" alt="Signal Criteria popup over the dashboard, explaining the signal rules">
+            <img class="framed" src="images/swingscanner/criteria.jpg" alt="Signal Criteria popup over the dashboard, explaining the signal rules">
 
             <h3>Positions as a Process</h3>
             <p>A position isn't a single row with a profit number; it moves through stages. The Holdings page shows where each position is in its exit plan, how it is protected, and what happens next.</p>
-            <img src="images/swingscanner/holdings.jpg" alt="Holdings page showing positions by exit stage with stops and targets">
+            <img class="framed" src="images/swingscanner/holdings.jpg" alt="Holdings page showing positions by exit stage with stops and targets">
             <p class="caption">Account figures and positions in these screenshots are sample data.</p>
 
             <h3>Always On, Including on a Phone</h3>
